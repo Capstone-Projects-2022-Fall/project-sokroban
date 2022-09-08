@@ -1,7 +1,7 @@
 ![Open in Codespaces](https://classroom.github.com/assets/open-in-codespaces-abfff4d4e15f9e1bd8274d9a39a0befe03a0632bb0f153d0ec72ff541cedbe34.svg)
 <div align="center">
 
-# Project Name
+# Project Name: Sokrobon 2D Game
 [![Report Issue on Jira](https://img.shields.io/badge/Report%20Issues-Jira-0052CC?style=flat&logo=jira-software)](https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/DT/issues)
 [![Deploy Docs](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml/badge.svg)](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml)
 [![Documentation Website Link](https://img.shields.io/badge/-Documentation%20Website-brightgreen)](https://applebaumian.github.io/tu-cis-4398-docs-template/)
@@ -12,27 +12,36 @@
 
 ## Keywords
 
-Section #, as well as any words that quickly give your peers insights into the application like programming language, development platform, type of application, etc.
+Section 704, C#, Unity, 2D game, Desktop application, Multiplayer
 
 ## Project Abstract
 
-This document proposes a novel application of a text message (SMS or Email) read-out and hands-free call interacted between an Android Smartphone and an infotainment platform (headunit) in a car environment. When a phone receives an SMS or Email, the text message is transferred from the phone to the headunit through a Bluetooth connection. On the headunit, user can control which and when the received SMS or E-mail to be read out through the in-vehicle audio system. The user may press one button on the headunit to activate the hands-free feature to call back the SMS sender.
+“SOKROBAN” is a game that will allow the user to solve challenging puzzles by pushing crates and placing them into a specific place inside a room when selecting the “Single Player” mode or challenge friends and people online when selecting the “Multiplayer” mode.
 
 ## High Level Requirement
 
-Describe the requirements – i.e., what the product does and how it does it from a user point of view – at a high level.
+The user will be able to download this game on his desktop and play. Upon launching the application and successfully logging in, a welcome screen will appear with different options such “Single Player Mode”, “Multiplayer”, “High Scores” and “Exit”. The “Single Player Mode” option will ask the user of the difficulty they want to play on. There will be a “normal” and a “hard” mode.  The “Multiplayer” will allow the user to invite one of his/her friends and challenge them into different levels while sharing the same screen or find another player online. Finally, the “High Scores” tab will be for the user to see the high scores and the “Exit” option will allow the user to exit the game.
 
 ## Conceptual Design
 
-Describe the initial design concept: Hardware/software architecture, programming language, operating system, etc.
+“SOKROBAN” will be done in Unity editor using C# coding language. The database will be built using SQL, and the Multiplayer will be created by using the Photon Engine. 
 
 ## Background
 
-The background will contain a more detailed description of the product and a comparison to existing similar projects/products. A literature search should be conducted and the results listed. Proper citation of sources is required. If there are similar open-source products, you should state whether existing source will be used and to what extent. If there are similar closed-source/proprietary products, you should state how the proposed product will be similar and different.
+“SOKROBAN” will be an updated version, with added features, of the original game called “Sokoban” which was originally published in December 1982. There are also a lot of different projects built by different users online that identically copy the game, however, from my research, none of them offers a multiplayer option or a harder version of the game such as “SOKROBAN” will do. Finally, the game will be built from scratch without using any open-source product or any other existing source code. 
+
+Sources: https://github.com/topics/sokoban-game
+
 
 ## Required Resources
 
-Discuss what you need to develop this project. This includes background information you will need to acquire, hardware resources, and software resources. If these are not part of the standard Computer Science Department lab resources, these must be identified early and discussed with the instructor.
+Operating System: Any operating system that can successfully run the Unity Editor. However, Windows OS is preferred. <br>
+Software: <br>
+ • Installation of Unity Editor is required in order to create the map, the different levels and load the characters.<br>
+ • Visual Studio Code or Visual studio is the preferred IDE to use since Unity is using it as its IDE.<br>
+ • SQL will be used to store the high-score information.<br>
+ • GitHub Desktop is preferred for easier interaction with GitHub online.<br>
+
 
 ## Collaborators
 
