@@ -35,12 +35,12 @@ Sources: https://github.com/topics/sokoban-game
 
 ## Required Resources
 
-Operating System: Any operating system that can successfully run the Unity Editor. However, Windows OS is preferred. <br>
-Software: <br>
- • Installation of Unity Editor is required in order to create the map, the different levels and load the characters.<br>
- • Visual Studio Code or Visual studio is the preferred IDE to use since Unity is using it as its IDE.<br>
- • SQL will be used to store the high-score information.<br>
- • GitHub Desktop is preferred for easier interaction with GitHub online.<br>
+Operating System: Any operating system that can successfully run the Unity Editor. However, Windows OS is preferred. 
+Software: 
+ - Installation of Unity Editor is required in order to create the map, the different levels and load the characters.
+ - Visual Studio Code or Visual studio is the preferred IDE to use since Unity is using it as its IDE.
+ - SQL will be used to store the high-score information.
+ - GitHub Desktop is preferred for easier interaction with GitHub online.
 
 
 ## Collaborators
