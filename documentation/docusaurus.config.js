@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://upload.wikimedia.org/wikipedia/commons/1/17/Temple_T_logo.svg';
+const logo = 'https://static.appvn.com/a/uploads/thumbnails/052017/sokoban-collection_icon.png';
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
@@ -22,8 +22,8 @@ const main_template_jira_scripts = () => {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   /*TODO: Change to your project's title and tagline*/
-  title: 'CIS 4398 Documentation Template',
-  tagline: 'Owls are cool',
+  title: 'Sokroban',
+  tagline: 'Desktop 2D Single/Multiplayer Game, using Unity and C#',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://'+process.env.ORG_NAME+'.github.io/',
   baseUrl: '/'+process.env.PROJECT_NAME+'/',
@@ -48,7 +48,7 @@ const config = {
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
+      /** @typeof {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
@@ -98,7 +98,7 @@ const config = {
     ({
       navbar: {
         /*TODO: Change to your project's title*/
-        title: 'My Site',
+        title: 'Sokroban',
         logo: {
           alt: 'My Site Logo',
           src: logo,
