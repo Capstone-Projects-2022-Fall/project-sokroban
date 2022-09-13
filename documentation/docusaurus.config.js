@@ -30,7 +30,7 @@ const config = {
   trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'https://static.appvn.com/a/uploads/thumbnails/052017/sokoban-collection_icon.png',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
