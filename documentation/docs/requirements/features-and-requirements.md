@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Features and Requirements
 
-1) Functional requirements: 
+1) Functional Requirements: 
 
 - Single-player
     - The player will be able to play a chosen level of Sokroban in a single-player experience by choosing the single-player mode.
