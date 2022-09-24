@@ -84,10 +84,10 @@ X) Player wants to play with a different character:
     2)  Player selects their favorite character from a variety of characters.
     3)  Player starts playing with the chosen character.
 
-XI) Player wants to challenge themselves into map with complex design.
+XI) Player wants to challenge themselves onto a map with complex design.
 
-    1)  Player selects Stroy Mode/Single Player option.
+    1)  Player selects Story Mode/Single Player option.
     2)  Player selects from a variety of maps with complex deisgn.
-    3)  Player plays the map-complexity game.
-    
+    3)  Player plays the game with a more complex designed map.
+
 
