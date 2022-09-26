@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637995868755109265
-    m_Hash: 1208873169
+      ticks: 637996339874746605
+    m_Hash: 4046436050
   m_LockFileStatus:
     m_FilePath: C:/Users/akozh/Desktop/project-sokroban/Sokroban/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637995868755159134
-    m_Hash: 1682316047
+      ticks: 637996339874746605
+    m_Hash: 921067523
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
