@@ -10,6 +10,8 @@ public class CreateAnJoinRooms : MonoBehaviourPunCallbacks
     public InputField createInput;
     public InputField joinInput;
 
+    public Text errorText;
+
     public void CreateRoom()
     {
         if (string.IsNullOrEmpty(createInput.name))
@@ -27,7 +29,7 @@ public class CreateAnJoinRooms : MonoBehaviourPunCallbacks
             return;
         }
         PhotonNetwork.JoinRoom(joinInput.text);
-         Debug.Log("Room \"" + joinInput.text + "\" joined");
+        Debug.Log("Room \"" + joinInput.text + "\" joined");
     }
 
     public override void OnJoinedRoom()
@@ -37,12 +39,17 @@ public class CreateAnJoinRooms : MonoBehaviourPunCallbacks
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Room Creation Failed" + message);
+        errorText.text = "Room Creation Failed: " + message;
+        Debug.Log("Room Creation Failed: " + message);
+        createInput.text = "";
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Room Join Failed" + message);
+        errorText.text = "Room Join Failed: " + message;
+        Debug.Log("Room Join Failed: " + message);
+
+        joinInput.text = "";
     }
 
     public void LeaveRoom()
