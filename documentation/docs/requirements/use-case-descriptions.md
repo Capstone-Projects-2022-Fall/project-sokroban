@@ -5,65 +5,89 @@ sidebar_position: 5
 # Use-case descriptions
 Use Cases
 
-I)	Player wants to play a game with a friend:
-
-    1)	Player logs into their account with their username and password.
-    2)	After login the player chooses to play a multiplayer game with his friend. The player sets up a lobby by creating a room and telling his friend the name of the room to join.
-    3)	The player gets the boxes into the end point faster than his opponent.
-    4)	Eventually after many levels both players finish, and the game is over.
-
-II)	Player wins level:
-
-    1)	Player logs into her account with her username and password.
-    2)	She selects the Single Player Mode.
-    3)	She starts from Level 1 and starts to move the character using the arrows on the keyboard and to push the box. 
-    4)	She places the box onto the designated spot.
-    5)	She wins the level.
-    6)	She proceeds to the next level.
-
-III)	 Player wants to successfully register his account and then exit the game:
+I) Player wants to successfully register their account and then exit the game:
 
     1)	Player upon opening the application is prompted to create an account or to sign in.
-    2)	He selects the option to create a new account.
+    2)	Player selects the option to create a new account.
     3)	Player inputs a username and a password.
-    4)	Upon completion, he enters to the main Menu.
-    5)	Player exits the game by pressing the “X” button.
+    4)  Upon completion, player logs into account with their credentials.
+    5)	Player enters to the main Menu.
+    6)	Player exits the game by pressing the “X” button.
 
-IV)	Player gets stuck and restarts the level:
+II) Player wants to play Story Mode/Single Player:
 
-    1)	Player logs into their account with their username and password.
-    2)	After logging in she chooses the Single Mode from the options.
-    3)	The game starts and she moves her character and pushes the box trying to solve the puzzle.
-    4)	At a certain level she realizes that she got stuck by pushing the box onto the wall and won’t be able to place the box onto the specific winning spot.
-    5)	She decides to restart the level by pressing the spacebar.
-    6)	The level restarts with the character and the boxes back to their starting positions.
+    1) Player selects option Story Mode/Single Player.
+    2) Player selects an unlocked level.
+    3) Player is viewing the story about the level.
+    4) A level is generated for the player.
+    5) Player is now playing the game.
 
-V)	Player checks high scores:
+III) Player wants to challenge themselves and selects hard options while playing:
 
-    1)	Player logs into their account with their username and password.
-    2)	Player wants to look at the high scores.
-    3)	He presses on to the High Scores option.
-    4)	Player views high scores.
+    1) Player selects option Story Mode/Single Player.
+    2) Player selects an unlocked level.
+    3) A level is generated for the player.
+    4) Player selects the timer option.  
+    5) Player has a certain time to complete the level.
 
+IV) Player wants to play a game with a friend:
 
-VI)	Player saves progress of the game:
+    1)  Player selects the Multiplayer option. 
+    2)  Player selects the Co-op option. 
+    3)  Player sets up a lobby by creating a room and tells their friend the name of the room to join.
+    4)  Both players are on the same map.
+    5)  Players are helping each other in order to win the level.
 
-    1)	Player logs into their account with their username and password.
-    2)	She selects Single Player mode.
-    3)	She passes the first level, and her progress is saved automatically.
-    4)	Player exits the game by pressing the “X” button.
-    5)	Player opens the game again and logs in to her account.
-    6)	She selects the Single Player option.
-    7)	Players can start now from Level 2 because her progress is saved.
+V) Player wants to play a game against a friend:
 
-VII)	Player plays Story Mode:
+    1)  Player selects the Multiplayer option. 
+    2)  Player selects the Compete option. 
+    3)  Player sets up a lobby by creating a room and tells their friend the name of the room to join.
+    4)  Players are competing on the same level in a split-screen.
+    5)	Player gets the boxes into the end point faster than their friend.
+    6)  Player won the game.
 
-    1)	Player logs into their account with their username and password.
-    2)	He selects Story mode.
-    3)	Player is reading the story behind the next level he will face.
-    4)	Player is now playing the game.
-    5)	Player wins the level and goes to the next level.
-    6)	Player is now viewing a continuation of the story before the next level.
-    7)	Player is now playing the next level.
-    8)	Player exits the game.
+VI) Player wants to check high scores:
+
+    1)	Player selects the High Scores option.
+    2)	Player views high scores.
+
+VII) Game saves player's progress:
+
+    1)	Player selects Story Mode/Single Player option.
+    2)	Player passes the first level, and their progress is saved automatically.
+    3)	Player exits the game by pressing the “X” button.
+    4)	Player opens the game again and logs into their account.
+    5)	Player selects the Story Mode/Single Player option.
+    6)	Player can start now from Level 2 because their progress was saved.
+
+VIII) Player wins level:
+
+    1)	Player selects Story Mode/Single Player option.
+    2)	Player selects an unlocked level.
+    3)  A level is generated for the player.
+    4)  Player starts to move the character and push the box by using the arrows on the keyboard.
+    5)	Player places the box onto the target.
+    6)	Player wins the level.
+
+IX) Player gets stuck and restarts the level:
+
+    1)	Player selects Story Mode/Single Player option.
+    2)	Player moves the character and pushes the box(es) trying to win the level.
+    3)	Player realizes that got stuck by pushing a box onto the wall and won’t be able to place the box onto the target.
+    4)	Player restarts the level by pressing the spacebar.
+    5)	The level restarts with the character and the box(es) back to their starting positions.
+
+X) Player wants to play with a different character:
+
+    1)  Player selects Story Mode/Single Player option.
+    2)  Player selects their favorite character from a variety of characters.
+    3)  Player starts playing with the chosen character.
+
+XI) Player wants to challenge themselves onto a map with complex design.
+
+    1)  Player selects Story Mode/Single Player option.
+    2)  Player selects from a variety of maps with complex deisgn.
+    3)  Player plays the game with a more complex designed map.
+
 
