@@ -14,6 +14,8 @@ Sokrobans reliance on a database is very minimal, though crucial. The DB will on
 
 Sokroban will utilize an RESTful API hosted via Azure to pass player data back and forth between the game and the database. A player's high score, best time and level will all be saved.The best time, high score, and level will be updated after every "run" the game will check with the DB to see if any of the fields have been topped and replace update the data in the table. There will also be a leaderboard that will display the table in the database (minus the user password of course) filtered by top score overall.
 
+
+
 A description the different components and their interfaces. For example: client, server, database.
 
 For each component provide class diagrams showing the classes to be developed (or used) and their relationship.
@@ -30,6 +32,12 @@ Table design.
 
 A check list for architecture design is attached here [architecture\_design\_checklist.pdf](https://templeu.instructure.com/courses/106563/files/16928870/download?wrap=1 "architecture_design_checklist.pdf")  and should be used as a guidance.
 
+
+
+
+# UML Diagram
+
+![UML Diagram](/img/UML_Diagram.png)
 
 # Sequence Diagrams 
 
