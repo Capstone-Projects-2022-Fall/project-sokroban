@@ -5,14 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuOperator : MonoBehaviour
 {
-    public void OnClickPlay()
+    public void OnClickSinglePlay()
     {
-        SceneManager.LoadScene("Loading");
-        Debug.Log("Entered Play Screen");
+        SceneManager.LoadScene("Singleplayer Lobby");
+        Debug.Log("Entered single player lobby");
+    }
+    public void OnClickMultiPlay()
+    {
+        SceneManager.LoadScene("Loading"); //This will lead to multiplayer lobby scene
+        Debug.Log("Entered loading screen");
     }
     public void OnClickLeaderboard()
     {
-        //SceneManager.LoadScene("Leaderboard");
+        SceneManager.LoadScene("Leaderboard");
         Debug.Log("Entered Leaderboard Screen");
     }
     public void OnClickExit()

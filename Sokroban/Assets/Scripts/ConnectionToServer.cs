@@ -26,8 +26,8 @@ public class ConnectionToServer : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedLobby()
     {
-        SceneManager.LoadScene("Lobby");
-        Debug.Log("Joined Lobby");
+        SceneManager.LoadScene("Multiplayer Lobby");
+        Debug.Log("Joined multiplayer Lobby");
     }
    
     public override void OnDisconnected(DisconnectCause cause)

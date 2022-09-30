@@ -1,7 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - ConnectToServer
+    - ConnectionToServer
     - CreateAndJoinRooms
     - MainMenuOperator
     - PlayerController
@@ -98,7 +98,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3594}
     - Class: 114
-      Script: {instanceID: 4670}
+      Script: {instanceID: 4672}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -141,7 +141,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3314}
     - Class: 114
-      Script: {instanceID: 4536}
+      Script: {instanceID: 4538}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -149,63 +149,6 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/Lobby.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1498}
-    - Class: 114
-      Script: {instanceID: 1500}
-    - Class: 114
-      Script: {instanceID: 1942}
-    - Class: 114
-      Script: {instanceID: 2876}
-    - Class: 114
-      Script: {instanceID: 3062}
-    - Class: 114
-      Script: {instanceID: 3114}
-    - Class: 114
-      Script: {instanceID: 3314}
-    - Class: 114
-      Script: {instanceID: 3376}
-    - Class: 114
-      Script: {instanceID: 3592}
-    - Class: 114
-      Script: {instanceID: 3728}
-    - Class: 114
-      Script: {instanceID: 5972}
-    - Class: 114
-      Script: {instanceID: 29836}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -295,31 +238,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3728}
     - Class: 114
-      Script: {instanceID: 4378}
+      Script: {instanceID: 4084}
     - Class: 114
-      Script: {instanceID: 4670}
+      Script: {instanceID: 4380}
     - Class: 114
-      Script: {instanceID: 4836}
+      Script: {instanceID: 4672}
     - Class: 114
-      Script: {instanceID: 4842}
+      Script: {instanceID: 4838}
     - Class: 114
-      Script: {instanceID: 5080}
+      Script: {instanceID: 4844}
     - Class: 114
-      Script: {instanceID: 5122}
+      Script: {instanceID: 5082}
     - Class: 114
-      Script: {instanceID: 5148}
+      Script: {instanceID: 5124}
     - Class: 114
-      Script: {instanceID: 5298}
+      Script: {instanceID: 5150}
     - Class: 114
-      Script: {instanceID: 5734}
+      Script: {instanceID: 5300}
     - Class: 114
       Script: {instanceID: 5736}
     - Class: 114
-      Script: {instanceID: 5930}
+      Script: {instanceID: 5738}
     - Class: 114
-      Script: {instanceID: 6396}
+      Script: {instanceID: 5932}
     - Class: 114
-      Script: {instanceID: 29836}
+      Script: {instanceID: 6398}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -351,6 +294,63 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
+      Script: {instanceID: 0}
+    Assets/Scenes/Multiplayer Lobby.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1498}
+    - Class: 114
+      Script: {instanceID: 1500}
+    - Class: 114
+      Script: {instanceID: 1942}
+    - Class: 114
+      Script: {instanceID: 2876}
+    - Class: 114
+      Script: {instanceID: 3062}
+    - Class: 114
+      Script: {instanceID: 3114}
+    - Class: 114
+      Script: {instanceID: 3314}
+    - Class: 114
+      Script: {instanceID: 3376}
+    - Class: 114
+      Script: {instanceID: 3592}
+    - Class: 114
+      Script: {instanceID: 3728}
+    - Class: 114
+      Script: {instanceID: 4084}
+    - Class: 114
+      Script: {instanceID: 5974}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -1147,6 +1147,12 @@ ScriptsOnlyBuild:
     className: IgnoreUiRaycastWhenInactive
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ReturnButton
+  - hash:
+      serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -1306,7 +1312,7 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ConnectToServer
+    className: ConnectionToServer
   - hash:
       serializedVersion: 2
       Hash: d9aa52c5a283a9b8a790e55c0dee9ccf
@@ -1979,16 +1985,10 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
     className: UserIdUiForm
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ReturnButton
   platform: 19
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
   - Assets/Scenes/Loading.unity
-  - Assets/Scenes/Lobby.unity
+  - Assets/Scenes/Multiplayer Lobby.unity
   - Assets/Scenes/Level-Multiplayer.unity
   playerPath: C:/Users/akozh/Desktop/project-sokroban/Sokroban/Build/Sokroban.exe
