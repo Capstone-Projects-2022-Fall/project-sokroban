@@ -6,7 +6,7 @@ description: What should be in this section.
 Design Document - Part II API
 =============================
 
-1. MainMenuOperator
+1. MainMenuOperator </br> 
     Class Purpose: 
     
 2. AccountHandler
