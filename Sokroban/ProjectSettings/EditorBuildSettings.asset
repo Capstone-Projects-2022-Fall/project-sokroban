@@ -9,10 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: e6a50401e2d19a14b8cbc645d22b8546
   - enabled: 1
+    path: Assets/Scenes/Singleplayer Lobby.unity
+    guid: 2de8f4f2e634ab6449c56a9eeaa84fe3
+  - enabled: 1
+    path: Assets/Scenes/Leaderboard.unity
+    guid: 947794cb4e6e36d428c1e912290f6eee
+  - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: e14e62a314ec8af46bc70e5c281714d1
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
+    path: Assets/Scenes/Multiplayer Lobby.unity
     guid: aff0f2402dd4e30479bd05f3d995c83e
   - enabled: 1
     path: Assets/Scenes/Level-Multiplayer.unity

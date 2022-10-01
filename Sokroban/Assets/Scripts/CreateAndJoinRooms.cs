@@ -7,41 +7,51 @@ using Photon.Pun;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
-    public InputField createInput;
-    public InputField joinInput;
+    public InputField roomInput;
 
     public Text errorText;
 
+    public Toggle coopToggle;
+    public Toggle versusToggle;
+
+    bool firstToggleOn = false;
     public void CreateRoom()
     {
-        if (string.IsNullOrEmpty(createInput.name))
+        if (string.IsNullOrEmpty(roomInput.name))
         {
             return;
         }
-        PhotonNetwork.CreateRoom(createInput.text);
-        Debug.Log("Room \"" + createInput.text + "\" created");
+        PhotonNetwork.CreateRoom(roomInput.text);
+        Debug.Log("Room \"" + roomInput.text + "\" created");
     }
 
     public void JoinRoom()
     {
-        if (string.IsNullOrEmpty(createInput.name))
+        if (string.IsNullOrEmpty(roomInput.name))
         {
             return;
         }
-        PhotonNetwork.JoinRoom(joinInput.text);
-        Debug.Log("Room \"" + joinInput.text + "\" joined");
+        PhotonNetwork.JoinRoom(roomInput.text);
+        Debug.Log("Room \"" + roomInput.text + "\" joined");
     }
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("Level-Multiplayer");
+        if (coopToggle.isOn)
+        {
+            PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs coop config
+        }
+        else if (versusToggle.isOn)
+        {
+            PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs versus config
+        }
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         errorText.text = "Room Creation Failed: " + message;
         Debug.Log("Room Creation Failed: " + message);
-        createInput.text = "";
+        roomInput.text = "";
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -49,7 +59,21 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         errorText.text = "Room Join Failed: " + message;
         Debug.Log("Room Join Failed: " + message);
 
-        joinInput.text = "";
+        roomInput.text = "";
+    }
+
+    public void CheckToggles()
+    {
+        if (coopToggle.isOn && !firstToggleOn)
+        {
+            versusToggle.isOn = false;
+            firstToggleOn = true;
+        }
+        if (versusToggle.isOn)
+        {
+            coopToggle.isOn = false;
+            firstToggleOn = false;
+        }
     }
 
     public void LeaveRoom()
