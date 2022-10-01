@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Cavas
+    uniqueID: 1708056819
+    locked: 0
   - name: Map
     uniqueID: 4170842693
     locked: 0
