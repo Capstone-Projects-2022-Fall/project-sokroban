@@ -17,8 +17,18 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     bool firstToggleOn = false;
     public void CreateRoom()
     {
-        if (string.IsNullOrEmpty(roomInput.name))
+        //Checks for empty room name
+        if (string.IsNullOrEmpty(roomInput.text))
         {
+            errorText.text = "Room Name Empty";
+            Debug.Log("Bad Room Name");
+            return;
+        }
+        //Checks for empty game modes
+        if (!coopToggle.isOn && !versusToggle.isOn)
+        {
+            errorText.text = "No Game Mode Selected";
+            Debug.Log("No Game Mode Selected");
             return;
         }
         PhotonNetwork.CreateRoom(roomInput.text);
@@ -27,8 +37,11 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void JoinRoom()
     {
-        if (string.IsNullOrEmpty(roomInput.name))
+        //Checks for empty room name
+        if (string.IsNullOrEmpty(roomInput.text))
         {
+            errorText.text = "Room Name Empty";
+            Debug.Log("Bad Room Name");
             return;
         }
         PhotonNetwork.JoinRoom(roomInput.text);
