@@ -208,6 +208,7 @@ Design Document - Part II API
     
     Methods:
         - Controller():
+            - Purpose: Holds code that will communicate with other methods in order to animate base game.
             - Pre-Conditoins: None 
             - Parameters: None
             - Returns: None
@@ -228,7 +229,6 @@ Design Document - Part II API
 13. PhotonTransformViewClassic  </br> 
     class Purpose: Handels the positioning of both players sprites, so that each can be displayed on the level.
 
-        
     Methods:
         - SynchronizePosition():bool
             - Pre-Conditoins: None 
