@@ -35,10 +35,11 @@ Design Document - Part II API
     Class Purpose: The account Handler Class will send the users login data to the API, which will then be checked with the current data in the DB. If correct the user will be loged in, if incorrect the user will be notified that the information entered was wrong, and theyll need to re enter the data or continue as guest.
     
     Data Fields: 
-        - Username
-            - Type: string
-        - Password
-            - Type: string
+    - Username
+        - Type: string
+    - Password
+        - Type: string
+
 
     Method:
         - OnClickLogIn(username,password):void
@@ -73,8 +74,13 @@ Design Document - Part II API
 4. ConnectionToServer  </br> 
     Class Purpose:  The purpose of this class is to communicate with our Photon multiplayer server and elstablish an online connection so when the player is ready they may play online with their peers.
 
-    Method:
-        - OnConnectedToMaster():void
+    Data Fields: 
+    - ConnectedToServer 
+        - Type: Boolean
+   
+
+        Method:
+         - OnConnectedToMaster():void
             - Connects user to server
             - Pre-Conditoins: None 
             - Parameters: None
@@ -92,6 +98,15 @@ Design Document - Part II API
 
 5. CreateAndJoinRoom  </br> 
     Class Purpose: This class holds the code that will allow a player to either host their own game and allow other to join on them, or to hop into a game hosted by another.
+
+    Data Fields: 
+    - CreateInpur
+        - Type: InputField
+    - JoinInput
+        - Type: InputField
+    - ErrorText
+        - Type: Text
+
 
     Methods:
         - CreateRoom():void
@@ -133,21 +148,43 @@ Design Document - Part II API
 6. Transform  </br> 
     Class Purpose: Handles positioning of the player 
 
+    Data Fields: 
+    - Position
+        - Type: Vector3
+    - Rotation
+        - Type: Vector3
+    - Scale
+        - Type: Vector3
+
     Methods: None
 
 7. SpriteRenderer  </br> 
     Class Purpose: Renders the players Sprite (character icon)
+
+    Data Fields: 
+     - Sprite   
+          - Type: Sprite3
 
     Methods: None
 
 8. RigidBody2D  </br> 
     Class Purpose: Handles Hit box of player, this "box" is the actual object that interacts with the boxes
     
+    Data Fields: 
+     - mass  
+          - Type: Float
+
     Method:None
 
 9. BoxCollider2D  </br> 
     Class Purpose: Handels Hit box of Boxes, this "box" is the actual object that interacts with the boxes
 
+    Data Fields: 
+     - Offset   
+          - Type: Vector3
+    - Size   
+          - Type: Vector3
+  
     Method:None
 
 10. BoxController  </br> 
@@ -168,7 +205,7 @@ Design Document - Part II API
 
 11. Animator  </br> 
     Class Purpose: Handles Animation for single player
-
+    
     Methods:
         - Controller():
             - Pre-Conditoins: None 
@@ -177,7 +214,7 @@ Design Document - Part II API
 
 12. PhotonAnimatorview  </br> 
     class Purpose: Handles Animation for multiplayer
-
+    
     Methods: 
         - SynchronizeWeights():bool
             - Pre-Conditoins: None 
@@ -191,6 +228,7 @@ Design Document - Part II API
 13. PhotonTransformViewClassic  </br> 
     class Purpose: Handels the positioning of both players sprites, so that each can be displayed on the level.
 
+        
     Methods:
         - SynchronizePosition():bool
             - Pre-Conditoins: None 
