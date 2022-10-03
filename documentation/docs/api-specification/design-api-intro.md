@@ -6,7 +6,7 @@ description: What should be in this section.
 Design Document - Part II API
 =============================
 
-1. MainMenuOperator </br> 
+1. MainMenuOperator 
     Class Purpose: The MainMenuOperator will handle all the navigational code for Sokroban. This method will allow the users to traverse between the leaderboad, Single Player, and Multiplayer aspects of the game. 
 
     Method:
@@ -31,7 +31,7 @@ Design Document - Part II API
             - Parameters: None
             - Return Values: None
     
-2. AccountHandler  </br> 
+2. AccountHandler  
     Class Purpose: The account Handler Class will send the users login data to the API, which will then be checked with the current data in the DB. If correct the user will be loged in, if incorrect the user will be notified that the information entered was wrong, and theyll need to re enter the data or continue as guest.
     
     Data Fields: 
@@ -53,7 +53,7 @@ Design Document - Part II API
             - No Parameters
             - Return Values: None
 
-3. LeaderBoard  </br> 
+3. LeaderBoard  
     Class Purpose: The leaderBoard Class, will call on the API to pull a list of users and their stats and present it, so that users can see where they stand amongst their peers. This Class will have two data pulls, at the top of the screen will be the users score and below it will be the actuall leaderboard. this will require the api to pull specific data on just the user as well as a complete filtered pull of the DB.
 
     Data Fields: 
@@ -71,7 +71,7 @@ Design Document - Part II API
             - Parameters: username,password,Database list
             - Returns:None
 
-4. ConnectionToServer  </br> 
+4. ConnectionToServer  
     Class Purpose:  The purpose of this class is to communicate with our Photon multiplayer server and elstablish an online connection so when the player is ready they may play online with their peers.
 
     Data Fields: 
@@ -96,7 +96,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-5. CreateAndJoinRoom  </br> 
+5. CreateAndJoinRoom  
     Class Purpose: This class holds the code that will allow a player to either host their own game and allow other to join on them, or to hop into a game hosted by another.
 
     Data Fields: 
@@ -145,7 +145,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-6. Transform  </br> 
+6. Transform  
     Class Purpose: Handles positioning of the player 
 
     Data Fields: 
@@ -158,7 +158,7 @@ Design Document - Part II API
 
     Methods: None
 
-7. SpriteRenderer  </br> 
+7. SpriteRenderer   
     Class Purpose: Renders the players Sprite (character icon)
 
     Data Fields: 
@@ -167,7 +167,7 @@ Design Document - Part II API
 
     Methods: None
 
-8. RigidBody2D  </br> 
+8. RigidBody2D  
     Class Purpose: Handles Hit box of player, this "box" is the actual object that interacts with the boxes
     
     Data Fields: 
@@ -176,7 +176,7 @@ Design Document - Part II API
 
     Method:None
 
-9. BoxCollider2D  </br> 
+9. BoxCollider2D  
     Class Purpose: Handels Hit box of Boxes, this "box" is the actual object that interacts with the boxes
 
     Data Fields: 
@@ -187,7 +187,7 @@ Design Document - Part II API
   
     Method:None
 
-10. BoxController  </br> 
+10. BoxController  
     Class Purpose: Handels all logic of the boxes location,movement, whether theyre on the right spot, etc.
 
     Method:
@@ -203,7 +203,7 @@ Design Document - Part II API
             - Returns: None
           
 
-11. Animator  </br> 
+11. Animator  
     Class Purpose: Handles Animation for single player
     
     Methods:
@@ -213,7 +213,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-12. PhotonAnimatorview  </br> 
+12. PhotonAnimatorview  
     class Purpose: Handles Animation for multiplayer
     
     Methods: 
@@ -226,7 +226,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-13. PhotonTransformViewClassic  </br> 
+13. PhotonTransformViewClassic  
     class Purpose: Handels the positioning of both players sprites, so that each can be displayed on the level.
 
     Methods:
@@ -243,7 +243,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-14. PhotonView  </br> 
+14. PhotonView   
     Class Purpose: Shows each players ID and who's hosting the game. all displayed on the backend
 
     Methods:
@@ -258,7 +258,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-15. LevelGenerator  </br> 
+15. LevelGenerator  
     Class Purpose: Procedurly generates each level of Sokroban.
 
     Methods: Unknow (come back to me on monday)
