@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 public class Template : MonoBehaviour 
 {
-    private Cell[][] template;
+    private static Cell[][] template;
 
     public Template(Cell[][] content) {
         template = new Cell[content.Length][];
@@ -17,8 +17,8 @@ public class Template : MonoBehaviour
     public Cell GetCell(int x, int y) { return template[x][y]; }
 
     public void randomRotation() {
-        //Random r = new Random();
-        for(int i = 0; i < Random.Range(5); i++) {
+        System.Random r = new System.Random();
+        for(int i = 0; i < r.Next(5); i++) {
             rotate();
         }
     }

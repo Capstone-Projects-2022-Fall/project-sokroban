@@ -6,14 +6,11 @@ using UnityEngine;
 
 public class Program : MonoBehaviour
 {
-    static void Main(string[] args)
+    public static void Run()
     {
         Level level = new Level();
 
         level.generate();
-        level.print();
-        Console.WriteLine();
-
         level.postProcess();
         level.print();
 
@@ -31,7 +28,7 @@ public class Program : MonoBehaviour
                 complete = level.postProcess();
             }
 
-            string path = "./exports/" + i.ToString() + ".txt"; 
+            string path = "./Levels/" + i.ToString() + ".txt"; 
             try
             {
                 // Create the file, or overwrite if the file exists.
@@ -42,11 +39,11 @@ public class Program : MonoBehaviour
                     fs.Write(info, 0, info.Length);
                 }
 
-                Console.WriteLine("Level " + i.ToString() + " exported.");
+                Debug.Log("Level " + i.ToString() + " exported to "+ path);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Debug.Log(ex.ToString());
             }
         }
     }

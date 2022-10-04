@@ -1,4 +1,4 @@
-
+using System;
 using UnityEngine;
 
 public class Level : MonoBehaviour
@@ -8,12 +8,12 @@ public class Level : MonoBehaviour
     private int height;
     private Cell[,] map;
     private int cratesCount;
-    //private Random rand;
+    private System.Random rand;
 
     public Level(int crates = 2) {
-        //rand = new Random();
+        rand = new System.Random();
         cratesCount = crates;
-        width = Random.Range(2,4) * 3 + 2;
+        width = rand.Next(2,4) * 3 + 2;
         height = width;
     }
 
@@ -43,7 +43,7 @@ public class Level : MonoBehaviour
                     randomTemplate = Templates.getRandom();
                     randomTemplate.randomRotation();
                     if (attempt > 100) {
-                        Console.WriteLine("Max attemp reach, please generate again");
+                        Debug.Log("Max attemp reach, please generate again");
                         return;
                     }
                     attempt++;
@@ -60,8 +60,8 @@ public class Level : MonoBehaviour
         for (int i = 0; i < n; i++) {
 
             do {
-                x = Random.Range(2, width-2);
-                y = Random.Range(2, height-2);
+                x = rand.Next(2, width-2);
+                y = rand.Next(2, height-2);
 
                 surroundWall = 0;
                 surroundWall += (map[x-1,y] == Cell.Wall) ? 1 : 0;
@@ -70,7 +70,7 @@ public class Level : MonoBehaviour
                 surroundWall += (map[x,y+1] == Cell.Wall) ? 1 : 0;
 
                 if (attempt >= floorCell) {
-                    Console.WriteLine("Can't generate crates ! Max attempt reach");
+                    Debug.Log("Can't generate crates ! Max attempt reach");
                     return false;
                 }
                 attempt++;
@@ -85,11 +85,11 @@ public class Level : MonoBehaviour
     private bool spawnPlayer() {
         int x, y, attempt = 0;
         do {
-            x = Random.Range(1, width-1);
-            y = Random.Range(1, height-1);
+            x = rand.Next(1, width-1);
+            y = rand.Next(1, height-1);
 
             if (attempt >= floorCell) {
-                Console.WriteLine("Can't generate player ! Max attempt reach");
+                Debug.Log("Can't generate player ! Max attempt reach");
                 return false;
             }
             attempt++;
@@ -105,8 +105,8 @@ public class Level : MonoBehaviour
         for (int i = 0; i < n; i++) {
             bool isValidGoal = false;
             do {
-                x = Random.Range(1, width-1);
-                y = Random.Range(1, height-1);
+                x = rand.Next(1, width-1);
+                y = rand.Next(1, height-1);
 
                 if (map[x, y+1] == Cell.Floor && map[x, y+2] == Cell.Floor)
                 {
@@ -126,7 +126,7 @@ public class Level : MonoBehaviour
                 }
 
                 if (attempt >= floorCell) {
-                    Console.WriteLine("Can't generate goals ! Max attemp reach");
+                    Debug.Log("Can't generate goals ! Max attemp reach");
                     return false;
                 }
                 attempt++;
@@ -168,7 +168,7 @@ public class Level : MonoBehaviour
                     surroundFloor += (map[x+1,y-1] == Cell.Floor) ? 1 : 0;
 
                     if (surroundFloor > 6) {
-                        if (Random.Range(0,100) < 30) {
+                        if (rand.Next(0,100) < 30) {
                             map[x,y] = Cell.Floor;
                         }
                     }
@@ -181,15 +181,15 @@ public class Level : MonoBehaviour
 
         int filledFloor = 0;
         int attempt = 0;
-        int x = Random.Range(1,width-1);
-        int y = Random.Range(1,height-1);
+        int x = rand.Next(1,width-1);
+        int y = rand.Next(1,height-1);
 
         do
         {
             CellToWall(Cell.FloorFilled);
             while (map[x,y] != Cell.Floor) {
-                x = Random.Range(1,width-1);
-                y = Random.Range(1,height-1);
+                x = rand.Next(1,width-1);
+                y = rand.Next(1,height-1);
                 if (attempt > width*height) {
                     return false;
                 }
@@ -319,30 +319,30 @@ public class Level : MonoBehaviour
         }
     }
 
-    public void print() {
-        for(int x = 0; x < width; x++) {
+    public void print() { 
+        for (int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
-                switch(map[x,y]) {
+                switch (map[x,y]) {
+
                     case Cell.Floor:
-                        Console.Write(" ");
+                        Debug.Log(" ");
                         break;
                     case Cell.Wall:
-                        Console.Write("#");
+                        Debug.Log("#");
                         break;
                     case Cell.Crate:
-                        Console.Write("$");
+                        Debug.Log("$");
                         break;
                     case Cell.Goal:
-                        Console.Write(".");
+                        Debug.Log(".");
                         break;
                     case Cell.Player:
-                        Console.Write("@");
+                        Debug.Log("@");
                         break;
                     default:
                         break;
                 }
             }
-            Console.WriteLine();
         }
     }
 
@@ -374,5 +374,10 @@ public class Level : MonoBehaviour
             ret += "\n";
         }
         return ret;
+    }
+
+    public Cell[,] getMap()
+    {
+        return map;
     }
 }
