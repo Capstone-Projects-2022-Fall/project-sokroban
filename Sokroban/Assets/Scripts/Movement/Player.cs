@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    
     public bool Move(Vector2 direction) 
     {
             if(Mathf.Abs(direction.x) < 0.5) //Does not allow diagonal moves
@@ -58,6 +59,29 @@ public class Player : MonoBehaviour
             }
             return false;                   //If none of them works then we are not blocked.
 
+    }
+
+    private bool m_readyForInput;
+    
+    void Update() 
+    {
+        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
+        moveInput.Normalize();
+
+        if (moveInput.sqrMagnitude > 0.5) //Button pressed or held
+        {     
+
+            if (m_readyForInput)            //Moves only when pressing the key again.
+            {
+                m_readyForInput = false;
+                this.Move(moveInput);
+            }
+        }
+        else 
+        {
+            m_readyForInput = true;
+        }
     }
         
 }
