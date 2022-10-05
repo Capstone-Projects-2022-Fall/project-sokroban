@@ -67,7 +67,11 @@ public class Level : MonoBehaviour
                 surroundWall += (map[x-1,y] == Cell.Wall) ? 1 : 0;
                 surroundWall += (map[x+1,y] == Cell.Wall) ? 1 : 0;
                 surroundWall += (map[x,y-1] == Cell.Wall) ? 1 : 0;
-                surroundWall += (map[x,y+1] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x, y + 1] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x-1, y-1] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x+1, y+1] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x+1, y-1] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x-1, y+1] == Cell.Wall) ? 1 : 0;
 
                 if (attempt >= floorCell) {
                     Debug.Log("Can't generate crates ! Max attempt reach");
@@ -142,7 +146,7 @@ public class Level : MonoBehaviour
         bool complete = false;
         cleanDeadCell();
         complete |= cleanUselessRoom();
-        cleanAloneWall();
+        //cleanAloneWall();
         cleanDeadCell();
         //To optimize, before spawning crates mark all deadCell
         //Spawn Crate only on non deacCell
@@ -153,6 +157,8 @@ public class Level : MonoBehaviour
         return complete;
     }
 
+    //Checks all surrounding blocks, with main block in the middle
+    //If all blocks are floor, the main block should be floor too
     private void cleanAloneWall() {
         for(int x = 1; x < width-1; x++) {
             for (int y = 1; y < height-1; y++) {
@@ -256,7 +262,7 @@ public class Level : MonoBehaviour
                     surroundWall += (map[x,y-1] == Cell.Wall) ? 1 : 0;
                     surroundWall += (map[x,y+1] == Cell.Wall) ? 1 : 0;
                     if (surroundWall >= 3) {
-                        map[x,y] = Cell.Wall;
+                        map[x,y] = Cell.Floor;
                     }
                 }
             }
@@ -319,31 +325,30 @@ public class Level : MonoBehaviour
         }
     }
 
-    public void print() { 
-        for (int x = 0; x < width; x++) {
-            for(int y = 0; y < height; y++) {
-                switch (map[x,y]) {
-
-                    case Cell.Floor:
-                        Debug.Log(" ");
-                        break;
-                    case Cell.Wall:
-                        Debug.Log("#");
-                        break;
-                    case Cell.Crate:
-                        Debug.Log("$");
-                        break;
-                    case Cell.Goal:
-                        Debug.Log(".");
-                        break;
-                    case Cell.Player:
-                        Debug.Log("@");
-                        break;
-                    default:
-                        break;
+    public bool hasErrors()
+    {
+        bool badGeneration = false;
+        int crateCount = 0,playerCount = 0;
+        for (int x = 1; x < width - 1; x++)
+        {
+            for (int y = 1; y < height - 1; y++)
+            {
+                if (map[x, y] == Cell.Crate)
+                {
+                    crateCount++;
+                }
+                else if (map[x, y] == Cell.Player)
+                {
+                    playerCount++;
                 }
             }
         }
+        //Should be amount specified by player
+        if (playerCount < 1 || crateCount < 2 )
+        {
+            badGeneration = true;
+        }
+        return badGeneration;
     }
 
     public override string ToString()

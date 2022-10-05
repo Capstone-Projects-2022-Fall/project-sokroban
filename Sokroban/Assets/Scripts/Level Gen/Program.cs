@@ -12,7 +12,7 @@ public class Program : MonoBehaviour
 
         level.generate();
         level.postProcess();
-        level.print();
+        //level.print();
 
         //export();
     }
