@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 
 # Database Table
-![Database Table](/img/DbTable.png)
+![Database Table](/img/ERD.png)
 
 Sokrobans reliance on a database is very minimal, though crucial. The DB will only need to store the players Username(varchar,NOT NUll), Password(varchar,NOT NULL), HighScore(int), best time(time), and level(int).UserName and Password are the only two fields in the DB that are marked as NOT NULL, due to the simple fact that a user must have an account in order to "save" any data. One table is all that will need to be created in order to store the inforamtion and be utilized to pass data back and forth between the API.
 
