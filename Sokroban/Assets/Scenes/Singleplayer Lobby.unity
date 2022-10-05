@@ -922,7 +922,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Story Mode
+  m_Text: Single Player
 --- !u!222 &1919910930
 CanvasRenderer:
   m_ObjectHideFlags: 0
