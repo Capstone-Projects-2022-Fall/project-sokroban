@@ -21,7 +21,7 @@ public class LevelTranslator : MonoBehaviour
     //either we get the 2d array map straight from level
     public void setFinishedMap()
     {
-        Level level = new Level();
+        Level level = new Level(4);
 
         do
         {

@@ -10,10 +10,10 @@ public class Level : MonoBehaviour
     private int cratesCount;
     private System.Random rand;
 
-    public Level(int crates = 2) {
+    public Level(int crates) {
         rand = new System.Random();
         cratesCount = crates;
-        width = rand.Next(2,4) * 3 + 2;
+        width = 11;
         height = width;
     }
 
@@ -39,16 +39,18 @@ public class Level : MonoBehaviour
                 Template randomTemplate = Templates.getRandom();
                 randomTemplate.randomRotation();
 
-                while(placementAllowed(randomTemplate,x,y) != true) {
+                while (placementAllowed(randomTemplate, x, y) != true)
+                {
                     randomTemplate = Templates.getRandom();
                     randomTemplate.randomRotation();
-                    if (attempt > 100) {
+                    if (attempt > 100)
+                    {
                         Debug.Log("Max attemp reach, please generate again");
                         return;
                     }
                     attempt++;
                 }
-                
+
                 placeTemplate(randomTemplate, x, y);
             }
         }
@@ -56,7 +58,7 @@ public class Level : MonoBehaviour
 
     private bool spawnCrates(int n) {
 
-        int x, y, surroundWall, attempt = 0;
+        int x, y, surroundWall,surroundCrate, attempt = 0;
         for (int i = 0; i < n; i++) {
 
             do {
@@ -73,13 +75,23 @@ public class Level : MonoBehaviour
                 surroundWall += (map[x+1, y-1] == Cell.Wall) ? 1 : 0;
                 surroundWall += (map[x-1, y+1] == Cell.Wall) ? 1 : 0;
 
+                surroundCrate = 0;
+                surroundCrate += (map[x - 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x - 1, y + 1] == Cell.Crate) ? 1 : 0;
+
                 if (attempt >= floorCell) {
                     Debug.Log("Can't generate crates ! Max attempt reach");
                     return false;
                 }
                 attempt++;
 
-            } while(map[x,y] != Cell.Floor || surroundWall >= 2);
+            } while(map[x,y] != Cell.Floor || surroundWall >= 2 || surroundCrate >= 1);
 
             map[x,y] = Cell.Crate;
         }
@@ -142,19 +154,18 @@ public class Level : MonoBehaviour
         return true;
     }
 
-    public bool postProcess() {
-        bool complete = false;
+    public void postProcess() {
         cleanDeadCell();
-        complete |= cleanUselessRoom();
+        cleanUselessRoom();
+        //fillEmptySpace();
         //cleanAloneWall();
         cleanDeadCell();
         //To optimize, before spawning crates mark all deadCell
         //Spawn Crate only on non deacCell
         //Need to improve deadCell algorithm too
-        complete &= spawnCrates(cratesCount);
-        complete &= spawnGoals(cratesCount);
-        complete &= spawnPlayer();
-        return complete;
+        spawnCrates(cratesCount);
+        spawnGoals(cratesCount);
+        spawnPlayer();
     }
 
     //Checks all surrounding blocks, with main block in the middle
@@ -177,6 +188,33 @@ public class Level : MonoBehaviour
                         if (rand.Next(0,100) < 30) {
                             map[x,y] = Cell.Floor;
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private void fillEmptySpace()
+    {
+        for (int x = 1; x < width - 1; x++)
+        {
+            for (int y = 1; y < height - 1; y++)
+            {
+                if (map[x, y] == Cell.Floor)
+                {
+                    int surroundFloor = 0;
+                    surroundFloor += (map[x - 1, y] == Cell.Floor) ? 1 : 0;
+                    //surroundFloor += (map[x + 1, y] == Cell.Floor) ? 1 : 0;
+                    surroundFloor += (map[x, y - 1] == Cell.Floor) ? 1 : 0;
+                    //surroundFloor += (map[x, y + 1] == Cell.Floor) ? 1 : 0;
+                    surroundFloor += (map[x-1, y-1] == Cell.Floor) ? 1 : 0;
+                    //surroundFloor += (map[x+1, y+1] == Cell.Floor) ? 1 : 0;
+                    //surroundFloor += (map[x+1, y-1] == Cell.Floor) ? 1 : 0;
+                    //surroundFloor += (map[x-1, y+1] == Cell.Floor) ? 1 : 0;
+
+                    if (surroundFloor == 3)
+                    {
+                        map[x, y] = Cell.Wall;
                     }
                 }
             }
@@ -262,7 +300,7 @@ public class Level : MonoBehaviour
                     surroundWall += (map[x,y-1] == Cell.Wall) ? 1 : 0;
                     surroundWall += (map[x,y+1] == Cell.Wall) ? 1 : 0;
                     if (surroundWall >= 3) {
-                        map[x,y] = Cell.Floor;
+                        map[x,y] = Cell.Wall;
                     }
                 }
             }
@@ -328,7 +366,7 @@ public class Level : MonoBehaviour
     public bool hasErrors()
     {
         bool badGeneration = false;
-        int crateCount = 0,playerCount = 0;
+        int crateCount = 0,playerCount = 0,targetCount = 0;
         for (int x = 1; x < width - 1; x++)
         {
             for (int y = 1; y < height - 1; y++)
@@ -341,10 +379,14 @@ public class Level : MonoBehaviour
                 {
                     playerCount++;
                 }
+                else if (map[x, y] == Cell.Goal)
+                {
+                    targetCount++;
+                }
             }
         }
         //Should be amount specified by player
-        if (playerCount < 1 || crateCount < 2 )
+        if (playerCount < 1 || crateCount < cratesCount || targetCount < cratesCount)
         {
             badGeneration = true;
         }

@@ -137,9 +137,32 @@ public class Templates : MonoBehaviour
         new Cell [] {Cell.Null, Cell.Floor, Cell.Floor, Cell.Null, Cell.Null},
     };
 
+    private static Cell[][] template18 = new Cell[][] {
+        new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Floor, Cell.Wall, Cell.Floor, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
+    };
+
+    private static Cell[][] template19 = new Cell[][] {
+        new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Floor, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Floor, Cell.Floor, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
+    };
+    private static Cell[][] template20 = new Cell[][] {
+        new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Floor, Cell.Floor, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Wall, Cell.Wall, Cell.Floor, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Floor, Cell.Floor, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
+    };
+
     private static List<Cell[][]> templates = new List<Cell[][]> {
-        template1,
-        template2,
+        //template1,
+        //template2,
         template3,
         template4,
         template5,
@@ -149,12 +172,15 @@ public class Templates : MonoBehaviour
         template9,
         template10,
         template11,
-        template12,
+        //template12,
         template13,
         template14,
         template15,
         template16,
         template17,
+        template18,
+        template19,
+        template20,
     };
 
 
