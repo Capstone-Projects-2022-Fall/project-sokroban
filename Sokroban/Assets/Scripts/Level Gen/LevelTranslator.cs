@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 public class LevelTranslator : MonoBehaviour
 {
     Cell[,] map;
+
+    private int levelSize;
+
     public GameObject groundPrefab;
     public GameObject wallPrefab;
     public GameObject cratePrefab;
@@ -16,11 +19,16 @@ public class LevelTranslator : MonoBehaviour
     public GameObject playerPrefab;
 
 
-    //Make counter for how much needs to be destroyed
+    private void Start()
+    {
+        setFinishedMap();
+        translateToPrefabs();
+    }
 
     //either we get the 2d array map straight from level
     public void setFinishedMap()
     {
+        SPLobbyManager lobbyManager = new SPLobbyManager();
         Level level = new Level(4);
 
         do
@@ -30,11 +38,15 @@ public class LevelTranslator : MonoBehaviour
             map = level.getMap().Clone() as Cell[,];//Should copy the 2d array generated in Level.cs
         } while (level.hasErrors());
         exportMap(level);
+        //Sets size for camera
+        levelSize = level.getWidth();
     }
-    /*Or we do the export function inside of Program class, read the symbols into a 2d array
-    public void readLevel()
-    { }
-    */
+
+    public int getLevelSize()
+    {
+        return levelSize;
+    }
+
     // And then translate them here
     public void translateToPrefabs()
     {

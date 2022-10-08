@@ -427,4 +427,8 @@ public class Level : MonoBehaviour
     {
         return map;
     }
+    public int getWidth()
+    {
+        return width;
+    }
 }
