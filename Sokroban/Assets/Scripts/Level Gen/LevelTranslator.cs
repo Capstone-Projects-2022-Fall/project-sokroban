@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelTranslator : MonoBehaviour
 {
@@ -116,9 +117,23 @@ public class LevelTranslator : MonoBehaviour
         }
     }
 
-    public void resetMap()
+    public IEnumerator resetMap()
     {
-        SceneManager.LoadScene("Temp");
+        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("SPLevel");
+        while (!asyncUnload.isDone)
+        {
+            yield return null;
+            Debug.Log("Loading scene...");
+        }
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("SPLevel", LoadSceneMode.Additive);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+            Debug.Log("Loading scene...");
+        }
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("SPLevel"));
+        translateToPrefabs();
+        //SceneManager.LoadScene("Temp");
     }
 
 }

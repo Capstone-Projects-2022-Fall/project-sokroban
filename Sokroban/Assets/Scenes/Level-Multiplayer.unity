@@ -3347,18 +3347,6 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1702625306}
-    - target: {fileID: 3107724073585856946, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
-      propertyPath: m_Color.b
-      value: 0.003921569
-      objectReference: {fileID: 0}
-    - target: {fileID: 3107724073585856946, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
-      propertyPath: m_Color.g
-      value: 0.2627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 3107724073585856946, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6039216
-      objectReference: {fileID: 0}
     - target: {fileID: 8502389461414117434, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
       propertyPath: m_Name
       value: Game UI
