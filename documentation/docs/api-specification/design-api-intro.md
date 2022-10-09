@@ -36,9 +36,11 @@ Design Document - Part II API
     
     Data Fields: 
     - Username
-        - Type: string
+        - Type: string 
+        - Purpose: Use to setup username for future use 
     - Password
         - Type: string
+        - Purpose: Setup Password for future use 
 
 
     Method:
@@ -59,10 +61,13 @@ Design Document - Part II API
     Data Fields: 
     - Username
         - Type: string
+        - Purpose: Use to setup username for future use 
     - Password
         - Type: string
+        - Purpose: Use to setup username for future use 
     - Database table data
         - Type: List
+         
 
     Method:
         - GetInfo(username,password,DB list):void
