@@ -13,7 +13,7 @@ public class Level : MonoBehaviour
     public Level(int crates) {
         rand = new System.Random();
         cratesCount = crates;
-        width = 11;
+        width = 11; //rand(2,4)*3+2
         height = width;
     }
 
@@ -90,9 +90,8 @@ public class Level : MonoBehaviour
                     return false;
                 }
                 attempt++;
-
             } while(map[x,y] != Cell.Floor || surroundWall >= 2 || surroundCrate >= 1);
-
+            Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundWall + " wall(s)");
             map[x,y] = Cell.Crate;
         }
         return true;
@@ -366,7 +365,7 @@ public class Level : MonoBehaviour
     public bool hasErrors()
     {
         bool badGeneration = false;
-        int crateCount = 0,playerCount = 0,targetCount = 0;
+        int crateCount = 0,playerCount = 0,targetCount = 0, groundCount = 0;
         for (int x = 1; x < width - 1; x++)
         {
             for (int y = 1; y < height - 1; y++)
@@ -383,10 +382,17 @@ public class Level : MonoBehaviour
                 {
                     targetCount++;
                 }
+                else if (map[x, y] == Cell.Floor)
+                {
+                    groundCount++;
+                }
             }
         }
+        double playableArea = (double)((width-2) * (height-2));
+        double percentEmpty = (double)groundCount / playableArea;
+        Debug.Log("Percent Empty: " + percentEmpty +"  "+ crateCount +"/"+playerCount +"/"+ targetCount +" crates/players/target");
         //Should be amount specified by player
-        if (playerCount < 1 || crateCount < cratesCount || targetCount < cratesCount)
+        if (playerCount < 1 || crateCount < cratesCount || targetCount < cratesCount || percentEmpty >= .6) //can change this percent if map is too empty
         {
             badGeneration = true;
         }

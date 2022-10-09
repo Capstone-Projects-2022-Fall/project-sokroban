@@ -5,9 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Camera cam;
-    public void UpdateSize(int size)
+
+    public static float mapSize = 0.0f;
+    public void Update()
     {
-        cam.orthographicSize = 6;
+        cam.transform.position = new Vector3 (mapSize/2.5f, mapSize/2.0f, cam.transform.position.z); 
+        cam.orthographicSize = mapSize/1.5f;
     }
 
     

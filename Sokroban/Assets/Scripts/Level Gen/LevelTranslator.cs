@@ -19,7 +19,12 @@ public class LevelTranslator : MonoBehaviour
     public GameObject targetPrefab;
     public GameObject playerPrefab;
 
-
+    public static int crates;
+    Level level;
+    private void Awake()
+    {
+        level = new Level(crates);
+    }
     private void Start()
     {
         setFinishedMap();
@@ -29,9 +34,6 @@ public class LevelTranslator : MonoBehaviour
     //either we get the 2d array map straight from level
     public void setFinishedMap()
     {
-        SPLobbyManager lobbyManager = new SPLobbyManager();
-        Level level = new Level(4);
-
         do
         {
             level.generate();
@@ -40,7 +42,7 @@ public class LevelTranslator : MonoBehaviour
         } while (level.hasErrors());
         exportMap(level);
         //Sets size for camera
-        levelSize = level.getWidth();
+        CameraController.mapSize = (float)level.getWidth();
     }
 
     public int getLevelSize()
@@ -89,7 +91,7 @@ public class LevelTranslator : MonoBehaviour
                         Instantiate(playerPrefab, position, Quaternion.identity);
                         break;
                     default:
-                        Instantiate(groundPrefab, position, Quaternion.identity);
+                        Instantiate(wallPrefab, position, Quaternion.identity);
                         break;
                 }
             }
