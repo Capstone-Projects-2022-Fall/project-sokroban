@@ -76,8 +76,8 @@ public class Player : MonoBehaviour
     
     void Update() 
     {
-        if (view.IsMine)
-        {
+      //  if (view.IsMine)
+      //  {
             Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             
             moveInput.Normalize();
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
             {
                 m_readyForInput = true;
             }
-        }
+      //  }
     }
         
 }

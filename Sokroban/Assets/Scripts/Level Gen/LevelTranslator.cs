@@ -5,10 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelTranslator : MonoBehaviour
 {
     Cell[,] map;
+
+    private int levelSize;
+
     public GameObject groundPrefab;
     public GameObject wallPrefab;
     public GameObject cratePrefab;
@@ -16,12 +20,17 @@ public class LevelTranslator : MonoBehaviour
     public GameObject playerPrefab;
 
 
-    //Make counter for how much needs to be destroyed
+    private void Start()
+    {
+        setFinishedMap();
+        translateToPrefabs();
+    }
 
     //either we get the 2d array map straight from level
     public void setFinishedMap()
     {
-        Level level = new Level();
+        SPLobbyManager lobbyManager = new SPLobbyManager();
+        Level level = new Level(4);
 
         do
         {
@@ -30,11 +39,15 @@ public class LevelTranslator : MonoBehaviour
             map = level.getMap().Clone() as Cell[,];//Should copy the 2d array generated in Level.cs
         } while (level.hasErrors());
         exportMap(level);
+        //Sets size for camera
+        levelSize = level.getWidth();
     }
-    /*Or we do the export function inside of Program class, read the symbols into a 2d array
-    public void readLevel()
-    { }
-    */
+
+    public int getLevelSize()
+    {
+        return levelSize;
+    }
+
     // And then translate them here
     public void translateToPrefabs()
     {
@@ -104,9 +117,23 @@ public class LevelTranslator : MonoBehaviour
         }
     }
 
-    public void resetMap()
+    public IEnumerator resetMap()
     {
-        SceneManager.LoadScene("Temp");
+        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("SPLevel");
+        while (!asyncUnload.isDone)
+        {
+            yield return null;
+            Debug.Log("Loading scene...");
+        }
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("SPLevel", LoadSceneMode.Additive);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+            Debug.Log("Loading scene...");
+        }
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("SPLevel"));
+        translateToPrefabs();
+        //SceneManager.LoadScene("Temp");
     }
 
 }
