@@ -9,15 +9,16 @@ During the requirements gathering every member of our team researched a differen
 Our team will also conduct User Acceptance Testing by providing different prototypes to users and ask them to perform different Use Cases. Based on the user's feedback and overall experience we will be updating our requirements accordingly in the future as the development goes on.
 
 # Top Level Design 
-1. Create Login screen that will allow the user to log into their account or continue as guest.
-2. Create cloud hosting server that will hold DB and API (utilizing AWS/Azure).
+1. Create a welcome screen that will allow the user to log into their  existing account or create a new account.
+2. Create cloud hosting server that will hold DB and API (utilizing Azure).
 3. Establish Database.
-4. Establish an API that wil connect to our database and l take user login and allow them to retrieve previous scores/tines and upload new ones.
-5. Create Main Menu that will allow the user to navigate to the 3 main areas of the game (Single player,Multiplayer,and Leaderboards).
-6. Create algorithm that will procedurally generate each level of the game.
-7. Establish multiplayer server utilizing unitys photon networking service.
-8. Create multiplayer co-op levels that will allow users to see a “ghost” of their partner.
-9. Create save function that will allow users to continue progress.
+4. Establish an API that wil connect to our database and take user login and allow them to retrieve previous scores and upload new ones.
+5. Create Main Menu that will allow the user to navigate to the 3 main areas of the game (Single player, Multiplayer, and Leaderboard).
+6. Incorporate existing algorithm into our game that will procedurally generate maps in every playable mode of the game.
+7. Establish multiplayer server utilizing Unity's Photon networking service.
+8. Create Multiplayer (Co-op) option that will allow users to solve a generated level together.
+9. Create Multiplayer (VS) option that will allow users to compete against each other on two instances of the same generated map (split screen). 
+9. Create Single Player option that will allow the user to play locally on generated level.
 10. Build leaderboard page that will show users who hold the top scores/times.
 
 
