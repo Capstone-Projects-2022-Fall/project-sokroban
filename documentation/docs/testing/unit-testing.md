@@ -70,7 +70,7 @@ sidebar_position: 1
     - Input: Offset(), Size()
     - Output: Collider needs to fit the shape and size of the sprite. 
     - Result: This component allows to detect collison between two game object. 
-
+ 
 
 10. BoxController
     - Procedure: For this meghof handlers all logic of the boxes location, movement, and weather they are on right spot. 
