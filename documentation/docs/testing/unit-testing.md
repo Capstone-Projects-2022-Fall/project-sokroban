@@ -85,3 +85,6 @@ sidebar_position: 1
     - Input: Controller()
     - Output:  If player moves in left direction left animation is play and if player moves in right direction, right animation is play. 
     - Result:  Player movement animation achieve 
+
+
+
