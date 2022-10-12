@@ -26,11 +26,12 @@ Press the single-player button on the main menu screen. On the lobby screen, cho
 ![Game Screen](/documentation/static/img/singleplayer3.jpg) -->
 
 
-3. Playing Multiplayer
+3. Playing Multiplayer (Co-op)
 
-Press the multiplayer button and wait for the loading to finish. Once connected to the server and the Multiplayer Lobby screen either enter a valid room name to join or create a new room by entering a name and selecting a game mode. The Player will then get sent to the game screen.
+Press the multiplayer button and wait for the loading to finish. Once connected to the server and the Multiplayer Lobby screen either enter a valid room name to join or create a new room by entering a name and selecting a game mode.If you creating a room, there will be an option to select the number of crates(boxes). The Player will then get sent to the game screen. When creating the room choose Coop in order to play with another player
 
-Expected outcome: Multiple players are able to properly connect to each other 
+Expected outcome: Multiple players are able to play co-op by landing in the same generated map.
+
 
 <!--![Main Menu Screen](/documentation/static/img/Multiplayer1.jpg)
 
@@ -43,6 +44,13 @@ Expected outcome: Multiple players are able to properly connect to each other
 ![Game Screen](/documentation/static/img/Multiplayer5.jpg)
 
 ![Game Screen](/documentation/static/img/Multiplayer6.jpg) -->
+
+4. Playing Multiplayer (VS)
+
+Press the multiplayer button and wait for the loading to finish. Once connected to the server and the Multiplayer Lobby screen either enter a valid room name to join or create a new room by entering a name and selecting a game mode.If you creating a room, there will be an option to select the number of crates(boxes). The Player will then get sent to the game screen. When creating the room choose Versus in order to play against another player
+
+Expected outcome: Two players are able to compete head to head by landing in two instances of the same generated map in the form of splitscreen.
+
 
 
 
