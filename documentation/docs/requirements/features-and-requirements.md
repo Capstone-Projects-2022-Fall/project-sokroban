@@ -11,8 +11,8 @@ sidebar_position: 4
     - The player will just insert the number of boxes they wish to have on the map.
 
 - Single-player
-    - Players will be tasked with solving increasingly difficult procedurally generated levels.
-    - Players will "SOLVE" a level by moving a varying number of crates around obstacles to targets on the map. 
+    - Players will be asked to select the number of crates they want to have on the map.
+    - Players will complete a level by placing the crate(s) onto target(s) on the map. 
 
 - Multiplayer (Co-op) 
     - Players will be able to complete procedurally generated levels of Sokroban with a friend.
@@ -25,7 +25,7 @@ sidebar_position: 4
     - The players will be put in a lobby where they can choose to host a game or join a friend's room.
     - Once the first player has created a room, and enterred the number of boxes the other can join the same room.
     - Once the other player joins, each player will have the same generated map and the screen will be splitted in half. 
-    - The player that finished the level the fastest wins the game.
+    - The player that finishes the level the fastest wins the game.
 
 - Undo Option
     - The player will have an option to undo every move they have performed since the beginning of the level.
