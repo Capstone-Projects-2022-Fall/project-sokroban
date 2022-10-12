@@ -84,7 +84,7 @@ TextureImporter:
       213: -5372557507283782795
     second: GIY All_26
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -105,6 +105,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -143,6 +144,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -170,6 +172,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -760,6 +774,34 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      GIY All_10: -4176168008094022564
+      GIY All_16: -8214088843251426745
+      GIY All_25: -61947018325244858
+      GIY All_12: 971828883796394077
+      GIY All_0: 4102888585902117920
+      GIY All_4: 3812035869302347528
+      GIY All_20: -4230275232021706296
+      GIY All_3: -5887982514324814021
+      GIY All_19: 3519327315685143694
+      GIY All_9: -4642483993848301740
+      GIY All_18: 3993333311835743102
+      GIY All_8: -5084851578362112392
+      GIY All_11: 4618436782182149003
+      GIY All_17: -6515478310000166566
+      GIY All_14: -8040115372295362494
+      GIY All_23: -5292444511644614078
+      GIY All_1: 3479153773704690336
+      GIY All_6: -8157972275461641152
+      GIY All_2: -96282353029987494
+      GIY All_22: 5142871286314346497
+      GIY All_15: -3613936481333586335
+      GIY All_13: 1817288024864438526
+      GIY All_21: -2098976520485671088
+      GIY All_5: 6238326169416622445
+      GIY All_24: 5047048097520708283
+      GIY All_7: -5240948715237626972
+      GIY All_26: -5372557507283782795
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
