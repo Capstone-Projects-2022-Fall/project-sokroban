@@ -11,10 +11,10 @@ sidebar_position: 1
 
 
 2. AccountHandler 
-    - Procedure: account handler class will send the user login data to the API, which will checked with the current data in the database, if correct user will be logged in, and incorrect user will be notified that information entered was wrong and they will need to re enter the data or continue as guest.
+    - Procedure: Account handler class will send the user login data to the API, which will checked with the current data in the database, if correct user will be logged in, and incorrect user will be notified that information entered was wrong and they will need to re enter the data or continue as guest.
     - Test:AccountHandler()
     - Input: username- String(), Password- String()
-    - Output:  if login credential are correct, the user will be pop message ”you have successfully login”. If login credential are incorrect, the user will be pop message “incorrect values”. This user will have a option to either register as a new user or enter as guest. 
+    - Output: If login credential are correct, the user will be pop message ”you have successfully login”. If login credential are incorrect, the user will be pop message “incorrect values”. This user will have a option to either register as a new user or enter as guest. 
     - Result: User will be authorised based on this authentication system. 
 
 
@@ -83,8 +83,8 @@ sidebar_position: 1
     - Procedure: For this method handler animation for multiplayer 
     - Test: TestAnimator()
     - Input: Controller()
-    - Output:  If player moves in left direction left animation is play and if player moves in right direction, right animation is play. 
-    - Result:  Player movement animation achieve 
+    - Output: If player moves in left direction left animation is play and if player moves in right direction, right animation is play. 
+    - Result: Player movement animation achieve 
 
 
 
