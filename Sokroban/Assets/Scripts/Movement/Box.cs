@@ -17,7 +17,7 @@ public class Box : MonoBehaviour
         }
     }
 
-    private bool BoxBlocked(Vector3 position, Vector2 direction) 
+    public bool BoxBlocked(Vector3 position, Vector2 direction) 
     {          //Same as player blocked method.
 
         Vector2 newPos = new Vector2(position.x, position.y) + direction;       //Check to see if there is a wall where we trying to move.
