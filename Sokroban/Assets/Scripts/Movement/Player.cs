@@ -27,12 +27,11 @@ public class Player : MonoBehaviour
 {
 
     PhotonView view;
-    //Box bx;
+
     
     static Stack<Moves>moves = new Stack<Moves>();
     static Moves move;
-    //public Subject<Player> OnMovedBox = new Subject<Player>();
-    //public Subject<Player> OnMovedAlone = new Subject<Player>();
+ 
     
 
     void Start() 
@@ -92,7 +91,7 @@ public class Player : MonoBehaviour
                 move.user = this;
                 moves.Push(move); //Push this move into the stack
                 Debug.Log("Moved from: " + moves.Peek().fromPos.ToString() + "Towards: " + moves.Peek().toPos.ToString() + "Without Box");
-                //OnMovedAlone.OnNext(this);
+                
                 transform.Translate(direction);
             }
         }
@@ -133,7 +132,7 @@ public class Player : MonoBehaviour
                     Debug.Log("Gets in here too");
                     blockedby.isBlocked = false;
                     blockedby.isBlockedByBox = true;
-                    //OnMovedBox.OnNext(this);
+                    
                     return blockedby;                       //If so then return false because we are not blocked
                 }
                 else                                    //If the box cannot move then we are blocked (return tue)
@@ -174,7 +173,7 @@ public class Player : MonoBehaviour
                 m_readyForInput = true;
             }
       //  }
-
+/*
         if(Input.GetKeyDown("space")) 
         {
             if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
@@ -194,7 +193,7 @@ public class Player : MonoBehaviour
                 moves.Pop();
             }
         }
-    
+    */
     }
 
     public void Undo()
