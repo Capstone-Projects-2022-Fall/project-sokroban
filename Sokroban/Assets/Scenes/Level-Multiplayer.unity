@@ -3347,6 +3347,18 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1702625306}
+    - target: {fileID: 8406296477499849431, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -2209199866880692350, guid: fbca35cc0b52b6847a16736954691419, type: 3}
+    - target: {fileID: 8406296477499849431, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Undo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406296477499849431, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Player, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8502389461414117434, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
       propertyPath: m_Name
       value: Game UI
