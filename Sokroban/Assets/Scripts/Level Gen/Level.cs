@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Level : MonoBehaviour
@@ -85,12 +86,18 @@ public class Level : MonoBehaviour
                 surroundCrate += (map[x + 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x - 1, y + 1] == Cell.Crate) ? 1 : 0;
 
+
+                if (surroundWall >= 2)
+                {
+                    removeWalls(x,y, surroundWall);
+                }
+
                 if (attempt >= floorCell) {
                     Debug.Log("Can't generate crates ! Max attempt reach");
                     return false;
                 }
                 attempt++;
-            } while(map[x,y] != Cell.Floor || surroundWall >= 2 || surroundCrate >= 1);
+            } while(map[x,y] != Cell.Floor || surroundCrate >= 1);
             Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundWall + " wall(s)");
             map[x,y] = Cell.Crate;
         }
@@ -153,6 +160,55 @@ public class Level : MonoBehaviour
         return true;
     }
 
+    private void removeWalls(int currentX, int currentY, int surroundWall)
+    {
+        var wallCells = new ArrayList();
+
+        //Will add all walls to a list, number is used as identifier for switch
+        if (map[currentX - 1, currentY] == Cell.Wall) { wallCells.Add(1); };
+        if (map[currentX + 1, currentY] == Cell.Wall) { wallCells.Add(2); };
+        if (map[currentX, currentY - 1] == Cell.Wall) { wallCells.Add(3); };
+        if (map[currentX, currentY + 1] == Cell.Wall) { wallCells.Add(4); };
+        if (map[currentX - 1, currentY - 1] == Cell.Wall) { wallCells.Add(5); };
+        if (map[currentX + 1, currentY + 1] == Cell.Wall) { wallCells.Add(6); };
+        if (map[currentX + 1, currentY - 1] == Cell.Wall) { wallCells.Add(7); };
+        if (map[currentX - 1, currentY + 1] == Cell.Wall) { wallCells.Add(8); };
+
+        //loop for however many surrounding walls, keep 1
+        for (int i = surroundWall; i > 1; i--)
+        {
+            // will randomly remove one wall for list
+            int randNum = rand.Next(0, wallCells.Count);
+            switch (wallCells[randNum])
+            {
+                case 1:
+                    map[currentX - 1, currentY] = Cell.Floor;
+                    break;
+                case 2:
+                    map[currentX + 1, currentY] = Cell.Floor;
+                    break;
+                case 3:
+                    map[currentX, currentY - 1] = Cell.Floor;
+                    break;
+                case 4:
+                    map[currentX, currentY + 1] = Cell.Floor;
+                    break;
+                case 5:
+                    map[currentX - 1, currentY - 1] = Cell.Floor;
+                    break;
+                case 6:
+                    map[currentX + 1, currentY + 1] = Cell.Floor;
+                    break;
+                case 7:
+                    map[currentX + 1, currentY - 1] = Cell.Floor;
+                    break;
+                case 8:
+                    map[currentX - 1, currentY + 1] = Cell.Floor;
+                    break;
+            }
+            wallCells.RemoveAt(randNum);
+        }
+    }
     public void postProcess() {
         cleanDeadCell();
         cleanUselessRoom();
