@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-   public bool Move(Vector2 direction) {        //Avoid moving diagonally
+   
+    public bool Move(Vector2 direction) {        //Avoid moving diagonally
 
         if (BoxBlocked(transform.position, direction)) {    //if box is blocked then dont move it
             return false;
@@ -12,11 +14,29 @@ public class Box : MonoBehaviour
 
         else {
             transform.Translate(direction);     //if not then move.
+
+            onTargetPosition(transform.position);
             //TransformForCross();
             return true;
         }
     }
 
+    private void onTargetPosition(Vector2 position)
+    {
+
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
+        foreach(var target in targets)
+        {
+
+            if (target.transform.position.x == position.x && target.transform.position.y == position.y)
+            {
+
+                Debug.Log("Box on Target");
+                GetComponent<Renderer>().material.color = Color.green;
+            }
+        }
+
+    }
     private bool BoxBlocked(Vector3 position, Vector2 direction) 
     {          //Same as player blocked method.
 
