@@ -58,7 +58,10 @@ public class Level : MonoBehaviour
     }
 
     private bool spawnCrates(int n) {
-
+        //The methods to generate the crate used right now should be done for multiplayer
+        //The methods for single player should be changed to making sure there are not walls
+        //Directly adjacent it the crate. The way it is now, sometimes there is no way to get 
+        //A crate away from the wall without another player, this could be fun for coop but unsolvable in SP
         int x, y, surroundWall,surroundCrate, attempt = 0;
         for (int i = 0; i < n; i++) {
 
@@ -123,29 +126,18 @@ public class Level : MonoBehaviour
     }
 
     private bool spawnGoals(int n) {
-        int x, y, attempt = 0;
+        int x, y, attempt = 0,hasValidPath;
         for (int i = 0; i < n; i++) {
-            bool isValidGoal = false;
             do {
+                
                 x = rand.Next(1, width-1);
                 y = rand.Next(1, height-1);
 
-                if (map[x, y+1] == Cell.Floor && map[x, y+2] == Cell.Floor)
-                {
-                    isValidGoal = true;
-                }
-                else if (map[x, y-1] == Cell.Floor && map[x, y-2] == Cell.Floor)
-                {
-                    isValidGoal = true;
-                }
-                else if (map[x+1, y] == Cell.Floor && map[x+2, y] == Cell.Floor)
-                {
-                    isValidGoal = true;
-                }
-                else if (map[x-1, y] == Cell.Floor && map[x-2, y] == Cell.Floor)
-                {
-                    isValidGoal = true;
-                }
+                hasValidPath = 0;
+                hasValidPath += (map[x, y + 1] == Cell.Floor && map[x, y + 2] == Cell.Floor) ? 1 : 0;
+                hasValidPath += (map[x, y - 1] == Cell.Floor && map[x, y - 2] == Cell.Floor) ? 1 : 0;
+                hasValidPath += (map[x + 1, y] == Cell.Floor && map[x + 2, y] == Cell.Floor) ? 1 : 0;
+                hasValidPath += (map[x - 1, y] == Cell.Floor && map[x - 2, y] == Cell.Floor) ? 1 : 0;
 
                 if (attempt >= floorCell) {
                     Debug.Log("Can't generate goals ! Max attemp reach");
@@ -153,14 +145,32 @@ public class Level : MonoBehaviour
                 }
                 attempt++;
 
-            } while(map[x,y] != Cell.Floor || isValidGoal == false);
+            } while(map[x,y] != Cell.Floor || hasValidPath < 2);
 
             map[x,y] = Cell.Goal;
         }
         return true;
     }
 
-    private void removeWalls(int currentX, int currentY, int surroundWall)
+    private void removeNull()
+    {
+        for (int x = 1; x < width-1; x++)
+        {
+            for (int y = 1; y < height-1; y++)
+            {
+                //Will add all walls to a list, number is used as identifier for switch
+                if (map[x - 1, y] == Cell.Null) { map[x - 1, y] = Cell.Wall; };
+                if (map[x + 1, y] == Cell.Null) { map[x + 1, y] = Cell.Wall; };
+                if (map[x, y - 1] == Cell.Null) { map[x, y - 1] = Cell.Wall; };
+                if (map[x, y + 1] == Cell.Null) { map[x, y + 1] = Cell.Wall; };
+                if (map[x - 1, y - 1] == Cell.Null) { map[x - 1, y - 1] = Cell.Wall; };
+                if (map[x + 1, y + 1] == Cell.Null) { map[x + 1, y + 1] = Cell.Wall; };
+                if (map[x + 1, y - 1] == Cell.Null) { map[x + 1, y - 1] = Cell.Wall; };
+                if (map[x - 1, y + 1] == Cell.Null) { map[x - 1, y + 1] = Cell.Wall; };
+            }
+        } 
+    }
+        private void removeWalls(int currentX, int currentY, int surroundWall)
     {
         var wallCells = new ArrayList();
 
@@ -210,14 +220,14 @@ public class Level : MonoBehaviour
         }
     }
     public void postProcess() {
-        cleanDeadCell();
         cleanUselessRoom();
         //fillEmptySpace();
         //cleanAloneWall();
-        cleanDeadCell();
         //To optimize, before spawning crates mark all deadCell
         //Spawn Crate only on non deacCell
         //Need to improve deadCell algorithm too
+        removeNull();
+        cleanDeadCell();
         spawnCrates(cratesCount);
         spawnGoals(cratesCount);
         spawnPlayer();
