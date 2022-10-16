@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UniRx;
+
 
 public struct Moves
 {
@@ -217,6 +217,16 @@ public class Player : MonoBehaviour
             moves.Pop();
         }
     }   
+
+    public void Reset() 
+    {
+        int i = moves.Count;
+        while(i >= 0)
+        {
+            Undo();
+            i--;
+        }
+    }
         
     
     
