@@ -45,19 +45,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             return;
         }
         PhotonNetwork.JoinRoom(roomInput.text);
-        Debug.Log("Room \"" + roomInput.text + "\" joined");
     }
 
     public override void OnJoinedRoom()
     {
-        if (coopToggle.isOn)
-        {
-            PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs coop config
-        }
-        else if (versusToggle.isOn)
-        {
-            PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs versus config
-        }
+        Debug.Log("Room \"" + roomInput.text + "\" joined");
+        PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs coop config
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
