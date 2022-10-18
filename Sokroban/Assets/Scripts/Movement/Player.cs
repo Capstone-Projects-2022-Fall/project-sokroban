@@ -153,14 +153,37 @@ public class Player : MonoBehaviour
     
     void Update() 
     {
-      if (view.IsMine)
-      {
+        if (MainMenuManager.isMultiplayer)
+        {
+            if (view.IsMine)
+            {
+                Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+                moveInput.Normalize();
+
+                if (moveInput.sqrMagnitude > 0.5) //Button pressed or held
+                {
+
+                    if (m_readyForInput)            //Moves only when pressing the key again.
+                    {
+                        m_readyForInput = false;
+                        this.Move(moveInput);
+                    }
+                }
+                else
+                {
+                    m_readyForInput = true;
+                }
+            }
+        }
+        else
+        {
             Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            
+
             moveInput.Normalize();
 
             if (moveInput.sqrMagnitude > 0.5) //Button pressed or held
-            {     
+            {
 
                 if (m_readyForInput)            //Moves only when pressing the key again.
                 {
@@ -168,11 +191,11 @@ public class Player : MonoBehaviour
                     this.Move(moveInput);
                 }
             }
-            else 
+            else
             {
                 m_readyForInput = true;
             }
-      }
+        }
 /*
         if(Input.GetKeyDown("space")) 
         {
