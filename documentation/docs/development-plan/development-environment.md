@@ -9,7 +9,7 @@ sidebar_position: 4
 - Visual Studio Code
 - Unity Engine
 - SSMS (SQL management studio)
-- Azure/AWS
+- Azure
 
 # Languages, Frameworks, and Management Systems:
 - .NET Entity Framework
@@ -26,4 +26,6 @@ sidebar_position: 4
 - Swagger
 
 # Deployment Platform:
-- Windows.
+- Windows PC
+- Steam Deck
+- Unity 
