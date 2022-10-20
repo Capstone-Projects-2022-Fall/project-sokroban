@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking.Utilities", "PhotonUnityNetworking.Utilities.csproj", "{2491AFB9-D75D-A81D-15BC-DD1D6AE95754}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRx", "UniRx.csproj", "{66ADAB7E-41A8-D6F1-AF33-CF90315FD910}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking.Demos", "PhotonUnityNetworking.Demos.csproj", "{24D37801-418F-C768-7C76-DB46F61EA818}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking", "PhotonUnityNetworking.csproj", "{4B9D61A4-C1BA-394F-96C1-549A7A047307}"
@@ -39,6 +41,10 @@ Global
 		{2491AFB9-D75D-A81D-15BC-DD1D6AE95754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2491AFB9-D75D-A81D-15BC-DD1D6AE95754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2491AFB9-D75D-A81D-15BC-DD1D6AE95754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66ADAB7E-41A8-D6F1-AF33-CF90315FD910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66ADAB7E-41A8-D6F1-AF33-CF90315FD910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66ADAB7E-41A8-D6F1-AF33-CF90315FD910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66ADAB7E-41A8-D6F1-AF33-CF90315FD910}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24D37801-418F-C768-7C76-DB46F61EA818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24D37801-418F-C768-7C76-DB46F61EA818}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24D37801-418F-C768-7C76-DB46F61EA818}.Release|Any CPU.ActiveCfg = Release|Any CPU

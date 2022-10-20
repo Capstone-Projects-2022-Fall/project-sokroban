@@ -788,6 +788,10 @@
       <Project>{2491AFB9-D75D-A81D-15BC-DD1D6AE95754}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{66ADAB7E-41A8-D6F1-AF33-CF90315FD910}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{4B9D61A4-C1BA-394F-96C1-549A7A047307}</Project>
       <Name>PhotonUnityNetworking</Name>
