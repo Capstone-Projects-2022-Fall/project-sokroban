@@ -57,7 +57,7 @@ public class Level : MonoBehaviour
         }
     }
 
-    private bool spawnCrates(int n) {
+    private bool spawnCratesMP(int n) {
         //The methods to generate the crate used right now should be done for multiplayer
         //The methods for single player should be changed to making sure there are not walls
         //Directly adjacent it the crate. The way it is now, sometimes there is no way to get 
@@ -103,6 +103,49 @@ public class Level : MonoBehaviour
             } while(map[x,y] != Cell.Floor || surroundCrate >= 1);
             Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundWall + " wall(s)");
             map[x,y] = Cell.Crate;
+        }
+        return true;
+    }
+
+    private bool spawnCratesSP(int n)
+    {
+        //This algorithms makes sure there are no walls directly adjacent to the crate
+
+        int x, y, surroundWall, surroundCrate, attempt = 0;
+        for (int i = 0; i < n; i++)
+        {
+
+            do
+            {
+                x = rand.Next(2, width - 2);
+                y = rand.Next(2, height - 2);
+
+                surroundWall = 0;
+                surroundWall += (map[x - 1, y] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x + 1, y] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x, y - 1] == Cell.Wall) ? 1 : 0;
+                surroundWall += (map[x, y + 1] == Cell.Wall) ? 1 : 0;
+
+
+                surroundCrate = 0;
+                surroundCrate += (map[x - 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x - 1, y + 1] == Cell.Crate) ? 1 : 0;
+
+                if (attempt >= floorCell)
+                {
+                    Debug.Log("Can't generate crates ! Max attempt reach");
+                    return false;
+                }
+                attempt++;
+            } while (map[x, y] != Cell.Floor || surroundCrate >= 1 || surroundWall > 0);
+            Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundWall + " wall(s)");
+            map[x, y] = Cell.Crate;
         }
         return true;
     }
@@ -170,7 +213,7 @@ public class Level : MonoBehaviour
             }
         } 
     }
-        private void removeWalls(int currentX, int currentY, int surroundWall)
+    private void removeWalls(int currentX, int currentY, int surroundWall)
     {
         var wallCells = new ArrayList();
 
@@ -228,7 +271,14 @@ public class Level : MonoBehaviour
         //Need to improve deadCell algorithm too
         removeNull();
         cleanDeadCell();
-        spawnCrates(cratesCount);
+        if (MainMenuManager.isMultiplayer)
+        {
+            spawnCratesMP(cratesCount);
+        }
+        else
+        {
+            spawnCratesSP(cratesCount);
+        }
         spawnGoals(cratesCount);
         spawnPlayer();
     }
