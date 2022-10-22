@@ -100,7 +100,7 @@ public class Level : MonoBehaviour
                     return false;
                 }
                 attempt++;
-            } while(map[x,y] != Cell.Floor || surroundCrate >= 1);
+            } while(map[x,y] != Cell.Floor || surroundCrate >= 2);
             Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundWall + " wall(s)");
             map[x,y] = Cell.Crate;
         }
@@ -111,7 +111,7 @@ public class Level : MonoBehaviour
     {
         //This algorithms makes sure there are no walls directly adjacent to the crate
 
-        int x, y, surroundWall, surroundCrate, attempt = 0;
+        int x, y, surroundAdjacentWall, surrounDiagonalWall, surroundCrate, attempt = 0;
         for (int i = 0; i < n; i++)
         {
 
@@ -120,12 +120,17 @@ public class Level : MonoBehaviour
                 x = rand.Next(2, width - 2);
                 y = rand.Next(2, height - 2);
 
-                surroundWall = 0;
-                surroundWall += (map[x - 1, y] == Cell.Wall) ? 1 : 0;
-                surroundWall += (map[x + 1, y] == Cell.Wall) ? 1 : 0;
-                surroundWall += (map[x, y - 1] == Cell.Wall) ? 1 : 0;
-                surroundWall += (map[x, y + 1] == Cell.Wall) ? 1 : 0;
+                surroundAdjacentWall = 0;
+                surroundAdjacentWall += (map[x - 1, y] == Cell.Wall) ? 1 : 0;
+                surroundAdjacentWall += (map[x + 1, y] == Cell.Wall) ? 1 : 0;
+                surroundAdjacentWall += (map[x, y - 1] == Cell.Wall) ? 1 : 0;
+                surroundAdjacentWall += (map[x, y + 1] == Cell.Wall) ? 1 : 0;
 
+                surrounDiagonalWall = 0;
+                surrounDiagonalWall += (map[x - 1, y - 1] == Cell.Wall) ? 1 : 0;
+                surrounDiagonalWall += (map[x - 1, y + 1] == Cell.Wall) ? 1 : 0;
+                surrounDiagonalWall += (map[x + 1, y - 1] == Cell.Wall) ? 1 : 0;
+                surrounDiagonalWall += (map[x + 1, y + 1] == Cell.Wall) ? 1 : 0;
 
                 surroundCrate = 0;
                 surroundCrate += (map[x - 1, y] == Cell.Crate) ? 1 : 0;
@@ -143,8 +148,9 @@ public class Level : MonoBehaviour
                     return false;
                 }
                 attempt++;
-            } while (map[x, y] != Cell.Floor || surroundCrate >= 1 || surroundWall > 0);
-            Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundWall + " wall(s)");
+                                                // One surrounding crates, no adjecent walls, only 1 diagnoal wall allowed
+            } while (map[x, y] != Cell.Floor || surroundCrate >= 2 || surroundAdjacentWall > 0 ||surrounDiagonalWall >1);
+            Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundAdjacentWall + " wall(s)");
             map[x, y] = Cell.Crate;
         }
         return true;
@@ -177,10 +183,10 @@ public class Level : MonoBehaviour
                 y = rand.Next(1, height-1);
 
                 hasValidPath = 0;
-                hasValidPath += (map[x, y + 1] == Cell.Floor && map[x, y + 2] == Cell.Floor) ? 1 : 0;
-                hasValidPath += (map[x, y - 1] == Cell.Floor && map[x, y - 2] == Cell.Floor) ? 1 : 0;
-                hasValidPath += (map[x + 1, y] == Cell.Floor && map[x + 2, y] == Cell.Floor) ? 1 : 0;
-                hasValidPath += (map[x - 1, y] == Cell.Floor && map[x - 2, y] == Cell.Floor) ? 1 : 0;
+                hasValidPath += (map[x, y + 1] != Cell.Wall && map[x, y + 2] != Cell.Wall) ? 1 : 0;
+                hasValidPath += (map[x, y - 1] != Cell.Wall && map[x, y - 2] != Cell.Wall) ? 1 : 0;
+                hasValidPath += (map[x + 1, y] != Cell.Wall && map[x + 2, y] != Cell.Wall) ? 1 : 0;
+                hasValidPath += (map[x - 1, y] != Cell.Wall && map[x - 2, y] != Cell.Wall) ? 1 : 0;
 
                 if (attempt >= floorCell) {
                     Debug.Log("Can't generate goals ! Max attemp reach");
@@ -188,7 +194,7 @@ public class Level : MonoBehaviour
                 }
                 attempt++;
 
-            } while(map[x,y] != Cell.Floor || hasValidPath < 2);
+            } while(map[x,y] != Cell.Floor || hasValidPath <= 2);
 
             map[x,y] = Cell.Goal;
         }
