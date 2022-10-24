@@ -14,7 +14,7 @@ sidebar_position: 1
     - A restful API will be created to get/set user account information,highscores,and level completion time
             - Will be coded in C# and utilize microsofts .Net Framework  
     - Unity's Photon Networking framework will handle the networking functionality and host the online server.
-    - AWS will be used to host the database and API 
+    - Azure will be used to host the database and API 
     - SQL managment studio 
 
 - Background <br/>
