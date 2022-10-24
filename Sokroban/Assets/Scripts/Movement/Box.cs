@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-   public bool arrived;
+   public static bool arrived;
+   //tempCratesCount should equal the amount of crates that where on the target when 
    private void Update() 
    {
         onTargetPosition();
-        
-
    }
     public bool Move(Vector2 direction) {        //Avoid moving diagonally
 
@@ -20,7 +19,6 @@ public class Box : MonoBehaviour
 
         else {
             transform.Translate(direction);     //if not then move.
-            onTargetPosition();
             return true;
         }
         
@@ -33,22 +31,22 @@ public class Box : MonoBehaviour
         SpriteRenderer boxColor = GetComponent<SpriteRenderer>();
         foreach(var target in targets)
         {
-
+            //This if will check if the box is on any target in the game, if so it will 
             if ((this.transform.position.x == target.transform.position.x) && (this.transform.position.y == target.transform.position.y))
             {
 
-                Debug.Log("Box on Target");
+                
                 boxColor.color = Color.green;
                 arrived = true;
                 return;
                 
-            }        
-        }
+            }
+         }
         arrived = false;
         boxColor.color = Color.white;
-
-
     }
+
+    
     private bool BoxBlocked(Vector3 position, Vector2 direction) 
     {          //Same as player blocked method.
 

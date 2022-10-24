@@ -4,41 +4,66 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
-/*
 
 public class GameManager : MonoBehaviour
 {
-    Player player;
+
+    public Button nextLevelBtn;
+    //public static int numOfBoxes;
+    int counter = 0;
+    List<bool> boxesOnTarget = new List<bool>();
+    public static int levelCounter = 1;
+
+    public void Awake()
+    {
+        nextLevelBtn.interactable = false; 
+    }
+    public void Update()
+    {
+        checkWin();
+        if (LevelTranslator.crates == counter)
+        {
+            nextLevelBtn.interactable = true;
+        }
+        else
+        {
+            nextLevelBtn.interactable = false;
+        }
+      
+    }
+    public void nextBtnClick()
+    {
+        levelCounter++;
+        //levelCounter++;
+        nextLevelBtn.interactable = false;
+        SceneManager.LoadScene("SPLevel");
+    }
     
-
-    void Start() 
+    void checkWin()
     {
-        player = GetComponent<Player>();
-    }
-
-
-    public void Undo()
-    {
-        Debug.Log("Yoooo");
-       
-        //if(player.moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
-        //{
-            Debug.Log("Here");
-            if(player.moves.Peek().withBox) //In this case we are undoing the player and the box move
+        boxesOnTarget.Clear();
+        counter = 0;
+        GameObject[] boxes = GameObject.FindGameObjectsWithTag("Box");
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
+        foreach (var target in targets) 
+        {
+            foreach (var box in boxes) 
             {
-                player.transform.position = new Vector3(player.moves.Peek().fromPos.x, 0);
-                Debug.Log("Or Here");
-                player.moves.Peek().boxMoved.transform.position = new Vector3(player.moves.Peek().boxPos.x, player.moves.Peek().boxPos.y, 0);
+                
+                if (box.transform.position.x == target.transform.position.x && box.transform.position.y == target.transform.position.y) 
+                {
+                    boxesOnTarget.Add(true);
+                    Debug.Log("Length is " + boxesOnTarget.Count);
+                    counter++;
+                    Debug.Log(counter);
+                }
+                else
+                {
+                    boxesOnTarget.Add(false);
+                    Debug.Log("Length is " + boxesOnTarget.Count);
+                }
+                
             }
-            else    //But here only the player's move (there was not any box moved)
-            {
-                Debug.Log("Or eeeeeHere");
-                player.transform.position = new Vector3(player.moves.Peek().fromPos.x, player.moves.Peek().fromPos.y, 0);
-            }
-            player.moves.Pop();
-        //}
-        
+        }      
     }
-
 }
-*/
