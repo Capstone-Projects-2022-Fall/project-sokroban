@@ -5,9 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-
-
-
 public class GameManager : MonoBehaviour
 {
 
@@ -15,10 +12,11 @@ public class GameManager : MonoBehaviour
     //public static int numOfBoxes;
     int counter = 0;
     List<bool> boxesOnTarget = new List<bool>();
-    
-    public void Awake() {
-        nextLevelBtn.interactable = false;
-        
+    public static int levelCounter = 1;
+
+    public void Awake()
+    {
+        nextLevelBtn.interactable = false; 
     }
     public void Update()
     {
@@ -35,6 +33,8 @@ public class GameManager : MonoBehaviour
     }
     public void nextBtnClick()
     {
+        levelCounter++;
+        //levelCounter++;
         nextLevelBtn.interactable = false;
         SceneManager.LoadScene("SPLevel");
     }
