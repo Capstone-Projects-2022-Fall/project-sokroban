@@ -8,6 +8,7 @@ public class ReturnButton : MonoBehaviour
 {
     public void OnReturnClick()
     {
+        GameManager.levelCounter = 1;
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene("Main Menu");
     }
