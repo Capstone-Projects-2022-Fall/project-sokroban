@@ -8,8 +8,9 @@ public class Level : MonoBehaviour
     private int width;
     private int height;
     private Cell[,] map;
-    private int cratesCount;
     private System.Random rand;
+
+    public static int cratesCount;
 
     public Level(int crates) {
         rand = new System.Random();
