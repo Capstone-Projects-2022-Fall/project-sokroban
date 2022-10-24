@@ -499,9 +499,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300538245258852095, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300538245258852095, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300538245258852095, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1017703817}
+      objectReference: {fileID: 1217065834}
+    - target: {fileID: 2300538245258852095, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2300538245258852095, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: nextBtnClick
@@ -668,9 +680,9 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
---- !u!114 &1017703817 stripped
+--- !u!114 &1217065834 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2411771574829526171, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4001567994220643381, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
   m_PrefabInstance: {fileID: 1017703814}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

@@ -35,7 +35,7 @@ public class Box : MonoBehaviour
             if ((this.transform.position.x == target.transform.position.x) && (this.transform.position.y == target.transform.position.y))
             {
 
-                Debug.Log("Box on Target");
+                
                 boxColor.color = Color.green;
                 arrived = true;
                 return;
@@ -45,6 +45,8 @@ public class Box : MonoBehaviour
         arrived = false;
         boxColor.color = Color.white;
     }
+
+    
     private bool BoxBlocked(Vector3 position, Vector2 direction) 
     {          //Same as player blocked method.
 

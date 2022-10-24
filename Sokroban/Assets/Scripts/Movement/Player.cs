@@ -59,19 +59,17 @@ public class Player : MonoBehaviour
         {
             if (Blocked(transform.position, direction).isBlocked)   //Is the player blocked in general? (ex 2 boxes or box on wall)
             {
-                Debug.Log("Is Blocked");        
+                        
                 return false;
             }
             else                                                //Can move with the box.
             {   
-                Debug.Log("Moves with box");
+                
                 move.fromPos = transform.position;
                 move.toPos = new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, 0);
                 move.withBox = true;        //We are moving with the box
                 move.user = this;
                 moves.Push(move);   //Push this move into the stack
-                Debug.Log("Moved from: " + moves.Peek().fromPos.ToString() + "Towards: " + moves.Peek().toPos.ToString() + "With Box at position: " + moves.Peek().boxPos.ToString() );
-                
                 transform.Translate(direction);     
             }
         }
@@ -79,18 +77,18 @@ public class Player : MonoBehaviour
         {
             if(Blocked(transform.position, direction).isBlocked)
             {
-                Debug.Log("Blocked by wall");
+                
                 return false;
             }
             else
             {
-                Debug.Log("Is just moving without box");
+                
                 move.fromPos = transform.position;
                 move.toPos = new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, 0);
                 move.withBox = false;   //We are moving without the box!
                 move.user = this;
                 moves.Push(move); //Push this move into the stack
-                Debug.Log("Moved from: " + moves.Peek().fromPos.ToString() + "Towards: " + moves.Peek().toPos.ToString() + "Without Box");
+                
                 
                 transform.Translate(direction);
             }
@@ -122,14 +120,14 @@ public class Player : MonoBehaviour
                 bx = box.GetComponent<Box>();
                 if(bx)
                 {
-                    Debug.Log("Gets here");
+                    
                     move.boxMoved = bx;
                     move.boxPos = bx.transform.position;
                 }
 
                 if (bx && bx.Move(direction))           //can the box move if we push it?
                 {
-                    Debug.Log("Gets in here too");
+                    
                     blockedby.isBlocked = false;
                     blockedby.isBlockedByBox = true;
                     
@@ -201,10 +199,10 @@ public class Player : MonoBehaviour
         
         if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
         {
-            Debug.Log("here");
+            
             if(moves.Peek().withBox) //In this case we are undoing the player and the box move
             {
-                Debug.Log("Until here");
+                
                 moves.Peek().user.transform.position = new Vector3(moves.Peek().fromPos.x, moves.Peek().fromPos.y);
                 
                 moves.Peek().boxMoved.transform.position = new Vector3(moves.Peek().boxPos.x, moves.Peek().boxPos.y, moves.Peek().fromPos.z);

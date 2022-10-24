@@ -6,42 +6,64 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 
+
+
 public class GameManager : MonoBehaviour
 {
+
     public Button nextLevelBtn;
-    public void Start()
-    {
+    //public static int numOfBoxes;
+    int counter = 0;
+    List<bool> boxesOnTarget = new List<bool>();
+    
+    public void Awake() {
         nextLevelBtn.interactable = false;
+        
     }
     public void Update()
     {
-        if (checkWin())
+        checkWin();
+        if (LevelTranslator.crates == counter)
         {
             nextLevelBtn.interactable = true;
-            Debug.Log("you win");
         }
         else
         {
             nextLevelBtn.interactable = false;
         }
+      
     }
-
-    private static bool checkWin()
-    {
-        GameObject[] boxes = GameObject.FindGameObjectsWithTag("Box");
-        foreach (var box in boxes)
-        {
-            if (Box.arrived)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void nextBtnClick()
     {
         nextLevelBtn.interactable = false;
         SceneManager.LoadScene("SPLevel");
+    }
+    
+    void checkWin()
+    {
+        boxesOnTarget.Clear();
+        counter = 0;
+        GameObject[] boxes = GameObject.FindGameObjectsWithTag("Box");
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
+        foreach (var target in targets) 
+        {
+            foreach (var box in boxes) 
+            {
+                
+                if (box.transform.position.x == target.transform.position.x && box.transform.position.y == target.transform.position.y) 
+                {
+                    boxesOnTarget.Add(true);
+                    Debug.Log("Length is " + boxesOnTarget.Count);
+                    counter++;
+                    Debug.Log(counter);
+                }
+                else
+                {
+                    boxesOnTarget.Add(false);
+                    Debug.Log("Length is " + boxesOnTarget.Count);
+                }
+                
+            }
+        }      
     }
 }
