@@ -14,5 +14,12 @@ public class TimerCount : MonoBehaviour
     {
       timer += Time.deltaTime;
       timerText.text = ("Time: " + Math.Round(timer).ToString());
+        int score = PlayerPrefs.GetInt("Score");
+        if (timer % 100 ==0)
+        {
+            score = score - 10;
+        }
+       
+        PlayerPrefs.SetInt("Score", score);
     }
 }
