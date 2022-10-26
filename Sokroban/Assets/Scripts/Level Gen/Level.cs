@@ -85,10 +85,12 @@ public class Level : MonoBehaviour
                 surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                /* Diagonal check
                 surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x - 1, y + 1] == Cell.Crate) ? 1 : 0;
+                */
 
 
                 if (surroundWall >= 2)
@@ -101,7 +103,7 @@ public class Level : MonoBehaviour
                     return false;
                 }
                 attempt++;
-            } while(map[x,y] != Cell.Floor || surroundCrate >= 2);
+            } while(map[x,y] != Cell.Floor || surroundCrate >= 1);
             Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundWall + " wall(s)");
             map[x,y] = Cell.Crate;
         }
@@ -138,10 +140,12 @@ public class Level : MonoBehaviour
                 surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                /* Diagonal check
                 surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x - 1, y + 1] == Cell.Crate) ? 1 : 0;
+                */
 
                 if (attempt >= floorCell)
                 {
@@ -150,7 +154,7 @@ public class Level : MonoBehaviour
                 }
                 attempt++;
                                                 // One surrounding crates, no adjecent walls, only 1 diagnoal wall allowed
-            } while (map[x, y] != Cell.Floor || surroundCrate >= 2 || surroundAdjacentWall > 0 ||surrounDiagonalWall >1);
+            } while (map[x, y] != Cell.Floor || surroundCrate >= 1 || surroundAdjacentWall > 0 ||surrounDiagonalWall >1);
             Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundAdjacentWall + " wall(s)");
             map[x, y] = Cell.Crate;
         }
@@ -176,7 +180,7 @@ public class Level : MonoBehaviour
     }
 
     private bool spawnGoals(int n) {
-        int x, y, attempt = 0,hasValidPath;
+        int x, y, attempt = 0,hasValidPath, surroundCrate;
         for (int i = 0; i < n; i++) {
             do {
                 
@@ -189,13 +193,19 @@ public class Level : MonoBehaviour
                 hasValidPath += (map[x + 1, y] != Cell.Wall && map[x + 2, y] != Cell.Wall) ? 1 : 0;
                 hasValidPath += (map[x - 1, y] != Cell.Wall && map[x - 2, y] != Cell.Wall) ? 1 : 0;
 
+                surroundCrate = 0;
+                surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x - 1, y] == Cell.Crate) ? 1 : 0;
+
                 if (attempt >= floorCell) {
                     Debug.Log("Can't generate goals ! Max attemp reach");
                     return false;
                 }
                 attempt++;
 
-            } while(map[x,y] != Cell.Floor || hasValidPath <= 2);
+            } while(map[x,y] != Cell.Floor || hasValidPath <= 2 || surroundCrate >= 1);
 
             map[x,y] = Cell.Goal;
         }

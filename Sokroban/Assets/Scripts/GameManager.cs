@@ -53,14 +53,11 @@ public class GameManager : MonoBehaviour
                 if (box.transform.position.x == target.transform.position.x && box.transform.position.y == target.transform.position.y) 
                 {
                     boxesOnTarget.Add(true);
-                    Debug.Log("Length is " + boxesOnTarget.Count);
                     counter++;
-                    Debug.Log(counter);
                 }
                 else
                 {
                     boxesOnTarget.Add(false);
-                    Debug.Log("Length is " + boxesOnTarget.Count);
                 }
                 
             }
