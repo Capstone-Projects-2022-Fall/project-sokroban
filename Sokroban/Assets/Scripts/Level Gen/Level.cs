@@ -140,6 +140,11 @@ public class Level : MonoBehaviour
                 surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+
+                if (surroundAdjacentWall >= 1)
+                {
+                    removeAllWalls(x, y);
+                }
                 /* Diagonal check
                 surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
@@ -279,6 +284,13 @@ public class Level : MonoBehaviour
             wallCells.RemoveAt(randNum);
         }
     }
+    private void removeAllWalls(int currentX, int currentY)
+    {
+        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX - 1, currentY] = Cell.Floor; }
+        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX + 1, currentY] = Cell.Floor; }
+        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX, currentY - 1] = Cell.Floor; }
+        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX, currentY + 1] = Cell.Floor; }
+    }
     public void postProcess() {
         cleanUselessRoom();
         //fillEmptySpace();
@@ -296,6 +308,7 @@ public class Level : MonoBehaviour
         {
             spawnCratesSP(cratesCount);
         }
+        cleanDeadCell();
         spawnGoals(cratesCount);
         spawnPlayer();
     }
