@@ -236,7 +236,12 @@ public class Player : MonoBehaviour
                
             }
             moves.Pop();
-            ScoreSystem.movesTaken--;
+            
+        }
+        else 
+        {
+            Debug.Log("No moves to undo!");
+            return;
         }
     }   
 
