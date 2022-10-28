@@ -6,18 +6,10 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
    public static bool arrived;
-    public  bool updateScore = true;
    //tempCratesCount should equal the amount of crates that where on the target when 
    private void Update() 
    {
         onTargetPosition();
-        if (arrived && updateScore )
-        {
-            int scorenew = PlayerPrefs.GetInt("Score");
-            scorenew = scorenew + 100;
-            PlayerPrefs.SetInt("Score", scorenew);
-            updateScore = false;
-        }
         
    }
     public bool Move(Vector2 direction) {        //Avoid moving diagonally
@@ -30,12 +22,6 @@ public class Box : MonoBehaviour
 
         else {
             transform.Translate(direction);
-            //if not then move.
-            int score = PlayerPrefs.GetInt("Score");
-            score = score - 5;
-            PlayerPrefs.SetInt("Score", score);
-
-           
             return true;
         }
         
@@ -50,14 +36,10 @@ public class Box : MonoBehaviour
         {
             //This if will check if the box is on any target in the game, if so it will 
             if ((this.transform.position.x == target.transform.position.x) && (this.transform.position.y == target.transform.position.y))
-            {
-
-                
+            { 
                 boxColor.color = Color.green;
                 arrived = true;
-               
-                return;
-                
+                return; 
             }
          }
         arrived = false;

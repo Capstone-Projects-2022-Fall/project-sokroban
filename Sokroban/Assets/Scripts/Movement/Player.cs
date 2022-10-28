@@ -70,7 +70,8 @@ public class Player : MonoBehaviour
                 move.withBox = true;        //We are moving with the box
                 move.user = this;
                 moves.Push(move);   //Push this move into the stack
-                transform.Translate(direction);     
+                transform.Translate(direction);
+                ScoreSystem.movesTaken++;
             }
         }
         else
@@ -88,9 +89,8 @@ public class Player : MonoBehaviour
                 move.withBox = false;   //We are moving without the box!
                 move.user = this;
                 moves.Push(move); //Push this move into the stack
-                
-                
                 transform.Translate(direction);
+                ScoreSystem.movesTaken++;
             }
         }
         return true;
@@ -236,6 +236,7 @@ public class Player : MonoBehaviour
                
             }
             moves.Pop();
+            ScoreSystem.movesTaken--;
         }
     }   
 

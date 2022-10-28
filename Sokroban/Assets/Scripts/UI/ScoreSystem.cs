@@ -4,20 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ScoreSystem : MonoBehaviour
 {
-    public float score = 0;
-    public Text scoreText;
+    public float totalScore = 1.0f;
+    public Text pointsText;
 
-    // Start is called before the first frame update
-    void Start()
+    public static int movesTaken = 0;//is set in the Player.cs
+
+    public void UpdateScore()
     {
-        PlayerPrefs.SetInt("Score", 10);
-    }
-
+        float crateModifier = 1.0f + ((float)LevelTranslator.crates / 10.0f);//change this to tierModifier once tiers are setup
+        totalScore += ((float)(1000 - (movesTaken * 20)) * ((float)TimerCount.timer / 100.0f) * crateModifier);
      
-  
-    // Update is called once per frame
-    void Update()
-    {    // score = 100(Box On Target only once) - 5 (For Every Move) - 10 (If Time%100)
-        scoreText.text = ("Score : " + PlayerPrefs.GetInt("Score").ToString());
+        movesTaken = 0;//resets moves
+        pointsText.text = "Points: " + totalScore.ToString();
     }
 }
