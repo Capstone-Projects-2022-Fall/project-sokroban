@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     {
         //anim = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
+       
         
     }
 
@@ -153,8 +154,11 @@ public class Player : MonoBehaviour
     {
         if (MainMenuManager.isMultiplayer)
         {
+            //view.RequestOwnership();
+            
             if (view.IsMine)
             {
+                view.RequestOwnership();
                 Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
                 moveInput.Normalize();
@@ -173,6 +177,7 @@ public class Player : MonoBehaviour
                     m_readyForInput = true;
                 }
             }
+            
         }
         else
         {
@@ -219,37 +224,50 @@ public class Player : MonoBehaviour
 
     public void Undo()
     {
-        
-        if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
+        if (MainMenuManager.isMultiplayer)
         {
-            
-            if(moves.Peek().withBox) //In this case we are undoing the player and the box move
-            {
-                
-                moves.Peek().user.transform.position = new Vector3(moves.Peek().fromPos.x, moves.Peek().fromPos.y);
-                
-                moves.Peek().boxMoved.transform.position = new Vector3(moves.Peek().boxPos.x, moves.Peek().boxPos.y, moves.Peek().fromPos.z);
-            }
-            else    //But here only the player's move (there was not any box moved)
-            {
-                moves.Peek().user.transform.position = new Vector3(moves.Peek().fromPos.x, moves.Peek().fromPos.y, moves.Peek().fromPos.z);
-               
-            }
-            moves.Pop();
+            return;
         }
-        else
+        else 
         {
-            Debug.Log("Nothing to undo or reset!");
+            if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
+            {
+                
+                if(moves.Peek().withBox) //In this case we are undoing the player and the box move
+                {
+                    
+                    moves.Peek().user.transform.position = new Vector3(moves.Peek().fromPos.x, moves.Peek().fromPos.y);
+                    
+                    moves.Peek().boxMoved.transform.position = new Vector3(moves.Peek().boxPos.x, moves.Peek().boxPos.y, moves.Peek().fromPos.z);
+                }
+                else    //But here only the player's move (there was not any box moved)
+                {
+                    moves.Peek().user.transform.position = new Vector3(moves.Peek().fromPos.x, moves.Peek().fromPos.y, moves.Peek().fromPos.z);
+                
+                }
+                moves.Pop();
+            }
+            else
+            {
+                Debug.Log("Nothing to undo or reset!");
+            }
         }
     }   
 
     public void Reset() 
     {
-        int i = moves.Count;
-        while(i >= 0)
+        if (MainMenuManager.isMultiplayer)
         {
-            Undo();
-            i--;
+            return;
+        }
+        else 
+        {
+            int i = moves.Count;
+            while(i >= 0)
+            {
+                Undo();
+                i--;
+            }
         }
     }
         
