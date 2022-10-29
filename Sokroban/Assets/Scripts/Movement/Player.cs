@@ -243,6 +243,10 @@ public class Player : MonoBehaviour
             Debug.Log("No moves to undo!");
             return;
         }
+        else
+        {
+            Debug.Log("Nothing to undo or reset!");
+        }
     }   
 
     public void Reset() 
