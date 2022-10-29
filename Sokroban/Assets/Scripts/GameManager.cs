@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         levelCounter++;
         //levelCounter++;
+        TimerCount.timer = 0.0f;
         nextLevelBtn.interactable = false;
         SceneManager.LoadScene("SPLevel");
     }
