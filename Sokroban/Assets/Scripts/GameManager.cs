@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         }
       
     }
-    public void nextBtnClick()
+    public void nextLevelBtnClick()
     {
         levelCounter++;
         //levelCounter++;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         nextLevelBtn.interactable = false;
         SceneManager.LoadScene("SPLevel");
     }
-    
+
     void checkWin()
     {
         boxesOnTarget.Clear();

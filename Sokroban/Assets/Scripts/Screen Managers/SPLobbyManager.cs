@@ -25,4 +25,8 @@ public class SPLobbyManager : MonoBehaviour
             Debug.Log("Entered Game Scene");
         }
     }
+    public void nextSandboxModeBtnClick()
+    {
+        LevelTranslator.isSandbox = true;
+    }
 }
