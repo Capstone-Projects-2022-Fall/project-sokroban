@@ -20,7 +20,9 @@ public class LevelTranslator : MonoBehaviour
     public GameObject playerPrefab;
 
     public static int crates, size;
-    public static bool isSandbox = false;
+
+    //types of modes
+    public static bool isSandbox = false, isNormal = false, isChallenge = false;
     Level level;
     private void Awake()
     {
