@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,20 +9,25 @@ using Photon.Pun;
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField roomInput;
+    public InputField playersInput;
+    
+    private int playersJoined;
 
     public Text errorText;
 
     public Toggle coopToggle;
     public Toggle versusToggle;
 
+    public static int numOfPlayers;
+
     bool firstToggleOn = false;
     public void CreateRoom()
     {
         //Checks for empty room name
-        if (string.IsNullOrEmpty(roomInput.text))
+        if (string.IsNullOrEmpty(roomInput.text)|| string.IsNullOrEmpty(playersInput.text))
         {
-            errorText.text = "Room Name Empty";
-            Debug.Log("Bad Room Name");
+            errorText.text = "Text Fields Empty!";
+            Debug.Log("Bad Room Name or No Players");
             return;
         }
         //Checks for empty game modes
@@ -32,6 +38,9 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             return;
         }
         PhotonNetwork.CreateRoom(roomInput.text);
+        numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
+        playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
+    
         Debug.Log("Room \"" + roomInput.text + "\" created");
     }
 
