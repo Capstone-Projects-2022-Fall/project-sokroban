@@ -219,7 +219,6 @@ public class Player : MonoBehaviour
 
     public void Undo()
     {
-        
         if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
         {
             
@@ -236,12 +235,6 @@ public class Player : MonoBehaviour
                
             }
             moves.Pop();
-            
-        }
-        else 
-        {
-            Debug.Log("No moves to undo!");
-            return;
         }
         else
         {
