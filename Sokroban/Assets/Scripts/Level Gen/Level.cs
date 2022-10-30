@@ -18,7 +18,12 @@ public class Level : MonoBehaviour
         width = 11; //rand(2,4)*3+2
         height = width;
     }
-
+    public Level(int crates, int size) {
+        rand = new System.Random();
+        cratesCount = crates;
+        width = size; //rand(2,4)*3+2
+        height = width;
+    }
     public void generate() {
         map = new Cell[width,height];
         floorCell = 0;

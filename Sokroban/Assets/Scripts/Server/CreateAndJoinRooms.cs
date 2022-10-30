@@ -40,7 +40,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(roomInput.text);
         numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
         playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
-    
+        LevelTranslator.isCoop = true;
         Debug.Log("Room \"" + roomInput.text + "\" created");
     }
 
