@@ -1,27 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
-
+/*
+public struct Room 
+{
+    public string name;
+    public int playersJoined;
+}
+*/
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField roomInput;
+    public InputField playersInput;
+    
+    private int playersJoined;
 
     public Text errorText;
 
     public Toggle coopToggle;
     public Toggle versusToggle;
 
+    public static int numOfPlayers;
+
     bool firstToggleOn = false;
     public void CreateRoom()
     {
+        //Room room;
         //Checks for empty room name
-        if (string.IsNullOrEmpty(roomInput.text))
+        if (string.IsNullOrEmpty(roomInput.text)|| string.IsNullOrEmpty(playersInput.text))
         {
-            errorText.text = "Room Name Empty";
-            Debug.Log("Bad Room Name");
+            errorText.text = "Text Fields Empty!";
+            Debug.Log("Bad Room Name or No Players");
+            return;
+        }
+        
+        if (Int32.Parse(playersInput.text) > 5) 
+        {
+            errorText.text = "Max 5 people per room!";
             return;
         }
         //Checks for empty game modes
@@ -31,8 +50,26 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             Debug.Log("No Game Mode Selected");
             return;
         }
+
+        //room.name = roomInput.text;
+
         PhotonNetwork.CreateRoom(roomInput.text);
-        Debug.Log("Room \"" + roomInput.text + "\" created");
+        if (Int32.Parse(playersInput.text) > 5) 
+        {
+            errorText.text = "Max 5 people!";
+            return;
+        }
+        else 
+        {
+            numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
+            playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
+            LevelTranslator.isCoop = true;
+        }
+        /*
+        numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
+        playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
+        LevelTranslator.isCoop = true;
+ */     Debug.Log("Room \"" + roomInput.text + "\" created");
     }
 
     public void JoinRoom()
@@ -44,20 +81,14 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             Debug.Log("Bad Room Name");
             return;
         }
+        //if()      //Check if there are any spots available
         PhotonNetwork.JoinRoom(roomInput.text);
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("Room \"" + roomInput.text + "\" joined");
-        if (coopToggle.isOn)
-        {
-            PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs coop config
-        }
-        if (versusToggle.isOn)
-        {
-            PhotonNetwork.LoadLevel("VS Scene"); //Needs coop config
-        }
+        PhotonNetwork.LoadLevel("MPLevel"); //Needs coop config
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

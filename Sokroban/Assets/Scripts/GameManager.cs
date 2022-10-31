@@ -44,7 +44,14 @@ public class GameManager : MonoBehaviour
         //levelCounter++;
         TimerCount.timer = 0.0f;
         nextLevelBtn.interactable = false;
-        SceneManager.LoadScene("SPLevel");
+        if(LevelTranslator.isCoop)
+        {
+            return;
+        }
+        else
+        {
+            SceneManager.LoadScene("SPLevel");
+        }
     }
 
     void checkWin()

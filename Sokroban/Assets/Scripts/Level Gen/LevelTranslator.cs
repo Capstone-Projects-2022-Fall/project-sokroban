@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class LevelTranslator : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class LevelTranslator : MonoBehaviour
     public static int crates, size;
 
     //types of modes
-    public static bool isSandbox = false, isNormal = false, isChallenge = false;
+    public static bool isSandbox = false, isNormal = false, isChallenge = false, isCoop = false;
     Level level;
     private void Awake()
     {
@@ -32,6 +33,11 @@ public class LevelTranslator : MonoBehaviour
             level = new Level(crates);
         }
         //else start from level 1
+        else if (isCoop)
+        {
+            setCoop();
+            level = new Level(crates, size);
+        }
         else
         {
             //sets crates and size
@@ -76,6 +82,39 @@ public class LevelTranslator : MonoBehaviour
                 break;
         }
     }
+
+    public void setCoop()           //Only 5 people for now.
+    {
+        switch (CreateAndJoinRooms.numOfPlayers)
+        {
+            //Tier 1
+            case 1:
+                crates = 1;
+                size = 8;
+                break;
+            //Tier 2
+            case 2:
+                crates = 2;
+                size = 11;
+                break;
+            //Tier 3
+            case 3:
+                crates = 3;
+                size = 11;
+                break;
+            //Tier 4
+            case 4:
+                crates = 4;
+                size = 11;
+                break;
+            //Tier 5
+            case 5:
+                crates = 5;
+                size = 11;
+                break;
+        }
+    }
+
 
     //either we get the 2d array map straight from level
     public void setFinishedMap()
@@ -134,7 +173,15 @@ public class LevelTranslator : MonoBehaviour
                         //groundCount++;
                         //playerCount++;
                         Instantiate(groundPrefab, position, Quaternion.identity);
-                        Instantiate(playerPrefab, position, Quaternion.identity);
+                        if(isCoop)
+                        {
+                            PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
+                        }
+                        else 
+                        {
+                            Instantiate(playerPrefab, position, Quaternion.identity);
+                        }
+                        
                         break;
                     default:
                         Instantiate(wallPrefab, position, Quaternion.identity);

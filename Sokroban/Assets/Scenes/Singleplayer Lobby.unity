@@ -1448,7 +1448,7 @@ GameObject:
   - component: {fileID: 930983770}
   - component: {fileID: 930983769}
   m_Layer: 5
-  m_Name: Challengel Button (1)
+  m_Name: Challenge Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

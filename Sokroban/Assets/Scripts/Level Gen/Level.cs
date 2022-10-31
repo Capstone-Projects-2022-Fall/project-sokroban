@@ -18,14 +18,12 @@ public class Level : MonoBehaviour
         width = 11; //rand(2,4)*3+2
         height = width;
     }
-    public Level(int crates, int size)
-    {
+    public Level(int crates, int size) {
         rand = new System.Random();
         cratesCount = crates;
         width = size; //rand(2,4)*3+2
         height = width;
     }
-
     public void generate() {
         map = new Cell[width,height];
         floorCell = 0;
@@ -147,11 +145,6 @@ public class Level : MonoBehaviour
                 surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
-
-                if (surroundAdjacentWall >= 1)
-                {
-                    removeAllWalls(x, y);
-                }
                 /* Diagonal check
                 surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
@@ -174,6 +167,7 @@ public class Level : MonoBehaviour
     }
 
     private bool spawnPlayer() {
+        
         int x, y, attempt = 0;
         do {
             x = rand.Next(1, width-1);
@@ -189,6 +183,7 @@ public class Level : MonoBehaviour
 
         map[x,y] = Cell.Player;
         return true;
+        
     }
 
     private bool spawnGoals(int n) {
@@ -291,13 +286,6 @@ public class Level : MonoBehaviour
             wallCells.RemoveAt(randNum);
         }
     }
-    private void removeAllWalls(int currentX, int currentY)
-    {
-        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX - 1, currentY] = Cell.Floor; }
-        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX + 1, currentY] = Cell.Floor; }
-        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX, currentY - 1] = Cell.Floor; }
-        if (map[currentX - 1, currentY] == Cell.Wall) { map[currentX, currentY + 1] = Cell.Floor; }
-    }
     public void postProcess() {
         cleanUselessRoom();
         //fillEmptySpace();
@@ -315,7 +303,6 @@ public class Level : MonoBehaviour
         {
             spawnCratesSP(cratesCount);
         }
-        cleanDeadCell();
         spawnGoals(cratesCount);
         spawnPlayer();
     }
@@ -442,7 +429,6 @@ public class Level : MonoBehaviour
         return filledFloor;
     }
 
-    //Cleans ground in the middle of walls
     private void cleanDeadCell() {
         for (int x = 1; x < width - 1; x++) {
             for (int y = 1; y < height -1; y++) {
@@ -546,7 +532,7 @@ public class Level : MonoBehaviour
         double percentEmpty = (double)groundCount / playableArea;
         Debug.Log("Percent Empty: " + percentEmpty +"  "+ crateCount +"/"+playerCount +"/"+ targetCount +" crates/players/target");
         //Should be amount specified by player
-        if (playerCount < 1 || crateCount < cratesCount || targetCount < cratesCount || percentEmpty >= .5) //can change this percent if map is too empty
+        if (playerCount < 1 || crateCount < cratesCount || targetCount < cratesCount || percentEmpty >= .6) //can change this percent if map is too empty
         {
             badGeneration = true;
         }
