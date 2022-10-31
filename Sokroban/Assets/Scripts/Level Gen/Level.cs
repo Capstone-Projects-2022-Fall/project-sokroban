@@ -167,6 +167,7 @@ public class Level : MonoBehaviour
     }
 
     private bool spawnPlayer() {
+        
         int x, y, attempt = 0;
         do {
             x = rand.Next(1, width-1);
@@ -182,6 +183,7 @@ public class Level : MonoBehaviour
 
         map[x,y] = Cell.Player;
         return true;
+        
     }
 
     private bool spawnGoals(int n) {

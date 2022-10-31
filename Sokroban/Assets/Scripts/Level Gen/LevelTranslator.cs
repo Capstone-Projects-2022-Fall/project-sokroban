@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class LevelTranslator : MonoBehaviour
 {
@@ -172,7 +173,15 @@ public class LevelTranslator : MonoBehaviour
                         //groundCount++;
                         //playerCount++;
                         Instantiate(groundPrefab, position, Quaternion.identity);
-                        Instantiate(playerPrefab, position, Quaternion.identity);
+                        if(isCoop)
+                        {
+                            PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
+                        }
+                        else 
+                        {
+                            Instantiate(playerPrefab, position, Quaternion.identity);
+                        }
+                        
                         break;
                     default:
                         Instantiate(wallPrefab, position, Quaternion.identity);
