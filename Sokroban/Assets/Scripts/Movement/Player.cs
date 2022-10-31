@@ -218,9 +218,10 @@ public class Player : MonoBehaviour
     }
 
     public void Undo()
-    { 
+    {
         if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
         {
+            
             if(moves.Peek().withBox) //In this case we are undoing the player and the box move
             {
                 
