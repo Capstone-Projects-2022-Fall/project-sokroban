@@ -24,7 +24,7 @@ public struct BlockedBy
 
 
 public class Player : MonoBehaviour
-{
+{ 
 
     PhotonView view;
 
@@ -236,10 +236,7 @@ public class Player : MonoBehaviour
             }
             moves.Pop();
         }
-        else
-        {
-            Debug.Log("Nothing to undo or reset!");
-        }
+        
     }   
 
     public void Reset() 
