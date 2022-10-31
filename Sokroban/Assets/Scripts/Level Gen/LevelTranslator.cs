@@ -19,16 +19,62 @@ public class LevelTranslator : MonoBehaviour
     public GameObject targetPrefab;
     public GameObject playerPrefab;
 
-    public static int crates;
+    public static int crates, size;
+
+    //types of modes
+    public static bool isSandbox = false, isNormal = false, isChallenge = false;
     Level level;
     private void Awake()
     {
-        level = new Level(crates);
+        //if sandbox mode, use the number entered 
+        if (isSandbox)
+        {
+            level = new Level(crates);
+        }
+        //else start from level 1
+        else
+        {
+            //sets crates and size
+            setTier();
+            level = new Level(crates, size);
+        }
     }
     private void Start()
     {
         setFinishedMap();
         translateToPrefabs();
+    }
+
+    public void setTier()
+    {
+        switch (GameManager.levelCounter)
+        {
+            //Tier 1
+            case 1:
+                crates = 2;
+                size = 8;
+                break;
+            //Tier 2
+            case 4:
+                crates = 3;
+                size = 8;
+                break;
+            //Tier 3
+            case 7:
+                crates = 4;
+                size = 11;
+                break;
+            //Tier 4
+            case 10:
+                crates = 5;
+                size = 11;
+                break;
+            //Tier 5
+            case 13:
+                crates = 6;
+                size = 11;
+                break;
+        }
     }
 
     //either we get the 2d array map straight from level
