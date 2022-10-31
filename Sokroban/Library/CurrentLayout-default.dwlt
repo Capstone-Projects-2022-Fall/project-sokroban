@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 17
+  controlID: 131
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 232
     height: 798
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -273,8 +273,8 @@ MonoBehaviour:
     y: 0
     width: 667
     height: 1299
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -361,9 +361,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 317
+    x: 232
     y: 73
-    width: 1574
+    width: 1659
     height: 777
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
@@ -408,23 +408,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1574
+      width: 1659
       height: 756
     m_Scale: {x: 0.7, y: 0.7}
-    m_Translation: {x: 787, y: 378}
+    m_Translation: {x: 829.5, y: 378}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1124.2858
+      x: -1185
       y: -540
-      width: 2248.5715
+      width: 2370
       height: 1080
     m_MinimalGUI: 1
   m_defaultScale: 0.7
-  m_LastWindowPixelSize: {x: 1574, y: 777}
+  m_LastWindowPixelSize: {x: 1659, y: 777}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -458,23 +458,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 16630000
       m_LastClickedID: 0
-      m_ExpandedIDs: deeeffffe4f7fffff4f7ffff9a4e0000d26600005067000058670000
+      m_ExpandedIDs: 846effff4a6fffffe26fffff8e70ffffa670ffffc270ffffc271ffff9272ffffbe74ffff5e75ffff4c76ffff2e77ffff0278ffffd078ffff7279ffff607affffa47affff627bfffffa7bffff048cffff5e8effff2e8fffff1e90fffffe90ffff6093ffff3094ffffc695ffff8496ffffe696ffffae97ffff8698ffff14a3ffff36a3ffff46a3ffffb6c9ffff56caffffe4caffff30fbffff40fbffffec480000dc790000e6790000fc7900005a7a0000627a000018850000d68e00002e8f0000788f0000b88f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: CreateAndJoinRooms
+        m_OriginalName: CreateAndJoinRooms
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 36750
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -520,9 +520,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 977.5727, y: -210.08025, z: -92.18545}
+    m_Target: {x: 960, y: 540, z: 0}
     speed: 2
-    m_Value: {x: 977.5727, y: -210.08025, z: -92.18545}
+    m_Value: {x: 960, y: 540, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -573,9 +573,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 105.94074
+    m_Target: 1101.4536
     speed: 2
-    m_Value: 105.94074
+    m_Value: 1101.4536
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -638,22 +638,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Screen Managers
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scripts/Screen Managers
+  - Assets/Scenes
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\akozh\Desktop\project-sokroban\Sokroban
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ee4f0000
-    m_LastClickedID: 20462
-    m_ExpandedIDs: 00000000824f0000e04f000000ca9a3b
+    m_SelectedIDs: 4e4a0000
+    m_LastClickedID: 19022
+    m_ExpandedIDs: 000000003e4a0000504a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -681,7 +681,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000824f0000
+    m_ExpandedIDs: 000000003e4a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

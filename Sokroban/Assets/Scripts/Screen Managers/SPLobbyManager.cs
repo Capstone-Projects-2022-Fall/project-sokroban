@@ -32,6 +32,7 @@ public class SPLobbyManager : MonoBehaviour
         } 
         else {
             //Get the input, modify it to an int and pass it as argument in the level generator method. 
+            ScoreSystem.totalScore = 0.0f;
             SceneManager.LoadScene("SPLevel");
             LevelTranslator.crates = Convert.ToInt32(numBoxes.text);
             Debug.Log("Entered Game Scene");
