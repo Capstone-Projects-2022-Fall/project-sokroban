@@ -57,27 +57,37 @@ public class LevelTranslator : MonoBehaviour
         {
             //Tier 1
             case 1:
-                crates = 2;
+                crates = 1;
                 size = 8;
                 break;
             //Tier 2
             case 4:
-                crates = 3;
-                size = 8;
+                crates = 2;
+                size = 11;
                 break;
             //Tier 3
             case 7:
-                crates = 4;
+                crates = 3;
                 size = 11;
                 break;
             //Tier 4
             case 10:
-                crates = 5;
+                crates = 4;
                 size = 11;
                 break;
             //Tier 5
             case 13:
+                crates = 5;
+                size = 11;
+                break;
+            //Tier 6
+            case 16:
                 crates = 6;
+                size = 11;
+                break;
+            //Tier 7
+            case 19:
+                crates = 7;
                 size = 11;
                 break;
         }

@@ -15,7 +15,8 @@ public class ScoreSystem : MonoBehaviour
     public void UpdateScore()
     {
         float crateModifier = 1.0f + ((float)LevelTranslator.crates / 10.0f);//change this to tierModifier once tiers are setup
-        currentScore = ((float)((1000 - (movesTaken * 10)) * crateModifier))/(float)(TimerCount.timer);//1000 should scale to each tier
+        float maxMovmentScore = 1000.0f * crateModifier;
+        currentScore = ((float)((maxMovmentScore - (movesTaken * 10)) * crateModifier))/(float)(TimerCount.timer);//1000 should scale to each tier
         Debug.Log("Score: " + currentScore);
         if (currentScore < 50)
         {

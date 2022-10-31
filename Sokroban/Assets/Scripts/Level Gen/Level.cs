@@ -122,7 +122,6 @@ public class Level : MonoBehaviour
         int x, y, surroundAdjacentWall, surrounDiagonalWall, surroundCrate, attempt = 0;
         for (int i = 0; i < n; i++)
         {
-
             do
             {
                 x = rand.Next(2, width - 2);
@@ -225,15 +224,7 @@ public class Level : MonoBehaviour
         {
             for (int y = 1; y < height-1; y++)
             {
-                //Will add all walls to a list, number is used as identifier for switch
-                if (map[x - 1, y] == Cell.Null) { map[x - 1, y] = Cell.Wall; };
-                if (map[x + 1, y] == Cell.Null) { map[x + 1, y] = Cell.Wall; };
-                if (map[x, y - 1] == Cell.Null) { map[x, y - 1] = Cell.Wall; };
-                if (map[x, y + 1] == Cell.Null) { map[x, y + 1] = Cell.Wall; };
-                if (map[x - 1, y - 1] == Cell.Null) { map[x - 1, y - 1] = Cell.Wall; };
-                if (map[x + 1, y + 1] == Cell.Null) { map[x + 1, y + 1] = Cell.Wall; };
-                if (map[x + 1, y - 1] == Cell.Null) { map[x + 1, y - 1] = Cell.Wall; };
-                if (map[x - 1, y + 1] == Cell.Null) { map[x - 1, y + 1] = Cell.Wall; };
+                if (map[x, y] == Cell.Null) { map[x , y] = Cell.Wall; };
             }
         } 
     }
@@ -288,7 +279,6 @@ public class Level : MonoBehaviour
     }
     public void postProcess() {
         cleanUselessRoom();
-        //fillEmptySpace();
         //cleanAloneWall();
         //To optimize, before spawning crates mark all deadCell
         //Spawn Crate only on non deacCell
@@ -327,33 +317,6 @@ public class Level : MonoBehaviour
                         if (rand.Next(0,100) < 30) {
                             map[x,y] = Cell.Floor;
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    private void fillEmptySpace()
-    {
-        for (int x = 1; x < width - 1; x++)
-        {
-            for (int y = 1; y < height - 1; y++)
-            {
-                if (map[x, y] == Cell.Floor)
-                {
-                    int surroundFloor = 0;
-                    surroundFloor += (map[x - 1, y] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x + 1, y] == Cell.Floor) ? 1 : 0;
-                    surroundFloor += (map[x, y - 1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x, y + 1] == Cell.Floor) ? 1 : 0;
-                    surroundFloor += (map[x-1, y-1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x+1, y+1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x+1, y-1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x-1, y+1] == Cell.Floor) ? 1 : 0;
-
-                    if (surroundFloor == 3)
-                    {
-                        map[x, y] = Cell.Wall;
                     }
                 }
             }
@@ -532,7 +495,7 @@ public class Level : MonoBehaviour
         double percentEmpty = (double)groundCount / playableArea;
         Debug.Log("Percent Empty: " + percentEmpty +"  "+ crateCount +"/"+playerCount +"/"+ targetCount +" crates/players/target");
         //Should be amount specified by player
-        if (playerCount < 1 || crateCount < cratesCount || targetCount < cratesCount || percentEmpty >= .6) //can change this percent if map is too empty
+        if (playerCount < 1 || crateCount < cratesCount|| targetCount < cratesCount || percentEmpty >= .6) //can change this percent if map is too empty
         {
             badGeneration = true;
         }
