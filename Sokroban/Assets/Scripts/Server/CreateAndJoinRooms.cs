@@ -50,7 +50,14 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Room \"" + roomInput.text + "\" joined");
-        PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs coop config
+        if (coopToggle.isOn)
+        {
+            PhotonNetwork.LoadLevel("Level-Multiplayer"); //Needs coop config
+        }
+        if (versusToggle.isOn)
+        {
+            PhotonNetwork.LoadLevel("VS Scene"); //Needs coop config
+        }
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
