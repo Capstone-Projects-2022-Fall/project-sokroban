@@ -24,7 +24,7 @@ public struct BlockedBy
 
 
 public class Player : MonoBehaviour
-{
+{ 
 
     PhotonView view;
 
@@ -70,7 +70,8 @@ public class Player : MonoBehaviour
                 move.withBox = true;        //We are moving with the box
                 move.user = this;
                 moves.Push(move);   //Push this move into the stack
-                transform.Translate(direction);     
+                transform.Translate(direction);
+                ScoreSystem.movesTaken++;
             }
         }
         else
@@ -88,9 +89,8 @@ public class Player : MonoBehaviour
                 move.withBox = false;   //We are moving without the box!
                 move.user = this;
                 moves.Push(move); //Push this move into the stack
-                
-                
                 transform.Translate(direction);
+                ScoreSystem.movesTaken++;
             }
         }
         return true;
@@ -219,7 +219,6 @@ public class Player : MonoBehaviour
 
     public void Undo()
     {
-        
         if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
         {
             
@@ -237,10 +236,7 @@ public class Player : MonoBehaviour
             }
             moves.Pop();
         }
-        else
-        {
-            Debug.Log("Nothing to undo or reset!");
-        }
+        
     }   
 
     public void Reset() 

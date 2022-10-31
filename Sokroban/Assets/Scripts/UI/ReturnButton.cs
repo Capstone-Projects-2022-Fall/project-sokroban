@@ -8,7 +8,13 @@ public class ReturnButton : MonoBehaviour
 {
     public void OnReturnClick()
     {
+        //Reset level
         GameManager.levelCounter = 1;
+        //Reset game mode
+        LevelTranslator.isSandbox = false;
+        LevelTranslator.isNormal = false;
+        LevelTranslator.isChallenge = false;
+        //Disconnect
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene("Main Menu");
     }

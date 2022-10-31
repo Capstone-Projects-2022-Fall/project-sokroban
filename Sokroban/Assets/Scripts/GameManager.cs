@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
 
     public Button nextLevelBtn;
+    public Button undoBtn;
+    public Button resetBtn;
     //public static int numOfBoxes;
     int counter = 0;
     List<bool> boxesOnTarget = new List<bool>();
@@ -16,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
+        if (LevelTranslator.isChallenge)
+        {
+            undoBtn.interactable = false;
+            resetBtn.interactable = false;
+        }
         nextLevelBtn.interactable = false; 
     }
     public void Update()
@@ -31,10 +38,11 @@ public class GameManager : MonoBehaviour
         }
       
     }
-    public void nextBtnClick()
+    public void nextLevelBtnClick()
     {
         levelCounter++;
         //levelCounter++;
+        TimerCount.timer = 0.0f;
         nextLevelBtn.interactable = false;
         if(LevelTranslator.isCoop)
         {
@@ -45,7 +53,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("SPLevel");
         }
     }
-    
+
     void checkWin()
     {
         boxesOnTarget.Clear();
