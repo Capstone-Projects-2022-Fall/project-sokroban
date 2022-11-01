@@ -26,23 +26,33 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public static int numOfPlayers;
 
+
     bool firstToggleOn = false;
     public void CreateRoom()
     {
         //Room room;
         //Checks for empty room name
-        if (string.IsNullOrEmpty(roomInput.text)|| string.IsNullOrEmpty(playersInput.text))
+        if (string.IsNullOrEmpty(roomInput.text) || string.IsNullOrEmpty(playersInput.text))
         {
             errorText.text = "Text Fields Empty!";
             Debug.Log("Bad Room Name or No Players");
             return;
         }
-        
-        if (Int32.Parse(playersInput.text) > 5) 
+        //Checks if max players is set
+        try
         {
-            errorText.text = "Max 5 people per room!";
+            if (Int32.Parse(playersInput.text) > 5 || Int32.Parse(playersInput.text) < 2)
+            {
+                errorText.text = "Max 5, Min 2 people per room!";
+                return;
+            }
+        }
+        catch (Exception e)
+        {
+            errorText.text = e.Message;
             return;
         }
+        
         //Checks for empty game modes
         if (!coopToggle.isOn && !versusToggle.isOn)
         {
@@ -51,20 +61,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             return;
         }
 
-        //room.name = roomInput.text;
+        //Once all checks above are done do this
 
         PhotonNetwork.CreateRoom(roomInput.text);
-        if (Int32.Parse(playersInput.text) > 5) 
-        {
-            errorText.text = "Max 5 people!";
-            return;
-        }
-        else 
-        {
-            numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
-            playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
-            LevelTranslator.isCoop = true;
-        }
+        numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
+        playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
+        LevelTranslator.isCoop = true;                      //Have two ifs for vs in the future
         /*
         numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
         playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.

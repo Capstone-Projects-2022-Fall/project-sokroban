@@ -33,16 +33,16 @@ public class LevelTranslator : MonoBehaviour
             level = new Level(crates);
         }
         //else start from level 1
-        else if (isCoop)
+        else if (isNormal || isChallenge)
         {
-            setCoop();
-            level = new Level(crates, size);
-        }
-        else
-        {
-            //sets crates and size
             setTier();
             level = new Level(crates, size);
+        }
+        else if (isCoop)
+        {
+            //sets crates and size
+            setCoop();
+            level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
         }
     }
     private void Start()

@@ -15,11 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Singleplayer Lobby.unity
     guid: 2de8f4f2e634ab6449c56a9eeaa84fe3
   - enabled: 1
-    path: Assets/Scenes/SPLevel.unity
-    guid: e610369c515c9d14481a802e1bd2edc5
-  - enabled: 1
     path: Assets/Scenes/Leaderboard.unity
     guid: 947794cb4e6e36d428c1e912290f6eee
+  - enabled: 1
+    path: Assets/Scenes/SPLevel.unity
+    guid: e610369c515c9d14481a802e1bd2edc5
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: e14e62a314ec8af46bc70e5c281714d1

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Button nextLevelBtn;
     public Button undoBtn;
     public Button resetBtn;
+
+    public Text loadingText;
     //public static int numOfBoxes;
     int counter = 0;
     List<bool> boxesOnTarget = new List<bool>();
@@ -18,7 +20,8 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        if (LevelTranslator.isChallenge)
+        loadingText.text = "";
+        if (LevelTranslator.isChallenge || LevelTranslator.isCoop)
         {
             undoBtn.interactable = false;
             resetBtn.interactable = false;
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
     }
     public void nextLevelBtnClick()
     {
+        loadingText.text = "Loading...";
         levelCounter++;
         //levelCounter++;
         TimerCount.timer = 0.0f;

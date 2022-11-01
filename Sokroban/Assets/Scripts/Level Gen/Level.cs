@@ -7,22 +7,36 @@ public class Level : MonoBehaviour
     private int floorCell;
     private int width;
     private int height;
+    private int players;
     private Cell[,] map;
     private System.Random rand;
 
     public static int cratesCount;
 
+    //Sandbox
     public Level(int crates) {
         rand = new System.Random();
         cratesCount = crates;
         width = 11; //rand(2,4)*3+2
         height = width;
+        players = 1;
     }
+    //SP Normal/Challenge Mode
     public Level(int crates, int size) {
         rand = new System.Random();
         cratesCount = crates;
         width = size; //rand(2,4)*3+2
         height = width;
+        players = 1;
+    }
+    //Coop
+    public Level(int crates, int size, int playerCount)
+    {
+        rand = new System.Random();
+        cratesCount = crates;
+        width = size; //rand(2,4)*3+2
+        height = width;
+        players = playerCount;
     }
     public void generate() {
         map = new Cell[width,height];
@@ -165,24 +179,27 @@ public class Level : MonoBehaviour
         return true;
     }
 
-    private bool spawnPlayer() {
-        
+    private bool spawnPlayer(int n) {
         int x, y, attempt = 0;
-        do {
-            x = rand.Next(1, width-1);
-            y = rand.Next(1, height-1);
+        for (int i = 0; i < n; i++)
+        {
+            do
+            {
+                x = rand.Next(1, width - 1);
+                y = rand.Next(1, height - 1);
 
-            if (attempt >= floorCell) {
-                Debug.Log("Can't generate player ! Max attempt reach");
-                return false;
-            }
-            attempt++;
+                if (attempt >= floorCell)
+                {
+                    Debug.Log("Can't generate player ! Max attempt reach");
+                    return false;
+                }
+                attempt++;
 
-        } while(map[x,y] != Cell.Floor);
+            } while (map[x, y] != Cell.Floor);
 
-        map[x,y] = Cell.Player;
+            map[x, y] = Cell.Player;
+        }
         return true;
-        
     }
 
     private bool spawnGoals(int n) {
@@ -294,7 +311,7 @@ public class Level : MonoBehaviour
             spawnCratesSP(cratesCount);
         }
         spawnGoals(cratesCount);
-        spawnPlayer();
+        spawnPlayer(players);
     }
 
     //Checks all surrounding blocks, with main block in the middle
