@@ -14,6 +14,7 @@ public class ReturnButton : MonoBehaviour
         LevelTranslator.isSandbox = false;
         LevelTranslator.isNormal = false;
         LevelTranslator.isChallenge = false;
+        LevelTranslator.isCoop = false;
         //Disconnect
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene("Main Menu");

@@ -2751,8 +2751,8 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Home Screen.unity
   - Assets/Scenes/Main Menu.unity
   - Assets/Scenes/Singleplayer Lobby.unity
-  - Assets/Scenes/SPLevel.unity
   - Assets/Scenes/Leaderboard.unity
+  - Assets/Scenes/SPLevel.unity
   - Assets/Scenes/Loading.unity
   - Assets/Scenes/Multiplayer Lobby.unity
   - Assets/Scenes/MPLevel.unity
