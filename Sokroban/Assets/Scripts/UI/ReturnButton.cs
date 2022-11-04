@@ -15,6 +15,7 @@ public class ReturnButton : MonoBehaviour
         LevelTranslator.isNormal = false;
         LevelTranslator.isChallenge = false;
         LevelTranslator.isCoop = false;
+        TimerCount.timer = 0.0f;
         //Disconnect
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene("Main Menu");

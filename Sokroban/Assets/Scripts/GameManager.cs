@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         loadingText.text = "";
-        if (LevelTranslator.isChallenge || LevelTranslator.isCoop)
-        {
+        //if (LevelTranslator.isChallenge || LevelTranslator.isCoop)
+       // {
             undoBtn.interactable = false;
             resetBtn.interactable = false;
-        }
+        //}
         nextLevelBtn.interactable = false; 
     }
     public void Update()
@@ -34,10 +34,18 @@ public class GameManager : MonoBehaviour
         if (LevelTranslator.crates == counter)
         {
             nextLevelBtn.interactable = true;
+            TimerCount.LevelWon = true;
         }
         else
-        {
+        { 
+            TimerCount.LevelWon = false;
             nextLevelBtn.interactable = false;
+        }
+
+        if(ScoreSystem.movesTaken > 0 && !(LevelTranslator.isChallenge || LevelTranslator.isCoop))
+        {
+            undoBtn.interactable = true;
+            resetBtn.interactable = true;
         }
       
     }
@@ -48,12 +56,14 @@ public class GameManager : MonoBehaviour
         //levelCounter++;
         TimerCount.timer = 0.0f;
         nextLevelBtn.interactable = false;
+        
         if(LevelTranslator.isCoop)
         {
             return;
         }
         else
         {
+            //Time.timeScale = 1;
             SceneManager.LoadScene("SPLevel");
         }
     }
