@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Button resetBtn;
 
     public Text loadingText;
+    public Text wonText;
     //public static int numOfBoxes;
     int counter = 0;
     List<bool> boxesOnTarget = new List<bool>();
@@ -21,11 +22,10 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         loadingText.text = "";
-        //if (LevelTranslator.isChallenge || LevelTranslator.isCoop)
-       // {
-            undoBtn.interactable = false;
-            resetBtn.interactable = false;
-        //}
+        wonText.text = "";
+
+        undoBtn.interactable = false;
+        resetBtn.interactable = false;
         nextLevelBtn.interactable = false; 
     }
     public void Update()
@@ -33,11 +33,16 @@ public class GameManager : MonoBehaviour
         checkWin();
         if (LevelTranslator.crates == counter)
         {
+            wonText.text = "YOU WON!";
             nextLevelBtn.interactable = true;
             TimerCount.LevelWon = true;
+            undoBtn.interactable = false;
+            resetBtn.interactable = false;
+
         }
         else
-        { 
+        {
+            
             TimerCount.LevelWon = false;
             nextLevelBtn.interactable = false;
         }
@@ -51,6 +56,7 @@ public class GameManager : MonoBehaviour
     }
     public void nextLevelBtnClick()
     {
+        wonText.text = "";
         loadingText.text = "Loading...";
         levelCounter++;
         //levelCounter++;
