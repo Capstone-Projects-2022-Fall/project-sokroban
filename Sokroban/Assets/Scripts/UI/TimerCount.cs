@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimerCount : MonoBehaviour
 {
     public static float timer = 0.0f;
+    public static bool LevelWon;
     public Text timerText;
 
     // Update is called once per frame
@@ -14,5 +15,14 @@ public class TimerCount : MonoBehaviour
     {
       timer += Time.deltaTime;
       timerText.text = ("Time: " + Math.Round(timer).ToString());
+      if(LevelWon)
+      {
+        Time.timeScale = 0;
+      }
+      else
+      {
+        Time.timeScale = 1;
+      }
+
     }
 }
