@@ -151,9 +151,36 @@ public class Player : MonoBehaviour
     
     void Update() 
     {
-        if (MainMenuManager.isMultiplayer)
+        if(TimerCount.LevelWon)
         {
-            if (view.IsMine)
+            return;
+        }
+        else
+        {
+            if (MainMenuManager.isMultiplayer)
+            {
+                if (view.IsMine)
+                {
+                    Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+                    moveInput.Normalize();
+
+                    if (moveInput.sqrMagnitude > 0.5) //Button pressed or held
+                    {
+
+                        if (m_readyForInput)            //Moves only when pressing the key again.
+                        {
+                            m_readyForInput = false;
+                            this.Move(moveInput);
+                        }
+                    }
+                    else
+                    {
+                        m_readyForInput = true;
+                    }
+                }
+            }
+            else
             {
                 Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -174,52 +201,11 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-            moveInput.Normalize();
-
-            if (moveInput.sqrMagnitude > 0.5) //Button pressed or held
-            {
-
-                if (m_readyForInput)            //Moves only when pressing the key again.
-                {
-                    m_readyForInput = false;
-                    this.Move(moveInput);
-                }
-            }
-            else
-            {
-                m_readyForInput = true;
-            }
-        }
-/*
-        if(Input.GetKeyDown("space")) 
-        {
-            if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
-            {
-                Debug.Log("here");
-                if(moves.Peek().withBox) //In this case we are undoing the player and the box move
-                {
-                    Debug.Log("Until here");
-                    this.transform.position = new Vector3(moves.Peek().fromPos.x, moves.Peek().fromPos.y, 0);
-                    moves.Peek().boxMoved.transform.position = new Vector3(moves.Peek().boxPos.x, moves.Peek().boxPos.y, 0);
-                }
-                else    //But here only the player's move (there was not any box moved)
-                {
-                    this.transform.position = new Vector3(moves.Peek().fromPos.x, moves.Peek().fromPos.y, 0);
-                
-                }
-                moves.Pop();
-            }
-        }
-    */
     }
 
     public void Undo()
     {
-        if(moves.Count > 0) //The stack has moves inside. In other words the player has done some moves
+        if((moves.Count > 0) && !TimerCount.LevelWon) //The stack has moves inside. In other words the player has done some moves
         {
             
             if(moves.Peek().withBox) //In this case we are undoing the player and the box move
@@ -235,6 +221,9 @@ public class Player : MonoBehaviour
                
             }
             moves.Pop();
+        }
+        else {
+            return;
         }
         
     }   
