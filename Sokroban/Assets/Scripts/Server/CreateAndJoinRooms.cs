@@ -66,7 +66,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(roomInput.text);
         numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
         playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
-        LevelTranslator.isCoop = true;                      //Have two ifs for vs in the future
         /*
         numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
         playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
@@ -90,7 +89,16 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Room \"" + roomInput.text + "\" joined");
-        PhotonNetwork.LoadLevel("MPLevel"); //Needs coop config
+        if (coopToggle.isOn)
+        {
+            LevelTranslator.isCoop = true;
+            PhotonNetwork.LoadLevel("MPLevel"); //Needs coop config
+        }
+        if (versusToggle.isOn)
+        {
+            LevelTranslator.isVS = true;
+            PhotonNetwork.LoadLevel("VSLevel");
+        }
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
