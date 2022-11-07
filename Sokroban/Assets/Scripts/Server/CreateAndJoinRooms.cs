@@ -28,29 +28,33 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
 
     bool firstToggleOn = false;
+
     public void CreateRoom()
     {
         //Room room;
         //Checks for empty room name
-        if (string.IsNullOrEmpty(roomInput.text) || string.IsNullOrEmpty(playersInput.text))
+        if (string.IsNullOrEmpty(roomInput.text) || (string.IsNullOrEmpty(playersInput.text) && coopToggle.isOn))
         {
             errorText.text = "Text Fields Empty!";
             Debug.Log("Bad Room Name or No Players");
             return;
         }
-        //Checks if max players is set
-        try
+        if (coopToggle.isOn)
         {
-            if (Int32.Parse(playersInput.text) > 5 || Int32.Parse(playersInput.text) < 2)
+            //Checks if max players is set
+            try
             {
-                errorText.text = "Max 5, Min 2 people per room!";
+                if (Int32.Parse(playersInput.text) > 5 || Int32.Parse(playersInput.text) < 2)
+                {
+                    errorText.text = "Max 5, Min 2 people per room!";
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                errorText.text = e.Message;
                 return;
             }
-        }
-        catch (Exception e)
-        {
-            errorText.text = e.Message;
-            return;
         }
         
         //Checks for empty game modes
@@ -120,11 +124,14 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         if (coopToggle.isOn && !firstToggleOn)
         {
+            playersInput.interactable = true;
             versusToggle.isOn = false;
             firstToggleOn = true;
         }
         if (versusToggle.isOn)
         {
+            playersInput.text = "2";
+            playersInput.interactable = false;
             coopToggle.isOn = false;
             firstToggleOn = false;
         }

@@ -44,11 +44,11 @@ public class LevelTranslator : MonoBehaviour
             setTier();
             level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
         }
-        else if (isCoop)
+        else if (isVS)
         {
             //sets crates and size
             setTier();
-            level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
+            level = new Level(crates, size);
         }
     }
     private void Start()
@@ -57,7 +57,7 @@ public class LevelTranslator : MonoBehaviour
         translateToPrefabs(0);
         if (isVS)
         {
-            translateToPrefabs(10);
+            translateToPrefabs(size+1);
         }
     }
 
@@ -130,7 +130,7 @@ public class LevelTranslator : MonoBehaviour
         } while (level.hasErrors());
         exportMap(level);
         //Sets size for camera
-        CameraController.mapSize = (float)level.getWidth();
+        CameraController.mapSize = (float)size;
     }
 
     public int getLevelSize()
