@@ -28,9 +28,9 @@ public class Templates : MonoBehaviour
 
     private static Cell[][] template4 = new Cell[][] {
         new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
-        new Cell [] {Cell.Null, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Wall, Cell.Null},
         new Cell [] {Cell.Null, Cell.Floor, Cell.Floor, Cell.Floor, Cell.Null},
-        new Cell [] {Cell.Null, Cell.Floor, Cell.Floor, Cell.Floor, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Floor, Cell.Wall, Cell.Floor, Cell.Null},
         new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},
     };
 
@@ -76,7 +76,7 @@ public class Templates : MonoBehaviour
 
     private static Cell[][] template10 = new Cell[][] {
         new Cell [] {Cell.Null, Cell.Null, Cell.Floor, Cell.Null, Cell.Null},
-        new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Wall, Cell.Null},
+        new Cell [] {Cell.Null, Cell.Floor, Cell.Floor, Cell.Wall, Cell.Null},
         new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Floor, Cell.Floor},
         new Cell [] {Cell.Null, Cell.Wall, Cell.Floor, Cell.Wall, Cell.Null},
         new Cell [] {Cell.Null, Cell.Null, Cell.Null, Cell.Null, Cell.Null},

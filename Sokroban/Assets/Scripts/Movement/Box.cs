@@ -10,15 +10,18 @@ public class Box : MonoBehaviour
    private void Update() 
    {
         onTargetPosition();
+        
    }
     public bool Move(Vector2 direction) {        //Avoid moving diagonally
+
+      
 
         if (BoxBlocked(transform.position, direction)) {    //if box is blocked then dont move it
             return false;
         }
 
         else {
-            transform.Translate(direction);     //if not then move.
+            transform.Translate(direction);
             return true;
         }
         
@@ -33,13 +36,10 @@ public class Box : MonoBehaviour
         {
             //This if will check if the box is on any target in the game, if so it will 
             if ((this.transform.position.x == target.transform.position.x) && (this.transform.position.y == target.transform.position.y))
-            {
-
-                
+            { 
                 boxColor.color = Color.green;
                 arrived = true;
-                return;
-                
+                return; 
             }
          }
         arrived = false;

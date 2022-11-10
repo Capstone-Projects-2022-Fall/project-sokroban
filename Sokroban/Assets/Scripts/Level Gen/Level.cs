@@ -7,18 +7,37 @@ public class Level : MonoBehaviour
     private int floorCell;
     private int width;
     private int height;
+    private int players;
     private Cell[,] map;
     private System.Random rand;
 
     public static int cratesCount;
 
+    //Sandbox
     public Level(int crates) {
         rand = new System.Random();
         cratesCount = crates;
-        width = 11; //rand(2,4)*3+2
+        width = 11; //rand(2,4)*3+2  8,11,12,14,15, 17 is slow, 18,
         height = width;
+        players = 1;
     }
-
+    //SP Normal/Challenge Mode
+    public Level(int crates, int size) {
+        rand = new System.Random();
+        cratesCount = crates;
+        width = size; //rand(2,4)*3+2
+        height = width;
+        players = 1;
+    }
+    //Coop
+    public Level(int crates, int size, int playerCount)
+    {
+        rand = new System.Random();
+        cratesCount = crates;
+        width = size; //rand(2,4)*3+2
+        height = width;
+        players = playerCount;
+    }
     public void generate() {
         map = new Cell[width,height];
         floorCell = 0;
@@ -58,7 +77,7 @@ public class Level : MonoBehaviour
         }
     }
 
-    private bool spawnCrates(int n) {
+    private bool spawnCratesMP(int n) {
         //The methods to generate the crate used right now should be done for multiplayer
         //The methods for single player should be changed to making sure there are not walls
         //Directly adjacent it the crate. The way it is now, sometimes there is no way to get 
@@ -85,10 +104,12 @@ public class Level : MonoBehaviour
                 surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                /* Diagonal check
                 surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x + 1, y - 1] == Cell.Crate) ? 1 : 0;
                 surroundCrate += (map[x - 1, y + 1] == Cell.Crate) ? 1 : 0;
+                */
 
 
                 if (surroundWall >= 2)
@@ -108,26 +129,81 @@ public class Level : MonoBehaviour
         return true;
     }
 
-    private bool spawnPlayer() {
+    private bool spawnCratesSP(int n)
+    {
+        //This algorithms makes sure there are no walls directly adjacent to the crate
+
+        int x, y, surroundAdjacentWall, surrounDiagonalWall, surroundCrate, attempt = 0;
+        for (int i = 0; i < n; i++)
+        {
+            do
+            {
+                x = rand.Next(2, width - 2);
+                y = rand.Next(2, height - 2);
+
+                surroundAdjacentWall = 0;
+                surroundAdjacentWall += (map[x - 1, y] == Cell.Wall) ? 1 : 0;
+                surroundAdjacentWall += (map[x + 1, y] == Cell.Wall) ? 1 : 0;
+                surroundAdjacentWall += (map[x, y - 1] == Cell.Wall) ? 1 : 0;
+                surroundAdjacentWall += (map[x, y + 1] == Cell.Wall) ? 1 : 0;
+
+                surrounDiagonalWall = 0;
+                surrounDiagonalWall += (map[x - 1, y - 1] == Cell.Wall) ? 1 : 0;
+                surrounDiagonalWall += (map[x - 1, y + 1] == Cell.Wall) ? 1 : 0;
+                surrounDiagonalWall += (map[x + 1, y - 1] == Cell.Wall) ? 1 : 0;
+                surrounDiagonalWall += (map[x + 1, y + 1] == Cell.Wall) ? 1 : 0;
+
+                surroundCrate = 0;
+                surroundCrate += (map[x - 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                /* Diagonal check
+                surroundCrate += (map[x - 1, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y + 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x - 1, y + 1] == Cell.Crate) ? 1 : 0;
+                */
+
+                if (attempt >= floorCell)
+                {
+                    Debug.Log("Can't generate crates ! Max attempt reach");
+                    return false;
+                }
+                attempt++;
+                                                // One surrounding crates, no adjecent walls, only 1 diagnoal wall allowed
+            } while (map[x, y] != Cell.Floor || surroundCrate >= 1 || surroundAdjacentWall > 0 ||surrounDiagonalWall >1);
+            Debug.Log("Crate proximity:" + surroundCrate + " crate(s) " + surroundAdjacentWall + " wall(s)");
+            map[x, y] = Cell.Crate;
+        }
+        return true;
+    }
+
+    private bool spawnPlayer(int n) {
         int x, y, attempt = 0;
-        do {
-            x = rand.Next(1, width-1);
-            y = rand.Next(1, height-1);
+        for (int i = 0; i < n; i++)
+        {
+            do
+            {
+                x = rand.Next(1, width - 1);
+                y = rand.Next(1, height - 1);
 
-            if (attempt >= floorCell) {
-                Debug.Log("Can't generate player ! Max attempt reach");
-                return false;
-            }
-            attempt++;
+                if (attempt >= floorCell)
+                {
+                    Debug.Log("Can't generate player ! Max attempt reach");
+                    return false;
+                }
+                attempt++;
 
-        } while(map[x,y] != Cell.Floor);
+            } while (map[x, y] != Cell.Floor);
 
-        map[x,y] = Cell.Player;
+            map[x, y] = Cell.Player;
+        }
         return true;
     }
 
     private bool spawnGoals(int n) {
-        int x, y, attempt = 0,hasValidPath;
+        int x, y, attempt = 0,hasValidPath, surroundCrate;
         for (int i = 0; i < n; i++) {
             do {
                 
@@ -135,10 +211,16 @@ public class Level : MonoBehaviour
                 y = rand.Next(1, height-1);
 
                 hasValidPath = 0;
-                hasValidPath += (map[x, y + 1] == Cell.Floor && map[x, y + 2] == Cell.Floor) ? 1 : 0;
-                hasValidPath += (map[x, y - 1] == Cell.Floor && map[x, y - 2] == Cell.Floor) ? 1 : 0;
-                hasValidPath += (map[x + 1, y] == Cell.Floor && map[x + 2, y] == Cell.Floor) ? 1 : 0;
-                hasValidPath += (map[x - 1, y] == Cell.Floor && map[x - 2, y] == Cell.Floor) ? 1 : 0;
+                hasValidPath += (map[x, y + 1] != Cell.Wall && map[x, y + 2] != Cell.Wall) ? 1 : 0;
+                hasValidPath += (map[x, y - 1] != Cell.Wall && map[x, y - 2] != Cell.Wall) ? 1 : 0;
+                hasValidPath += (map[x + 1, y] != Cell.Wall && map[x + 2, y] != Cell.Wall) ? 1 : 0;
+                hasValidPath += (map[x - 1, y] != Cell.Wall && map[x - 2, y] != Cell.Wall) ? 1 : 0;
+
+                surroundCrate = 0;
+                surroundCrate += (map[x, y + 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x, y - 1] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x + 1, y] == Cell.Crate) ? 1 : 0;
+                surroundCrate += (map[x - 1, y] == Cell.Crate) ? 1 : 0;
 
                 if (attempt >= floorCell) {
                     Debug.Log("Can't generate goals ! Max attemp reach");
@@ -146,7 +228,7 @@ public class Level : MonoBehaviour
                 }
                 attempt++;
 
-            } while(map[x,y] != Cell.Floor || hasValidPath < 2);
+            } while(map[x,y] != Cell.Floor || hasValidPath <= 2 || surroundCrate >= 1);
 
             map[x,y] = Cell.Goal;
         }
@@ -159,19 +241,11 @@ public class Level : MonoBehaviour
         {
             for (int y = 1; y < height-1; y++)
             {
-                //Will add all walls to a list, number is used as identifier for switch
-                if (map[x - 1, y] == Cell.Null) { map[x - 1, y] = Cell.Wall; };
-                if (map[x + 1, y] == Cell.Null) { map[x + 1, y] = Cell.Wall; };
-                if (map[x, y - 1] == Cell.Null) { map[x, y - 1] = Cell.Wall; };
-                if (map[x, y + 1] == Cell.Null) { map[x, y + 1] = Cell.Wall; };
-                if (map[x - 1, y - 1] == Cell.Null) { map[x - 1, y - 1] = Cell.Wall; };
-                if (map[x + 1, y + 1] == Cell.Null) { map[x + 1, y + 1] = Cell.Wall; };
-                if (map[x + 1, y - 1] == Cell.Null) { map[x + 1, y - 1] = Cell.Wall; };
-                if (map[x - 1, y + 1] == Cell.Null) { map[x - 1, y + 1] = Cell.Wall; };
+                if (map[x, y] == Cell.Null) { map[x , y] = Cell.Wall; };
             }
         } 
     }
-        private void removeWalls(int currentX, int currentY, int surroundWall)
+    private void removeWalls(int currentX, int currentY, int surroundWall)
     {
         var wallCells = new ArrayList();
 
@@ -222,16 +296,22 @@ public class Level : MonoBehaviour
     }
     public void postProcess() {
         cleanUselessRoom();
-        //fillEmptySpace();
         //cleanAloneWall();
         //To optimize, before spawning crates mark all deadCell
         //Spawn Crate only on non deacCell
         //Need to improve deadCell algorithm too
         removeNull();
         cleanDeadCell();
-        spawnCrates(cratesCount);
+        if (MainMenuManager.isMultiplayer)
+        {
+            spawnCratesMP(cratesCount);
+        }
+        else
+        {
+            spawnCratesSP(cratesCount);
+        }
         spawnGoals(cratesCount);
-        spawnPlayer();
+        spawnPlayer(players);
     }
 
     //Checks all surrounding blocks, with main block in the middle
@@ -254,33 +334,6 @@ public class Level : MonoBehaviour
                         if (rand.Next(0,100) < 30) {
                             map[x,y] = Cell.Floor;
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    private void fillEmptySpace()
-    {
-        for (int x = 1; x < width - 1; x++)
-        {
-            for (int y = 1; y < height - 1; y++)
-            {
-                if (map[x, y] == Cell.Floor)
-                {
-                    int surroundFloor = 0;
-                    surroundFloor += (map[x - 1, y] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x + 1, y] == Cell.Floor) ? 1 : 0;
-                    surroundFloor += (map[x, y - 1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x, y + 1] == Cell.Floor) ? 1 : 0;
-                    surroundFloor += (map[x-1, y-1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x+1, y+1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x+1, y-1] == Cell.Floor) ? 1 : 0;
-                    //surroundFloor += (map[x-1, y+1] == Cell.Floor) ? 1 : 0;
-
-                    if (surroundFloor == 3)
-                    {
-                        map[x, y] = Cell.Wall;
                     }
                 }
             }
@@ -459,7 +512,7 @@ public class Level : MonoBehaviour
         double percentEmpty = (double)groundCount / playableArea;
         Debug.Log("Percent Empty: " + percentEmpty +"  "+ crateCount +"/"+playerCount +"/"+ targetCount +" crates/players/target");
         //Should be amount specified by player
-        if (playerCount < 1 || crateCount < cratesCount || targetCount < cratesCount || percentEmpty >= .6) //can change this percent if map is too empty
+        if (playerCount < 1 || crateCount < cratesCount|| targetCount < cratesCount || percentEmpty >= .6) //can change this percent if map is too empty
         {
             badGeneration = true;
         }
@@ -499,9 +552,5 @@ public class Level : MonoBehaviour
     public Cell[,] getMap()
     {
         return map;
-    }
-    public int getWidth()
-    {
-        return width;
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class LevelTranslator : MonoBehaviour
 {
@@ -19,17 +20,104 @@ public class LevelTranslator : MonoBehaviour
     public GameObject targetPrefab;
     public GameObject playerPrefab;
 
-    public static int crates;
+    public static int crates, size;
+
+    //types of modes
+    public static bool isSandbox = false, isNormal = false, isChallenge = false, isCoop = false, isVS = false;
     Level level;
     private void Awake()
     {
-        level = new Level(crates);
+        //if sandbox mode, use the number entered 
+        if (isSandbox)
+        {
+            level = new Level(crates);
+        }
+        //else start from level 1
+        else if (isNormal || isChallenge)
+        {
+            setTier();
+            level = new Level(crates, size);
+        }
+        else if (isCoop)
+        {
+            //sets crates and size
+            setTier();
+            level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
+        }
+        else if (isVS)
+        {
+            //sets crates and size
+            setTier();
+            level = new Level(crates, size);
+        }
     }
     private void Start()
     {
         setFinishedMap();
-        translateToPrefabs();
+        translateToPrefabs(0);
+        if (isVS)
+        {
+            translateToPrefabs(size+1);
+        }
     }
+
+    public void setTier()
+    {
+        switch (GameManager.levelCounter)
+        {
+            //Tier 1
+            case 1:
+                crates = 1;
+                size = 8;
+                break;
+            //Tier 2
+            case 4:
+                crates = 2;
+                size = 11;
+                break;
+            //Tier 3
+            case 7:
+                crates = 3;
+                size = 11;
+                break;
+            //Tier 4
+            case 10:
+                crates = 4;
+                size = 12;
+                break;
+            //Tier 5
+            case 13:
+                crates = 5;
+                size = 15;
+                break;
+            //Tier 6
+            case 16:
+                crates = 6;
+                size = 15;
+                break;
+            //Tier 7
+            case 19:
+                crates = 7;
+                size = 15;
+                break;
+            //Tier 8
+            case 22:
+                crates = 8;
+                size = 15;
+                break;
+            //Tier 9
+            case 25:
+                crates = 9;
+                size = 18;
+                break;
+            //Tier 10
+            case 28:
+                crates = 10;
+                size = 18;
+                break;
+        }
+    }
+
 
     //either we get the 2d array map straight from level
     public void setFinishedMap()
@@ -42,7 +130,7 @@ public class LevelTranslator : MonoBehaviour
         } while (level.hasErrors());
         exportMap(level);
         //Sets size for camera
-        CameraController.mapSize = (float)level.getWidth();
+        CameraController.mapSize = (float)size;
     }
 
     public int getLevelSize()
@@ -51,14 +139,14 @@ public class LevelTranslator : MonoBehaviour
     }
 
     // And then translate them here
-    public void translateToPrefabs()
+    public void translateToPrefabs(int offeset)
     {
         //x and y should correspond to the 2d array map
         for (int x = 0; x < map.GetLength(0); x++)
         {
             for (int y = 0; y < map.GetLength(1); y++)
             {
-                Vector3 position = new Vector3(x, y, 0);
+                Vector3 position = new Vector3(x + offeset, y, 0);
                 switch (map[x, y])
                 {
                     //Each spawn should consider the size of the previous object,
@@ -88,7 +176,15 @@ public class LevelTranslator : MonoBehaviour
                         //groundCount++;
                         //playerCount++;
                         Instantiate(groundPrefab, position, Quaternion.identity);
-                        Instantiate(playerPrefab, position, Quaternion.identity);
+                        if(isCoop)
+                        {
+                            PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
+                        }
+                        else 
+                        {
+                            Instantiate(playerPrefab, position, Quaternion.identity);
+                        }
+                        
                         break;
                     default:
                         Instantiate(wallPrefab, position, Quaternion.identity);
@@ -134,7 +230,7 @@ public class LevelTranslator : MonoBehaviour
             Debug.Log("Loading scene...");
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("SPLevel"));
-        translateToPrefabs();
+        translateToPrefabs(0);
         //SceneManager.LoadScene("Temp");
     }
 
