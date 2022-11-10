@@ -23,7 +23,7 @@ public class LevelTranslator : MonoBehaviour
     public static int crates, size;
 
     //types of modes
-    public static bool isSandbox = false, isNormal = false, isChallenge = false, isCoop = false;
+    public static bool isSandbox = false, isNormal = false, isChallenge = false, isCoop = false, isVS = false;
     Level level;
     private void Awake()
     {
@@ -41,14 +41,24 @@ public class LevelTranslator : MonoBehaviour
         else if (isCoop)
         {
             //sets crates and size
-            setCoop();
+            setTier();
             level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
+        }
+        else if (isVS)
+        {
+            //sets crates and size
+            setTier();
+            level = new Level(crates, size);
         }
     }
     private void Start()
     {
         setFinishedMap();
-        translateToPrefabs();
+        translateToPrefabs(0);
+        if (isVS)
+        {
+            translateToPrefabs(size+1);
+        }
     }
 
     public void setTier()
@@ -108,38 +118,6 @@ public class LevelTranslator : MonoBehaviour
         }
     }
 
-    public void setCoop()           //Only 5 people for now.
-    {
-        switch (CreateAndJoinRooms.numOfPlayers)
-        {
-            //Tier 1
-            case 1:
-                crates = 1;
-                size = 8;
-                break;
-            //Tier 2
-            case 2:
-                crates = 2;
-                size = 11;
-                break;
-            //Tier 3
-            case 3:
-                crates = 3;
-                size = 11;
-                break;
-            //Tier 4
-            case 4:
-                crates = 4;
-                size = 11;
-                break;
-            //Tier 5
-            case 5:
-                crates = 5;
-                size = 11;
-                break;
-        }
-    }
-
 
     //either we get the 2d array map straight from level
     public void setFinishedMap()
@@ -152,7 +130,7 @@ public class LevelTranslator : MonoBehaviour
         } while (level.hasErrors());
         exportMap(level);
         //Sets size for camera
-        CameraController.mapSize = (float)level.getWidth();
+        CameraController.mapSize = (float)size;
     }
 
     public int getLevelSize()
@@ -161,14 +139,14 @@ public class LevelTranslator : MonoBehaviour
     }
 
     // And then translate them here
-    public void translateToPrefabs()
+    public void translateToPrefabs(int offeset)
     {
         //x and y should correspond to the 2d array map
         for (int x = 0; x < map.GetLength(0); x++)
         {
             for (int y = 0; y < map.GetLength(1); y++)
             {
-                Vector3 position = new Vector3(x, y, 0);
+                Vector3 position = new Vector3(x + offeset, y, 0);
                 switch (map[x, y])
                 {
                     //Each spawn should consider the size of the previous object,
@@ -252,7 +230,7 @@ public class LevelTranslator : MonoBehaviour
             Debug.Log("Loading scene...");
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("SPLevel"));
-        translateToPrefabs();
+        translateToPrefabs(0);
         //SceneManager.LoadScene("Temp");
     }
 
