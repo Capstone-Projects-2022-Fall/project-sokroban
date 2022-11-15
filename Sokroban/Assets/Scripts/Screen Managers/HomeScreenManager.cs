@@ -30,11 +30,7 @@ public class HomeScreenManager : MonoBehaviour
     }
     public void OnClickGuest()
     {
-
         SceneManager.LoadScene("Main Menu");
-        //SceneManager.LoadScene("Singleplayer Lobby");
-           
-        
     }
 
     public void OnClickSignUp()
