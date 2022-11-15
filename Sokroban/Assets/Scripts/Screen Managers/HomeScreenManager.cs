@@ -73,7 +73,7 @@ public class HomeScreenManager : MonoBehaviour
 
             PlayerInfo playerInfo = new PlayerInfo();
         
-            playerInfo = JsonUtility.FromJson<PlayerInfo>(request.downloadHandler.text);
+            //playerInfo = JsonUtility.FromJson<PlayerInfo>(request.downloadHandler.text);
             
             string UserCheck = playerInfo.username;
             string PasswordCheck = "MileDemo";            
