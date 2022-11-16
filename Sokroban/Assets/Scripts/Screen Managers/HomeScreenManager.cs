@@ -32,6 +32,11 @@ public class HomeScreenManager : MonoBehaviour
         }
     }
 
+    public void OnClickGuest()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void OnClickSignUp()
     {
         if (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrEmpty(passwordInput.text))
