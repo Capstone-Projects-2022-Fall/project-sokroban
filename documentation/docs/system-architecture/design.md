@@ -37,63 +37,191 @@ A check list for architecture design is attached here [architecture\_design\_che
 
 # UML Diagram
 
-![UML Diagram](/img/UML_Diagram.png)
+![UML Diagram](/img/UML_SOK.png)
 
 # Sequence Diagrams 
 
 
-- Use Case 1 Sequence Diagram
+### Use Case 1: Player wants to successfully register their account and then exit the game
 
-    ![Figure](/img/Sequence1.png)
+<details>
+<summary>
+Use Case 1 Description
+</summary>
 
+1)	Player upon opening the application is prompted to create an account or to sign in.<br/>
+2)	Player selects the option to create a new account.<br/>
+3)	Player inputs a username and a password.<br/>
+4)  Upon completion, player logs into account with their credentials.<br/>
+5)	Player enters to the main Menu.<br/>
+6)	Player exits the game by pressing the “X” button.<br/>
 
-- Use Case 2 Sequence Diagram
+<UseCase1 />
+</details>
 
-    ![Figure2](/img/Sequence2.png)
+![Figure ](/img/UseCase1pic.png)
 
+### Use Case 2: Player wants to play Normal Mode (Single Player)
 
-- Use Case 3 Sequence Diagram
+<details>
+<summary>
+Use Case 2 Description
+</summary>
 
-    ![Use Case 1 Sequence Diagram](/img/Sequence3.png)
+1) Player selects the Single Player Mode option.<br/>
+2) Player is viewing the three choices of Single Player.<br/>
+3) Player selects Normal Mode.<br/>
+4) A level is generated for the player.<br/>
+5) Player is now playing the game.<br/>
 
+<UseCase2 />
+</details>
 
-- Use Case 4 Sequence Diagram
-
-    ![Use Case 1 Sequence Diagram](/img/Sequence4.png)
-
-
-- Use Case 5 Sequence Diagram
-
-    ![Use Case 1 Sequence Diagram](/img/Sequence5.png)
-
-
-- Use Case 6 Sequence Diagram
-
-    ![Use Case 1 Sequence Diagram](/img/Sequence6.png)
-
-
-- Use Case 7 Sequence Diagram
-
-    ![Use Case 1 Sequence Diagram](/img/Sequence7.png)
-
-- Use Case 8 Sequence Diagram
-
-    ![Use Case 1 Sequence Diagram](/img/Sequence8.png)
-
-
-- Use Case 9 Sequence Diagram
-
-    ![Use Case 1 Sequence Diagram](/img/Sequence9.png)
+![Figure2](/img/UseCase2pic.png)
 
 
-- Use Case 10 Sequence Diagram
+### Use Case 3: Player wants to play Challenge Mode
 
-    ![Use Case 1 Sequence Diagram](/img/Sequence10.png)
+<details>
+<summary>
+Use Case 3 Description
+</summary>
+
+1) Player selects the Single Player Mode option.<br/>
+2) Player is viewing the three choices of Single Player.<br/>
+3) A level is generated for the player. <br/>
+4) Player is now playing the game without the reset or undo buttons available.<br/>
+
+<UseCase3 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase3pic.png)
 
 
-- Use Case 11 Sequence Diagram
+### Use Case 4: Player wants to play a game with a friend
 
-    ![Use Case 1 Sequence Diagram](/img/Sequence11.png)
+<details>
+<summary>
+Use Case 4 Description
+</summary>
+
+1)  Player selects the Multiplayer Mode option. <br/>
+2)  Player selects the Co-op option. <br/>
+3)  Player sets up a lobby by creating a room and tells their friend the name of the room to join.<br/>
+4)  Both players are on the same map.<br/>
+5)  Players are helping each other in order to win the level.<br/>
+
+<UseCase4 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase4pic.png)
+
+
+### Use Case 5: Player wants to play a game against a friend
+
+<details>
+<summary>
+Use Case 5 Description
+</summary>
+
+1)  Player selects the Multiplayer Mode option.<br/>
+2)  Player selects the VS option.<br/>
+3)  Player sets up a lobby by creating a room and tells their friend the name of the room to join.<br/>
+4)  Players are competing on the same level in a split-screen.<br/>
+5)	Player gets the boxes into the end point faster than their friend.<br/>
+6)  Player won the game.<br/>
+
+<UseCase5 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase5pic.png)
+
+
+### Use Case 6: Player wants to check high scores
+
+<details>
+<summary>
+Use Case 6 Description
+</summary>
+
+1)	Player selects the High Scores option.<br/>
+2)	Player views high scores.<br/>
+
+<UseCase6 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase6pic.png)
+
+
+### Use Case 7: Player wins level
+
+<details>
+<summary>
+Use Case 7 Description
+</summary>
+
+1)	Player selects Normal Mode option.<br/>
+2)  A level is generated for the player.<br/>
+3)  Player starts to move the character and push the box by using the arrows on the keyboard.<br/>
+4)	Player places the box onto the target.<br/>
+5)	Player wins the level.<br/>
+
+<UseCase7 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase7pic.png)
+
+### Use Case 8: Player gets stuck and resets the level
+
+<details>
+<summary>
+Use Case 8 Description
+</summary>
+
+1)	Player selects Normal Mode option.<br/>
+2)	Player moves the character and pushes the box(es) trying to win the level.<br/>
+3)	Player realizes that got stuck by pushing a box onto the wall and won’t be able to place the box onto the target.<br/>
+4)	Player resets the level by pressing the reset button.<br/>
+5)	The level resets with the character and the box(es) back to their starting positions.<br/>
+
+<UseCase8 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase8pic.png)
+
+
+### Use Case 9: Player wants to play with a different character
+
+<details>
+<summary>
+Use Case 9 Description
+</summary>
+
+1)  Player selects Single Player option.<br/>
+2)  Player selects their favorite character from a variety of characters.<br/>
+3)  Player starts playing with the chosen character.<br/>
+
+<UseCase9 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase9pic.png)
+
+
+### Use Case 10: Player wants to challenge themselves onto a map with complex design
+
+<details>
+<summary>
+Use Case 10 Description
+</summary>
+
+1)  Player selects Single Player option.<br/>
+2)  Player selects from a variety of maps with complex deisgn.<br/>
+3)  Player plays the game with a more complex designed map.<br/>
+
+<UseCase10 />
+</details>
+
+![Use Case 1 Sequence Diagram](/img/UseCase10pic.png)
 
 
 
