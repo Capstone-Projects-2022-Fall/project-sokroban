@@ -1,43 +1,36 @@
 openapi: 3.0.0
 info:
-  title: Swagger Sokroban
   description: Sokroban API
+  version: v1
+  title: SokrobanAPI
   termsOfService: http://swagger.io/terms/
   contact:
     email: tuf58324@temple.edu
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.0
-externalDocs:
-  description: Find out more about Swagger
-  url: http://swagger.io
 servers:
-  - url: https://virtserver.swaggerhub.com/FRABINOVICH/Sokroban/1.0.0
-    description: SwaggerHub API Auto Mocking
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/FRABINOVICH/Sokroban/1.0.0
   - url: https://petstore.swagger.io/v2
 paths:
-  /SignUp/{UserName}/{Password}:
-    get:
+  /Sokroban/SokLogin/{Username}/{Password}:
+    post:
       tags:
-        - SokrobanLogin
+        - Sokroban
       summary: Stores Login Credentials
       operationId: SignUp
       parameters:
-        - name: UserName
+        - name: Username
           in: path
-          description: UserName of player
+          description: username of player
           required: true
-          style: simple
-          explode: false
           schema:
             type: string
         - name: Password
           in: path
           description: Password of player
           required: true
-          style: simple
-          explode: false
           schema:
             type: string
       responses:
@@ -45,55 +38,117 @@ paths:
           description: Invalid input
         '406':
           description: Account already exists
-  /Login/{UserName}/{Password}:
+  /Sokroban/SokValidation/{Username}/{Password}:
     get:
       tags:
-        - SokrobanLogin
+        - Sokroban
       summary: Checks passed Username/Password with stored info to confirm user
       operationId: Login
       parameters:
-        - name: UserName
+        - name: Username
           in: path
-          description: UserName of player
+          description: Username of player
           required: true
-          style: simple
-          explode: false
           schema:
             type: string
         - name: Password
           in: path
           description: Password of player
           required: true
-          style: simple
-          explode: false
           schema:
             type: string
       responses:
         '200':
-          description: Passed and Match
+          description: Login Successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SokLogin'
         '400':
           description: Incorrect Login info
-  /GetStats:
+  /Sokroban/SokSave/{Username}/{Score}/{Time}/{Level}:
     post:
       tags:
-        - PlayerStats
-      summary: Gets Players Scores,Time,and highest level
-      operationId: GetStats
+        - Sokroban
+      summary: Saves level stats
+      operationId: Save
       parameters:
-        - name: Stats
-          in: query
-          description: Returns Player stats
+        - name: Username
+          in: path
+          description: Username of player
           required: true
-          style: form
-          explode: true
           schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - HighScore
-                - BestTime
-                - Highest level reached
+            type: string
+        - name: Score
+          in: path
+          description: Score for level
+          required: true
+          schema:
+            type: integer
+        - name: Time
+          in: path
+          description: Time took to complete level
+          required: true
+          schema:
+            type: integer
+        - name: Level
+          in: path
+          description: Level user finished on
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Save completed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SokLevel'
+        '400':
+          description: Unable to save, please try again
+  /Sokroban/SokLevel/{Username}:
+    get:
+      tags:
+        - Sokroban
+      summary: Returns Level Data
+      operationId: Leaderboard
+      parameters:
+        - name: Username
+          in: path
+          description: Username of player
+          required: true
+          schema:
+            type: string
+            example: SokrobanMaster77
+      responses:
+        '200':
+          description: Save completed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SokLevelReturn'
+        '400':
+          description: Unable to save, please try again
+  /Sokroban/SokStats/{Username}:
+    get:
+      tags:
+        - Sokroban
+      summary: Gets Players Scores,Time,and highest level
+      operationId: Get Stats
+      parameters:
+        - name: Username
+          in: path
+          description: Username of player
+          required: true
+          schema:
+            type: string
+            example: SokrobanMaster77
       responses:
         '200':
           description: successful operation
@@ -102,126 +157,82 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/SokStats'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pet'
+                  $ref: '#/components/schemas/SokStats'
         '400':
           description: Invalid status value
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
 components:
   schemas:
-    Category:
+    SokLogin:
       type: object
+      required:
+        - username
+        - password
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-      xml:
-        name: Category
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
         username:
           type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
+          example: SokMaster77
         password:
           type: string
-        phone:
-          type: string
-        userStatus:
-          type: integer
-          description: User Status
-          format: int32
+          example: '********'
       xml:
-        name: User
-    Tag:
+        name: SokLogin
+    SokLevel:
       type: object
       properties:
-        id:
+        level:
           type: integer
           format: int64
-        name:
+          example: 5
+        username:
           type: string
+          example: SokMaster77
+        score:
+          type: integer
+          format: int64
+          example: 1520
+        time:
+          type: integer
+          format: int64
+          example: 750
       xml:
-        name: Tag
-    Pet:
-      required:
-        - name
-        - photoUrls
+        name: SokLevel
+    SokLevelReturn:
       type: object
       properties:
-        id:
+        level:
+          type: integer
+          format: int64
+          example: 5
+        username:
           type: string
-        category:
-          $ref: '#/components/schemas/Category'
-        name:
-          type: string
-          example: doggie
-        photoUrls:
-          type: array
-          xml:
-            name: photoUrl
-            wrapped: true
-          items:
-            type: string
-        tags:
-          type: array
-          xml:
-            name: tag
-            wrapped: true
-          items:
-            $ref: '#/components/schemas/Tag'
-        status:
-          type: string
-          description: pet status in the store
-          enum:
-            - available
-            - pending
-            - sold
+          example: SokMaster77
       xml:
-        name: Pet
-  requestBodies:
-    Pet:
-      description: Pet object that needs to be added to the store
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Pet'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Pet'
-      required: true
-    UserArray:
-      description: List of user object
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/User'
-      required: true
-  securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://petstore.swagger.io/oauth/dialog
-          scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
+        name: SokLevelReturn
+    SokStats:
+      type: object
+      properties:
+        level:
+          type: integer
+          format: int64
+          example: 5
+        username:
+          type: string
+          example: SokMaster77
+        score:
+          type: integer
+          format: int64
+          example: 1520
+        time:
+          type: integer
+          format: int64
+          example: 750
+      xml:
+        name: SokStats
