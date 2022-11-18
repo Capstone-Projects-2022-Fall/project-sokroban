@@ -29,3 +29,4 @@ sidebar_position: 4
 - Windows PC
 - Steam Deck
 - Unity 
+- MacOS
