@@ -39,6 +39,14 @@ A check list for architecture design is attached here [architecture\_design\_che
 
 ![UML Diagram](/img/UML_SOK.png)
 
+At the top of this diagram we explore how classes interact with the UI. Firstly we have different components of the Game UI like Timer, Level Count etc. all interacting with the Game UI interface. We also show how scene managers like MainMenuManager interact with each other and the UI and with the Canvas. The Canvas is where all UI components are displayed.
+
+In the center we focus on the multiplayer and API aspects of our game. The CreateAndJoinRoom and the ConnectionToServer classes handle the connection to Photon and the connection between the players. The leaderboard and AccountHandler, take care of the sign in/login and the leaderboard functions.
+
+At the bottom our classes represent the level generation and how each class works with one another. A lot of the classes derive from another like, Templates deriving from Template, deriving from Cell each class taking care of a smaller part of the larger generation. Then when we reach the Level class we sum up all the calculations of the previous classes and produce a level which the LevelTranslator turn into a playable Unity level
+
+To the right we have the Unity objects. This mainly consists of prefabs like Player, Box, Wall, Ground, and Target. These are what the player will be using to interact and each of these prefabs is very important as they are using by the LevelGenerator to specify where to spawn each prefab. Each prefab also has connected components like Transform (showing position and size), Sprite Renderer (showing what the object will look like), and other classes that might give the object function, like movement and so on.
+
 # Sequence Diagrams 
 
 
