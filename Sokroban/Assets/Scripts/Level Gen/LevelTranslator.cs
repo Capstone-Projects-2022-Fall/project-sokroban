@@ -42,7 +42,8 @@ public class LevelTranslator : MonoBehaviour
         {
             //sets crates and size
             setTier();
-            level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
+            //level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
+            level = new Level(crates, size);
         }
         else if (isVS)
         {
@@ -124,6 +125,7 @@ public class LevelTranslator : MonoBehaviour
     {
         do
         {
+            Debug.Log("Master is: "+ CreateAndJoinRooms.isMaster);
             level.generate();
             level.postProcess();
             map = level.getMap().Clone() as Cell[,];//Should copy the 2d array generated in Level.cs
@@ -154,23 +156,62 @@ public class LevelTranslator : MonoBehaviour
                     //they dont spawn on top of each other
                     case Cell.Floor:
                        //groundCount++;
-                        Instantiate(groundPrefab, position, Quaternion.identity);
+                       if(isCoop)
+                        {
+                            if(CreateAndJoinRooms.isMaster){
+                                Debug.Log("Master is: "+ CreateAndJoinRooms.isMaster);
+                                PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
+                            }
+                        }
+                        else 
+                        {
+                            Instantiate(groundPrefab, position, Quaternion.identity);
+                        }
                         break;
                     case Cell.Wall:
                         //wallCount++;
-                        Instantiate(wallPrefab, position, Quaternion.identity);
+                        if(isCoop)
+                        {
+                            if(CreateAndJoinRooms.isMaster){
+                                PhotonNetwork.Instantiate(wallPrefab.name, position, Quaternion.identity);
+                            }
+                        }
+                        else
+                        {
+                            Instantiate(wallPrefab, position, Quaternion.identity);
+                        }
                         break;
                     case Cell.Crate:
                         //groundCount++;
                         //crateCount++;
-                        Instantiate(groundPrefab, position, Quaternion.identity);
-                        Instantiate(cratePrefab, position, Quaternion.identity);
+                        if(isCoop)
+                        {
+                            if(CreateAndJoinRooms.isMaster){
+                                PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
+                                PhotonNetwork.Instantiate(cratePrefab.name, position, Quaternion.identity);
+                            }
+                        }
+                        else
+                        {
+                            Instantiate(groundPrefab, position, Quaternion.identity);
+                            Instantiate(cratePrefab, position, Quaternion.identity);
+                        }
                         break;
                     case Cell.Goal:
                         //groundCount++;
                         //targetCount++;
-                        Instantiate(groundPrefab, position, Quaternion.identity);
-                        Instantiate(targetPrefab, position, Quaternion.identity);
+                        if(isCoop)
+                        {
+                            if(CreateAndJoinRooms.isMaster){
+                                PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
+                                PhotonNetwork.Instantiate(targetPrefab.name, position, Quaternion.identity);
+                            }
+                        }
+                        else
+                        {
+                            Instantiate(groundPrefab, position, Quaternion.identity);
+                            Instantiate(targetPrefab, position, Quaternion.identity);
+                        }
                         break;
                     case Cell.Player:
                         //groundCount++;
@@ -178,6 +219,7 @@ public class LevelTranslator : MonoBehaviour
                         Instantiate(groundPrefab, position, Quaternion.identity);
                         if(isCoop)
                         {
+                            PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                             PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
                         }
                         else 
@@ -187,7 +229,16 @@ public class LevelTranslator : MonoBehaviour
                         
                         break;
                     default:
-                        Instantiate(wallPrefab, position, Quaternion.identity);
+                        if(isCoop)
+                        {
+                            if(CreateAndJoinRooms.isMaster){
+                                PhotonNetwork.Instantiate(wallPrefab.name, position, Quaternion.identity);
+                            }
+                        }
+                        else
+                        {
+                            Instantiate(wallPrefab, position, Quaternion.identity);
+                        }
                         break;
                 }
             }
