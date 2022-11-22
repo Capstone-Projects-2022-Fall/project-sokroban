@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Debug = UnityEngine.Debug;
 
 public class HomeScreenManager : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class HomeScreenManager : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
             Debug.Log("Entered Main Menu");
         }
+    }
+    public void OnClickGuest()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void OnClickSignUp()
