@@ -16,7 +16,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField roomInput;
     public InputField playersInput;
-    
+    public static bool isMaster = true;
     private int playersJoined;
 
     public Text errorText;
@@ -68,6 +68,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         //Once all checks above are done do this
 
         PhotonNetwork.CreateRoom(roomInput.text);
+        Debug.Log("Master is: "+ CreateAndJoinRooms.isMaster);
         numOfPlayers = Int32.Parse(playersInput.text);      //Use this variable to scale the map in generator based on the max people to join.
         playersJoined = Int32.Parse(playersInput.text);     //Hold the max value. Subtract everytime someone joins the room.
         /*
@@ -87,6 +88,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             return;
         }
         //if()      //Check if there are any spots available
+        isMaster = false;
+        Debug.Log("Master is: "+ CreateAndJoinRooms.isMaster);
         PhotonNetwork.JoinRoom(roomInput.text);
     }
 
