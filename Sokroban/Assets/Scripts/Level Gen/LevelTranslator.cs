@@ -25,6 +25,13 @@ public class LevelTranslator : MonoBehaviour
     //types of modes
     public static bool isSandbox = false, isNormal = false, isChallenge = false, isCoop = false, isVS = false;
     Level level;
+
+    public struct SpawnPoint
+    {
+        public int x;
+        public int y;
+    }
+
     private void Awake()
     {
         //if sandbox mode, use the number entered 
@@ -139,7 +146,23 @@ public class LevelTranslator : MonoBehaviour
     {
         return levelSize;
     }
-
+    public void makeSpawnPointList()
+    {
+        List<SpawnPoint> SpawnPointList = new List<SpawnPoint>();
+        SpawnPoint point;
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (map[x, y] == Cell.Player)
+                {
+                    point.x = x;
+                    point.y = y;
+                    SpawnPointList.Add(point);
+                }
+            }
+        }
+    }
     // And then translate them here
     public void translateToPrefabs(int offeset)
     {
@@ -149,97 +172,81 @@ public class LevelTranslator : MonoBehaviour
             for (int y = 0; y < map.GetLength(1); y++)
             {
                 Vector3 position = new Vector3(x + offeset, y, 0);
-                switch (map[x, y])
+
+                if (isCoop)
                 {
-                    //Each spawn should consider the size of the previous object,
-                    //create an offest value equal to the size of each object to make sure
-                    //they dont spawn on top of each other
-                    case Cell.Floor:
-                       //groundCount++;
-                       if(isCoop)
-                        {
-                            if(CreateAndJoinRooms.isMaster){
-                                Debug.Log("Master is: "+ CreateAndJoinRooms.isMaster);
+                    switch (map[x, y])
+                    {
+                        //Each spawn should consider the size of the previous object,
+                        //create an offest value equal to the size of each object to make sure
+                        //they dont spawn on top of each other
+                        case Cell.Floor:
+                            if (CreateAndJoinRooms.isMaster)
+                            {
+                                Debug.Log("Master is: " + CreateAndJoinRooms.isMaster);
                                 PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                             }
-                        }
-                        else 
-                        {
-                            Instantiate(groundPrefab, position, Quaternion.identity);
-                        }
-                        break;
-                    case Cell.Wall:
-                        //wallCount++;
-                        if(isCoop)
-                        {
-                            if(CreateAndJoinRooms.isMaster){
+                            break;
+                        case Cell.Wall:
+                            if (CreateAndJoinRooms.isMaster)
+                            {
                                 PhotonNetwork.Instantiate(wallPrefab.name, position, Quaternion.identity);
                             }
-                        }
-                        else
-                        {
-                            Instantiate(wallPrefab, position, Quaternion.identity);
-                        }
-                        break;
-                    case Cell.Crate:
-                        //groundCount++;
-                        //crateCount++;
-                        if(isCoop)
-                        {
-                            if(CreateAndJoinRooms.isMaster){
+                            break;
+                        case Cell.Crate:
+                            if (CreateAndJoinRooms.isMaster)
+                            {
                                 PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                                 PhotonNetwork.Instantiate(cratePrefab.name, position, Quaternion.identity);
                             }
-                        }
-                        else
-                        {
-                            Instantiate(groundPrefab, position, Quaternion.identity);
-                            Instantiate(cratePrefab, position, Quaternion.identity);
-                        }
-                        break;
-                    case Cell.Goal:
-                        //groundCount++;
-                        //targetCount++;
-                        if(isCoop)
-                        {
-                            if(CreateAndJoinRooms.isMaster){
+                            break;
+                        case Cell.Goal:
+                            if (CreateAndJoinRooms.isMaster)
+                            {
                                 PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                                 PhotonNetwork.Instantiate(targetPrefab.name, position, Quaternion.identity);
                             }
-                        }
-                        else
-                        {
-                            Instantiate(groundPrefab, position, Quaternion.identity);
-                            Instantiate(targetPrefab, position, Quaternion.identity);
-                        }
-                        break;
-                    case Cell.Player:
-                        //groundCount++;
-                        //playerCount++;
-                        Instantiate(groundPrefab, position, Quaternion.identity);
-                        if(isCoop)
-                        {
+                            break;
+                        case Cell.Player:
                             PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                             PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
-                        }
-                        else 
-                        {
-                            Instantiate(playerPrefab, position, Quaternion.identity);
-                        }
-                        
-                        break;
-                    default:
-                        if(isCoop)
-                        {
-                            if(CreateAndJoinRooms.isMaster){
+                            break;
+                        default:
+                            if (CreateAndJoinRooms.isMaster)
+                            {
                                 PhotonNetwork.Instantiate(wallPrefab.name, position, Quaternion.identity);
                             }
-                        }
-                        else
-                        {
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (map[x, y])
+                    {
+                        //Each spawn should consider the size of the previous object,
+                        //create an offest value equal to the size of each object to make sure
+                        //they dont spawn on top of each other
+                        case Cell.Floor:
+                            Instantiate(groundPrefab, position, Quaternion.identity);
+                            break;
+                        case Cell.Wall:
                             Instantiate(wallPrefab, position, Quaternion.identity);
-                        }
-                        break;
+                            break;
+                        case Cell.Crate:
+                            Instantiate(groundPrefab, position, Quaternion.identity);
+                            Instantiate(cratePrefab, position, Quaternion.identity);
+                            break;
+                        case Cell.Goal:
+                            Instantiate(groundPrefab, position, Quaternion.identity);
+                            Instantiate(targetPrefab, position, Quaternion.identity);
+                            break;
+                        case Cell.Player:
+                            Instantiate(playerPrefab, position, Quaternion.identity);
+                            break;
+                        default:
+                            Instantiate(wallPrefab, position, Quaternion.identity);
+                            break;
+                    }
                 }
             }
         }
