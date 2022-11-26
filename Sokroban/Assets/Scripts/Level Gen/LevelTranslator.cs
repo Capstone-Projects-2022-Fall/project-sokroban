@@ -269,10 +269,10 @@ public class LevelTranslator : MonoBehaviour
                         //targetCount++;
                         if(isCoop || isVS)
                         {
-                            //if(CreateAndJoinRooms.isMaster){
+                            if(CreateAndJoinRooms.isMaster){
                                 PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                                 PhotonNetwork.Instantiate(targetPrefab.name, position, Quaternion.identity);
-                            //}
+                            }
                         }
                         else
                         {
@@ -283,14 +283,14 @@ public class LevelTranslator : MonoBehaviour
                     case Cell.Player:
                         //groundCount++;
                         //playerCount++;
-                        Instantiate(groundPrefab, position, Quaternion.identity);
+                        //Instantiate(groundPrefab, position, Quaternion.identity);
                         if(isCoop || isVS)
                         {
-                            if(CreateAndJoinRooms.isMaster)
-                            {
+                            //if(CreateAndJoinRooms.isMaster)
+                            //{
                                 PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                                 PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
-                            }
+                            //}
                         }
                         else 
                         {
