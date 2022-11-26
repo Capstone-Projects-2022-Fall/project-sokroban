@@ -269,10 +269,10 @@ public class LevelTranslator : MonoBehaviour
                         //targetCount++;
                         if(isCoop || isVS)
                         {
-                            if(CreateAndJoinRooms.isMaster){
+                            //if(CreateAndJoinRooms.isMaster){
                                 PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                                 PhotonNetwork.Instantiate(targetPrefab.name, position, Quaternion.identity);
-                            }
+                            //}
                         }
                         else
                         {
