@@ -8,25 +8,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class LevelTranslator : MonoBehaviour
+public class LevelTranslator : MonoBehaviourPun
 {
     Cell[,] map;
 
     private int levelSize;
-
+    System.Random rand = new System.Random();
     public GameObject groundPrefab;
     public GameObject wallPrefab;
     public GameObject cratePrefab;
     public GameObject targetPrefab;
     public GameObject playerPrefab;
 
-    public static int crates, size;
+    public static int crates = 0, size = 0;
+    public static bool newPlayerJoined = false;
 
     //types of modes
     public static bool isSandbox = false, isNormal = false, isChallenge = false, isCoop = false, isVS = false;
     Level level;
+    
     private void Awake()
     {
+        
+        this.photonView.ViewID = rand.Next(1,100000000);
         //if sandbox mode, use the number entered 
         if (isSandbox)
         {
@@ -42,8 +46,11 @@ public class LevelTranslator : MonoBehaviour
         {
             //sets crates and size
             setTier();
+            Debug.Log("size is" + size + "and crates are" + crates);
             //level = new Level(crates, size, CreateAndJoinRooms.numOfPlayers);
+            Debug.Log("size is" + size + "and crates are" + crates);
             level = new Level(crates, size);
+
         }
         else if (isVS)
         {
@@ -62,6 +69,44 @@ public class LevelTranslator : MonoBehaviour
         }
     }
 
+
+    private void Update()           //This will be setting the size and the crates for the joining players.
+    {
+        if (newPlayerJoined && !CreateAndJoinRooms.isMaster)
+        {
+            this.photonView.RPC("SetNewPlayer", RpcTarget.All, true);
+        }
+        Debug.Log("newplayer is" + newPlayerJoined + "master is" + CreateAndJoinRooms.isMaster);
+        if(newPlayerJoined && CreateAndJoinRooms.isMaster)
+        {
+            this.photonView.RPC("SetSize", RpcTarget.All, Convert.ToString(size), Convert.ToString(crates));
+            this.photonView.RPC("SetNewPlayer", RpcTarget.All, false);
+            Debug.Log("Map Sent");
+        }
+        
+        
+        
+    }
+    
+
+    [PunRPC]
+    void SetSize(string x, string y)
+    {
+        size = Int32.Parse(x);
+        crates = Int32.Parse(y);
+        //Debug.Log("Size is " + Int32.Parse(size) + " Crate is " + Int32.Parse(crates));
+    }
+
+    [PunRPC]
+    void SetNewPlayer(bool newPlayer)          //Sets the size and crates of joining players
+    {
+        newPlayerJoined = newPlayer;
+        Debug.Log("New player is" + newPlayer);
+    }
+  
+    
+
+
     public void setTier()
     {
         if(isCoop)
@@ -73,17 +118,17 @@ public class LevelTranslator : MonoBehaviour
                     //2 Players
                     case 2:
                         crates = 2;
-                        size = 15;
+                        size = 11;
                         break;
                     //3 Players
                     case 3:
                         crates = 3;
-                        size = 15;
+                        size = 11;
                         break;
                     //4 Players
                     case 4:
                         crates = 4;
-                        size = 15;
+                        size = 12;
                         break;
                     //5 Players
                     case 5:
@@ -108,19 +153,19 @@ public class LevelTranslator : MonoBehaviour
                     //9 Players
                     case 9:
                         crates = 9;
-                        size = 15;
+                        size = 18;
                         break;
                     //10 Players
                     case 10:
                         crates = 10;
-                        size = 15;
+                        size = 18;
                         break;
                 }
             }
             else
             {
-                crates = 8;
-                size = 15;
+                
+                //this.photonView.RPC("SetSize", RpcTarget.AllBuffered, size, crates);
             }
         }
         else if(isVS)

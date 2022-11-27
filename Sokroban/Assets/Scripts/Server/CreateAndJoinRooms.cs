@@ -92,6 +92,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         Debug.Log("Master is: "+ CreateAndJoinRooms.isMaster);
         PhotonNetwork.JoinRoom(roomInput.text);
     }
+    
 
     public override void OnJoinedRoom()
     {
@@ -100,6 +101,10 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         {
             LevelTranslator.isCoop = true;
             PhotonNetwork.LoadLevel("MPLevel"); //Needs coop config
+            if (!isMaster)
+            {
+                LevelTranslator.newPlayerJoined = true;
+            }
         }
         if (versusToggle.isOn)
         {

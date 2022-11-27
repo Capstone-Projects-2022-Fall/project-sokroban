@@ -392,6 +392,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Reset
       objectReference: {fileID: 0}
+    - target: {fileID: 7995473506077166224, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8406296477499849431, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
       propertyPath: m_Interactable
       value: 1
@@ -535,6 +539,8 @@ GameObject:
   m_Component:
   - component: {fileID: 938238976}
   - component: {fileID: 938238975}
+  - component: {fileID: 938238977}
+  - component: {fileID: 938238978}
   m_Layer: 0
   m_Name: LevelGen
   m_TagString: Untagged
@@ -573,6 +579,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &938238977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938238974}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc73d728b61245c4490526c3eaa2cc57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &938238978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938238974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1617915056
 GameObject:
   m_ObjectHideFlags: 0
