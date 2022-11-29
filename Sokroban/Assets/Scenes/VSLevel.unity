@@ -199,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 770198586296609897, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1286735069}
     - target: {fileID: 1413458922045668424, guid: 2f44bd0d6dba7f144be9b8a2cab5d2a3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 357.56

@@ -302,7 +302,7 @@ public class Level : MonoBehaviour
         //Need to improve deadCell algorithm too
         removeNull();
         cleanDeadCell();
-        if (MainMenuManager.isMultiplayer)
+        if (LevelTranslator.isCoop)
         {
             spawnCratesMP(cratesCount);
         }
