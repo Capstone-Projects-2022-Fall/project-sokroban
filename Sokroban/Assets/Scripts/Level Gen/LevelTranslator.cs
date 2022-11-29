@@ -30,7 +30,8 @@ public class LevelTranslator : MonoBehaviour
         //if sandbox mode, use the number entered 
         if (isSandbox)
         {
-            level = new Level(crates);
+            setTierSandbox();
+            level = new Level(crates, size);
         }
         //else start from level 1
         else if (isNormal || isChallenge)
@@ -59,6 +60,53 @@ public class LevelTranslator : MonoBehaviour
         if (isVS)
         {
             translateToPrefabs(size+1);
+        }
+    }
+
+    public void setTierSandbox()
+    {
+        switch (crates)
+        {
+            //Tier 1
+            case 1:
+                size = 8;
+                break;
+            //Tier 2
+            case 2:
+                size = 11;
+                break;
+            //Tier 3
+            case 3:
+                size = 11;
+                break;
+            //Tier 4
+            case 4:
+                size = 12;
+                break;
+            //Tier 5
+            case 5:
+                size = 15;
+                break;
+            //Tier 6
+            case 6:
+                size = 15;
+                break;
+            //Tier 7
+            case 7:
+                size = 15;
+                break;
+            //Tier 8
+            case 8:
+                size = 15;
+                break;
+            //Tier 9
+            case 9:
+                size = 18;
+                break;
+            //Tier 10
+            case 10:
+                size = 18;
+                break;
         }
     }
 
