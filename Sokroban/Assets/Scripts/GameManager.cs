@@ -35,6 +35,24 @@ public class GameManager : MonoBehaviour
         {
             if (2 * LevelTranslator.crates ==  counter)
             {
+                wonText.text = "ROUND IS OVER!";
+                nextLevelBtn.interactable = true;
+                TimerCount.LevelWon = true;
+                undoBtn.interactable = false;
+                resetBtn.interactable = false;
+
+            }
+            else
+            {
+                
+                TimerCount.LevelWon = false;
+                nextLevelBtn.interactable = false;
+            }
+        }
+        else if (LevelTranslator.isCoop)
+        {
+            if (1 + LevelTranslator.crates ==  counter)
+            {
                 wonText.text = "YOU WON!";
                 nextLevelBtn.interactable = true;
                 TimerCount.LevelWon = true;
