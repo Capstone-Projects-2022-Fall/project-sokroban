@@ -2863,4 +2863,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Level-Multiplayer.unity
   - Assets/Scenes/Temp.unity
   - Assets/Scenes/VSLevel.unity
-  playerPath: C:/Users/akozh/Desktop/project-sokroban/Sokroban/Build/Sokroban.exe
+  playerPath: C:/Users/Swtir/Documents/GitHub/project-sokroban/Sokroban/Build/Sokroban.exe
