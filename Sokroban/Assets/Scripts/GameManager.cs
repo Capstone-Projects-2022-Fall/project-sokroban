@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         
         if(LevelTranslator.isCoop)
         {
-            return;
+            PhotonNetwork.LoadLevel("MPLevel");
         }
         else
         {
