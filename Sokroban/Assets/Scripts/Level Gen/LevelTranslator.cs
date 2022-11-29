@@ -68,22 +68,23 @@ public class LevelTranslator : MonoBehaviour
         {
             if(CreateAndJoinRooms.isMaster)
             {
+                /*
                 switch (CreateAndJoinRooms.numOfPlayers)
                 {
                     //2 Players
                     case 2:
                         crates = 2;
-                        size = 15;
+                        size = 11;
                         break;
                     //3 Players
                     case 3:
                         crates = 3;
-                        size = 15;
+                        size = 11;
                         break;
                     //4 Players
                     case 4:
                         crates = 4;
-                        size = 15;
+                        size = 12;
                         break;
                     //5 Players
                     case 5:
@@ -108,25 +109,28 @@ public class LevelTranslator : MonoBehaviour
                     //9 Players
                     case 9:
                         crates = 9;
-                        size = 15;
+                        size = 18;
                         break;
                     //10 Players
                     case 10:
                         crates = 10;
-                        size = 15;
+                        size = 18;
                         break;
                 }
+                */
+                crates = 10;
+                size = 18;
             }
             else
             {
-                crates = 8;
-                size = 15;
+                crates = 9;
+                size = 18;
             }
         }
         else if(isVS)
         {
-            crates = 4;
-            size = 12;
+            crates = 6;
+            size = 15;
         }
         else
         {
@@ -283,17 +287,24 @@ public class LevelTranslator : MonoBehaviour
                     case Cell.Player:
                         //groundCount++;
                         //playerCount++;
-                        //Instantiate(groundPrefab, position, Quaternion.identity);
-                        if(isCoop || isVS)
+                        if(isCoop)
                         {
-                            //if(CreateAndJoinRooms.isMaster)
-                            //{
+                            
                                 PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
                                 PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
-                            //}
+                            
+                        }
+                        else if(isVS)
+                        {
+                            if(CreateAndJoinRooms.isMaster)
+                            {
+                                PhotonNetwork.Instantiate(groundPrefab.name, position, Quaternion.identity);
+                                PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
+                            }
                         }
                         else 
                         {
+                            Instantiate(groundPrefab, position, Quaternion.identity);
                             Instantiate(playerPrefab, position, Quaternion.identity);
                         }
                         
