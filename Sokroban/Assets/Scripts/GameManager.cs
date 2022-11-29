@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         checkWin();
         if(LevelTranslator.isVS)
         {
-            if (LevelTranslator.crates == 2 * counter)
+            if (2 * LevelTranslator.crates ==  counter)
             {
                 wonText.text = "YOU WON!";
                 nextLevelBtn.interactable = true;
