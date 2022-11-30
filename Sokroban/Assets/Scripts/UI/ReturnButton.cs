@@ -11,12 +11,9 @@ public class ReturnButton : MonoBehaviour
 {
     public void OnReturnClick()
     {
-        string usr = "Art";
-        int Scores = 2000;
-        int Time = 150;
-        int Level = 7;
 
-        StartCoroutine(PostData(usr, Scores, Time, Level));
+
+        StartCoroutine(PostData());
         //Reset level
         GameManager.levelCounter = 1;
         //Reset game mode
@@ -30,15 +27,11 @@ public class ReturnButton : MonoBehaviour
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene("Main Menu");
     }
-    IEnumerator PostData(string usr, int Score, int Time, int Level)
+    IEnumerator PostData()
     {
 
-        string uri = "https://sokroban.azurewebsites.net/Sokroban/SokLevelInsert?Username=" + usr + "&Score=" + Score + "&Time=" + Time + "&Level=" + Level;
+        string uri = "http://sokroban.azurewebsites.net/Sokroban/SokSave?Username=Arthur&Level=7&Score=2000&Time=150";
         WWWForm form = new WWWForm();
-        form.AddField("Username", "");
-        form.AddField("Score", "");
-        form.AddField("Time", "");
-        form.AddField("Level", "");
         using (UnityWebRequest request = UnityWebRequest.Post(uri, form))
         {
             yield return request.SendWebRequest();
