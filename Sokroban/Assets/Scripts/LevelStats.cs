@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class LevelStats
 {
-    public int Level;
     public string Username;
+    public int Level;
     public int Score;
     public int Time;
 }
