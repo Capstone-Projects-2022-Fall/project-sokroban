@@ -36,7 +36,7 @@ public class HomeScreenManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
-
+    
     public void OnClickSignUp()
     {
         if (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrEmpty(passwordInput.text))
@@ -56,43 +56,51 @@ public class HomeScreenManager : MonoBehaviour
     IEnumerator PostData(string usr, string pass)
     {
 
-        string uri = "https://sokroban.azurewebsites.net/Sokroban/SokLogin?Username=" + usr + "&Password=" + pass;
+        string uri = "http://sokroban.azurewebsites.net/Sokroban/SignUp?Username=" + usr + "&Password=" + pass;
+               
         WWWForm form = new WWWForm();
         form.AddField("Username", "");
         form.AddField("Password", "");
         using (UnityWebRequest request = UnityWebRequest.Post(uri, form))
         {
             yield return request.SendWebRequest();
+
         }
     }
 
-    public IEnumerator FetchData()
+IEnumerator FetchData()
     {
 
-        string uri = "https://sokroban.azurewebsites.net/Sokroban/Check?usr=" + usernameInput.text;
+        string uri = "https://sokroban.azurewebsites.net/Sokroban/Login?usr=" + usernameInput.text;
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
         {
             yield return request.SendWebRequest();
 
-          
 
-            PlayerInfo playerInfo = new PlayerInfo();
-        
+
+            //PlayerInfo playerInfo = new PlayerInfo();
             //playerInfo = JsonUtility.FromJson<PlayerInfo>(request.downloadHandler.text);
-            
-            string UserCheck = playerInfo.username;
-            string PasswordCheck = "MileDemo";            
-            //string PasswordCheck = playerInfo.password;
+            //PlayerInfo playerInfo = JsonUtility.FromJson<PlayerInfo>(request.downloadHandler.text);
+            //playerInfo = JsonUtility.FromJson<PlayerInfo>(JsonUtility.ToJson(data));
+
+            //string UserCheck = playerInfo.Username;
+            ////string PasswordCheck = "MileDemo";            
+            //string PasswordCheck = ;
+
+            string data = request.downloadHandler.text;
+            string DP = data.Substring((28 + usernameInput.text.Length));
+            DP = DP.Substring(0, DP.Length - 3);
+
             string PassInput = passwordInput.text;
 
-            if (PassInput.Equals(PasswordCheck))
+            if (PassInput.Equals(DP))
             {
                 SceneManager.LoadScene("Main Menu");
                 Debug.Log("Entered Main Menu");
             }
             else
             {
-                errorText.text = "Incorrect Password, Please try again";
+                errorText.text = "Incorrect Username/Password, Please try again";
             }
         }
     }
