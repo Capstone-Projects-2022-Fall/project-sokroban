@@ -13,15 +13,7 @@ public class Level : MonoBehaviour
 
     public static int cratesCount;
 
-    //Sandbox
-    public Level(int crates) {
-        rand = new System.Random();
-        cratesCount = crates;
-        width = 11; //rand(2,4)*3+2  8,11,12,14,15, 17 is slow, 18,
-        height = width;
-        players = 1;
-    }
-    //SP Normal/Challenge Mode
+    //SP Sandbox/Normal/Challenge Mode
     public Level(int crates, int size) {
         rand = new System.Random();
         cratesCount = crates;

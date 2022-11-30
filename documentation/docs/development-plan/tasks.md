@@ -13,6 +13,7 @@ sidebar_position: 2
 1. Create login
     - Create Login Screen (~1 point)
     - Create Sign up screen (~1 point)
+    - Create Guest Option (~1 point)
     - connect with API to allow users to create accounts and sign in with exsisting ones.
     - Add all buttons/scripts related (~2 points)
 
@@ -40,6 +41,7 @@ sidebar_position: 2
     - Create Timer 
     - Create Point system algo (Decriments by number of moves)
     - Setup grid movement system (~5 points)
+    - Create Sound/mute button
 
 5. Challenge Mode
     - Everything from Single Player 
@@ -55,6 +57,7 @@ sidebar_position: 2
     - 2 player competitive mode 
     - For competitive has oppentents ghost visible on screen
     - After connection make sure each player is controlling only one sprite (~ 2 points)
+    - Create win condition 
     - CO-OP: Make sure buddies sprite is interactible(Not ghost)
     - 2 player competitive mode 
     - For competitive has oppentents ghost visible on screen
@@ -71,9 +74,9 @@ sidebar_position: 2
 9. Save Function
     - Add script/function to send the level number to the database (~2 points)
     - Add script/function to send the current player score/time to the database (~2 points)
-    - Add script to obtain level from DB when  loading save
+    - Add script to obtain level from DB when  loading save (~2 points)
     
 10. Leaderboards Tab
     - Add script to pull the top scores/ names from the database (~2 points)
     - Display the scores/names (~1 point)
-    - Have current users Name/Score/level/time displayed at the top of the screen above leaderboard
+    - Have current users Name/Score/level/time displayed at the top of the screen above leaderboard (~3 points)

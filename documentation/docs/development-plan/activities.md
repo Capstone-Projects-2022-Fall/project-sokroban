@@ -8,17 +8,18 @@ sidebar_position: 1
 During the requirements gathering every member of our team researched a different version of the original game "Sokoban". Our group decided to add different features that were missing from the original game. Our goal was to make the game more competitive, by adding a multiplayer option along with highscores, and finally, more interesting by adding a story mode.<br/>   
 Our team will also conduct User Acceptance Testing by providing different prototypes to users and ask them to perform different Use Cases. Based on the user's feedback and overall experience we will be updating our requirements accordingly in the future as the development goes on.
 
+
 # Top Level Design 
-1. Create Single Player option that will allow the user to play locally on generated level.
-2. Incorporate existing algorithm into our game that will procedurally generate maps in every playable mode of the game.
-3. Establish multiplayer server utilizing Unity's Photon networking service.
-4. Create Multiplayer (Co-op) option that will allow users to solve a generated level together.
-5. Create Multiplayer (VS) option that will allow users to compete against each other on two instances of the same generated map (split screen).
-6. Establish Database.
-7. Create cloud hosting server that will hold DB and API (utilizing Azure).
-8. Establish an API that wil connect to our database and take user login and allow them to retrieve previous scores and upload new ones.
-9. Create a welcome screen that will allow the user to log into their  existing account or create a new account.
-10. Create Main Menu that will allow the user to navigate through the 3 main options of the game (Single player, Multiplayer, and Leaderboard).
+1. Create a welcome screen that will allow the user to log into their  existing account or create a new account or as a guest.
+2. Create Main Menu that will allow the user to navigate through the 3 main options of the game (Single player, Multiplayer, and Leaderboard).
+3. Establish Database.
+4. Create Single Player option that will allow the user to play locally on generated level.
+5. Create cloud hosting server that will hold DB and API (utilizing Azure).
+6. Establish multiplayer server utilizing Unity's Photon networking service.
+7. Create Multiplayer (Co-op) option that will allow users to solve a generated level together.
+8. Create Multiplayer (VS) option that will allow users to compete against each other on two instances of the same generated map (split screen).
+9. Incorporate existing algorithm into our game that will procedurally generate maps in every playable mode of the game. 
+10. Establish an API that wil connect to our database and take user login and allow them to retrieve previous scores and upload new ones.
 11. Build leaderboard page that will show users who hold the top scores.
 
 
@@ -69,6 +70,7 @@ Our team will also conduct User Acceptance Testing by providing different protot
     - There will be two input fields for the username and password.
     - There will be a “login” button.
     - There will be a “sign up” button.
+    - There will be a "Guest" button. 
 
 9. Main Menu Interface:
     - The interface will include:
@@ -84,6 +86,7 @@ Our team will also conduct User Acceptance Testing by providing different protot
     - The score will reset when the game is exited, meaning, that when a player starts a level their score will be counting up until they exit to the menu or desktop.
     - Therefore in order to earn the most score possible, the player will need to keep playing until they reach the highest score.
     - The high scores of everyone that has played the game will be posted on the leaderboards menu.
+    - The high score will be performance playing the single player and multiplayer. 
 
 
 # Test
@@ -92,9 +95,7 @@ Our team will also conduct User Acceptance Testing by providing different protot
     - Edit Mode tests: Our team will create unit tests that will test the scripts required for basic functionalities(s.a. direction class etc).
 2. Functional Testing:
     - Our team and others(we will select different people and ask them to try and complete our use cases) will test the functionality of our game and will try to look for any possible problems within our game or the user interface and the graphics, such as game mechanic issues, stability issues and game asset integrity.
-3. Compatibility Testing: 
-    - Our team will make sure our game is compatible across every machine it is supposed to run on.
-4. Integration Testing:
-    - Text will be added here.
-5. Acceptance Testing:
-    - text will be added here.
+3. Integration Testing:
+    -  Our team will be testing using with unity test framework to ensure of our each use case(user stories). It should provide mock objects and results For this testing accomplishment. 
+4. Acceptance Testing:
+    - Our team will create all tasks of testing for functional and non-functional requirements for our Sokroban game. We will make sure our game is compatible across every machine it is supposed to run on.
