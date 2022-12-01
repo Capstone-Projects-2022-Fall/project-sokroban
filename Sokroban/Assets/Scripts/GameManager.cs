@@ -31,20 +31,58 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         checkWin();
-        if (LevelTranslator.crates == counter)
+        if(LevelTranslator.isVS)
         {
-            wonText.text = "YOU WON!";
-            nextLevelBtn.interactable = true;
-            TimerCount.LevelWon = true;
-            undoBtn.interactable = false;
-            resetBtn.interactable = false;
+            if (2 * LevelTranslator.crates ==  counter)
+            {
+                wonText.text = "ROUND IS OVER!";
+                nextLevelBtn.interactable = true;
+                TimerCount.LevelWon = true;
+                undoBtn.interactable = false;
+                resetBtn.interactable = false;
 
+            }
+            else
+            {
+                
+                TimerCount.LevelWon = false;
+                nextLevelBtn.interactable = false;
+            }
         }
-        else
+        else if (LevelTranslator.isCoop)
         {
-            
-            TimerCount.LevelWon = false;
-            nextLevelBtn.interactable = false;
+            if (1 + LevelTranslator.crates ==  counter)
+            {
+                wonText.text = "YOU WON!";
+                nextLevelBtn.interactable = true;
+                TimerCount.LevelWon = true;
+                undoBtn.interactable = false;
+                resetBtn.interactable = false;
+
+            }
+            else
+            {
+                
+                TimerCount.LevelWon = false;
+                nextLevelBtn.interactable = false;
+            }
+        }
+        else{
+            if (LevelTranslator.crates == counter)
+            {
+                wonText.text = "YOU WON!";
+                nextLevelBtn.interactable = true;
+                TimerCount.LevelWon = true;
+                undoBtn.interactable = false;
+                resetBtn.interactable = false;
+
+            }
+            else
+            {
+                
+                TimerCount.LevelWon = false;
+                nextLevelBtn.interactable = false;
+            }
         }
 
         if(ScoreSystem.movesTaken > 0 && !(LevelTranslator.isChallenge || LevelTranslator.isCoop))
@@ -65,7 +103,7 @@ public class GameManager : MonoBehaviour
         
         if(LevelTranslator.isCoop)
         {
-            return;
+            PhotonNetwork.LoadLevel("MPLevel");
         }
         else
         {

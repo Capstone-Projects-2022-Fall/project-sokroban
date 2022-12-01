@@ -8,6 +8,9 @@ public class ShareOwnership : MonoBehaviourPun
 
     private void OnMouseDown() 
     {
-        base.photonView.RequestOwnership();
+        if(LevelTranslator.isCoop || LevelTranslator.isVS)
+        {
+            base.photonView.RequestOwnership();
+        }
     }
 }
