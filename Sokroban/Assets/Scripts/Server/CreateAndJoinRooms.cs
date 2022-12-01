@@ -44,9 +44,9 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             //Checks if max players is set
             try
             {
-                if (Int32.Parse(playersInput.text) > 5 || Int32.Parse(playersInput.text) < 2)
+                if (Int32.Parse(playersInput.text) > 8 || Int32.Parse(playersInput.text) < 2)
                 {
-                    errorText.text = "Max 5, Min 2 people per room!";
+                    errorText.text = "Max 8, Min 2 people per room!";
                     return;
                 }
             }
