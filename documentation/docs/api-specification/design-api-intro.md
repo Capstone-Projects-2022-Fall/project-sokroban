@@ -3,10 +3,10 @@ sidebar_position: 1
 description: What should be in this section.
 ---
 
-Design Document - Part II API
+Design Document - Sokroban Unity Game API
 =============================
 
-1. HomeScreenManager
+ ## HomeScreenManager
     Class Purpose:The HomeScreenManager will navigational code for create account adding with username and password. This method will allow the user to login existing account, signup and as a guest option for playing this game.
 
     Data Fields:
@@ -34,7 +34,7 @@ Design Document - Part II API
             - Parameters: None 
             - Return Values: None
 
-2. MainMenuManager 
+## MainMenuManager 
     Class Purpose: The MainMenuOperator will handle all the navigational code for Sokroban. This method will allow the users to traverse between the leaderboad, Single Player, and Multiplayer aspects of the game. 
 
     Method:
@@ -59,7 +59,7 @@ Design Document - Part II API
             - Parameters: None
             - Return Values: None
 
-3. ConnectiontoServer
+## ConnectiontoServer
     Class Purpose: The purpose of this class is to communicate with our Photon multiplayer server and elstablish an online connection so when the player is ready they may play online with their peers.
 
     Data Fields:
@@ -83,7 +83,7 @@ Design Document - Part II API
            - Parameters: None
            - Returns: None
 
-4. AccountHandler  
+## AccountHandler  
     Class Purpose: The account Handler Class will send the users login data to the API, which will then be checked with the current data in the DB. If correct the user will be loged in, if incorrect the user will be notified that the information entered was wrong, and theyll need to re enter the data or continue as guest.
     
     Data Fields: 
@@ -104,7 +104,7 @@ Design Document - Part II API
             - No Parameters
             - Return Values: None
 
-5. SPLobbyManager
+## SPLobbyManager
     Class Purpose: This SPLobby class will hold the code to play a single-player game. This method will allow entering the box amount, the player can select normal mode and challenge mode to play the game. 
 
     Data Fields:
@@ -135,7 +135,7 @@ Design Document - Part II API
             - No parameters
             - Return value: none
 
-6. ReturnButton
+## ReturnButton
     Class Purpose:This class will hold the code that would allow the player to return to the homescreen. 
  
     Method:
@@ -145,7 +145,7 @@ Design Document - Part II API
             - No parameters 
             - Return value: none 
 
-7. CreateAndJoinRoom  
+## CreateAndJoinRoom  
     Class Purpose: This class holds the code that will allow a player to either host their own game and allow other to join on them, or to hop into a game hosted by another.
 
     Data Fields: 
@@ -194,7 +194,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-8. Level generator: 
+## Level generator: 
     Class purpose: This class Level generator will handles map, level size, prefab, crates, singleplayer mode and multiplayer mode, This method will generated finishedmap, level size,and resetmap in the game.
 
     Data Fields:
@@ -267,7 +267,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-9. Level
+## Level
     Class Purpose: This class will handles Level with size(height,width), players, random generating level. This method will allow to generate the level, spawn crates for single player, and multiplayer. 
 
     Data Fields: 
@@ -358,7 +358,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-10. ChangeSound
+## ChangeSound
     Class Purpose: This sound class will hold the code for turn on sound during the play, and also will allow player to mute click. 
 
     Data Fields:
@@ -385,7 +385,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-11. ScoreSystem
+## ScoreSystem
     Class Purpose: This ScoreSystem class will hold the code for scoring included points, moves and current score. This method will entering number of move boxes, and update score. 
 
     Data Fields: 
@@ -411,7 +411,7 @@ Design Document - Part II API
             -  Returns: None
 
 
-12. LevelCount
+## LevelCount
     Class purpose: This class LevelCount will hold the code for counting level while playing, this method will update complete level in screen while playing the game. 
 
     Data Fields:
@@ -425,7 +425,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-13. Timercount
+## Timercount
      Class purpose: This class TimerCount will hold teh code for time, how much time take to win level while playing. This method will update timer in screen while playing the game 
 
     Data Fields:
@@ -445,7 +445,7 @@ Design Document - Part II API
 
 
 
-14. LeaderBoard  
+## LeaderBoard  
     Class Purpose: The leaderBoard Class, will call on the API to pull a list of users and their stats and present it, so that users can see where they stand amongst their peers. This Class will have two data pulls, at the top of the screen will be the users score and below it will be the actuall leaderboard. this will require the api to pull specific data on just the user as well as a complete filtered pull of the DB.
 
     Data Fields: 
@@ -461,7 +461,7 @@ Design Document - Part II API
             - Parameters: username,password,Database list
             - Returns:None
 
-15. GameManager: 
+## GameManager: 
     Class Purpose:This class will handles level counter, next level, undo button, reset button, and won the game, this method will allow the user to start, update the game, and also allow to going to next level and check win into the leaderboard.
     
     Data Fields:
@@ -507,7 +507,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-16. Template 
+## Template 
     Class Purpose: This class will handles random rotation and clockwise rotation.
 
     Data Fields:
@@ -533,7 +533,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-17. Templates
+## Templates
      Class Purpose: This class will handles template 1 to 19, random templates. 
 
     Data fields:
@@ -548,7 +548,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-18. CameraController 
+## CameraController 
     Class purpose: This class will handles mapsize and modsize. 
     
     Data Fields
@@ -574,7 +574,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-19. Transform  
+## Transform  
     Class Purpose: Handles positioning of the player 
 
     Data Fields: 
@@ -587,7 +587,7 @@ Design Document - Part II API
 
     Methods: None
 
-20. SpriteRenderer   
+## SpriteRenderer   
     Class Purpose: Renders the players Sprite (character icon)
 
     Data Fields: 
@@ -596,7 +596,7 @@ Design Document - Part II API
 
     Methods: None
 
-21. Box
+## Box
      Class Purpose: This class will hold the code for the box, This method will update the move to box, target position for the box, and boxblocked while playing the game. 
 
     Data Fields: 
@@ -620,7 +620,7 @@ Design Document - Part II API
             - Returns: None
 
 
-22. RigidBody2D  
+## RigidBody2D  
     Class Purpose: Handles Hit box of player, this "box" is the actual object that interacts with the boxes
     
     Data Fields: 
@@ -629,7 +629,7 @@ Design Document - Part II API
 
     Method:None
 
-23. BoxCollider2D  
+## BoxCollider2D  
     Class Purpose: Handels Hit box of Boxes, this "box" is the actual object that interacts with the boxes
 
     Data Fields: 
@@ -640,7 +640,7 @@ Design Document - Part II API
   
     Method:None
 
-24. Player 
+## Player 
     Class Purpose: This class will handles player for single player and multiplayer.
     
     Data fields:
@@ -681,7 +681,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-25. SpawnPlayer
+## SpawnPlayer
     Class Purpose: This Class will handles SpawnPlayer for single player 
     
     Data Fields:
@@ -703,7 +703,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-26. Animator  
+## Animator  
     Class Purpose: Handles Animation for single player
     
     Methods:
@@ -713,7 +713,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-27. PhotonAnimatorview  
+## PhotonAnimatorview  
     class Purpose: Handles Animation for multiplayer
     
     Methods: 
@@ -726,7 +726,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-28. PhotonTransformViewClassic  
+## PhotonTransformViewClassic  
     class Purpose: Handels the positioning of both players sprites, so that each can be displayed on the level.
 
     Methods:
@@ -743,7 +743,7 @@ Design Document - Part II API
             - Parameters: None
             - Returns: None
 
-29. PhotonView   
+## PhotonView   
     Class Purpose: Shows each players ID and who's hosting the game. all displayed on the backend
 
     Methods:
