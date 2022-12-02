@@ -52,17 +52,29 @@ Software:
 <table>
 <tr>
     <td align="center">
-        <a href="https://github.com/ApplebaumIan">
-            <img src="https://avatars.githubusercontent.com/u/9451941?v=4" width="100;" alt="ApplebaumIan"/>
+        <a href="https://github.com/Gaben1025">
             <br />
-            <sub><b>Ian Tyler Applebaum</b></sub>
+            <sub><b>Arthur Kozhevnik</b></sub>
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/leighflagg">
-            <img src="https://avatars.githubusercontent.com/u/77810293?v=4" width="100;" alt="leighflagg"/>
+        <a href="https://github.com/robnano">
             <br />
-            <sub><b>Null</b></sub>
+            <sub><b>Roberto Nano</b></sub>
+        </a>
+    </td>
+    </td>
+    <td align="center">
+        <a href="https://github.com/F-Rabinovich">
+            <br />
+            <sub><b>Felix Rabinovich</b></sub>
+        </a>
+    </td>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Tun92789">
+            <br />
+            <sub><b>Riddhi Patel</b></sub>
         </a>
     </td></tr>
 </table>
