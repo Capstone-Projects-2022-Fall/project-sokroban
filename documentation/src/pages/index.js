@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import Link from 'https://play.unity.com/mg/other/webgl-builds-281781';
+//import Link from 'https://play.unity.com/mg/other/webgl-builds-281781';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
@@ -21,7 +21,7 @@ function HomepageHeader() {
             {/* TODO: Change me to your project's tutorial*/ }
           <Link
             className="button button--secondary button--lg"
-            to="/tutorial/intro">
+            to='https://play.unity.com/mg/other/webgl-builds-281781'>
             Play Sokroban Here !
           </Link>
         </div>
