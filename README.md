@@ -62,20 +62,19 @@ Software:
             <sub><b>Roberto Nano</b></sub>
         </a>
     </td>
-    </td>
     <td align="center">
         <a href="https://github.com/F-Rabinovich">
             <br />
             <sub><b>Felix Rabinovich</b></sub>
         </a>
     </td>
-    </td>
     <td align="center">
         <a href="https://github.com/Tun92789">
             <br />
             <sub><b>Riddhi Patel</b></sub>
         </a>
-    </td></tr>
+    </td>
+</tr>
 </table>
 
 [//]: # ( readme: collaborators -end )
