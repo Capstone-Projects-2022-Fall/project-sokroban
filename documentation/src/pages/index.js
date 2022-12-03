@@ -19,11 +19,13 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
             {/* TODO: Change me to your project's tutorial*/ }
-          <Link
-            className="button button--secondary button--lg"
-            to='https://play.unity.com/mg/other/webgl-builds-281781'>
+            <Text
+            style={styles.hyperlinkStyle}
+            onPress={() => {
+              Linking.openURL('https://play.unity.com/mg/other/webgl-builds-281781');
+            }}>
             Play Sokroban Here !
-          </Link>
+          </Text>
         </div>
       </div>
     </header>
