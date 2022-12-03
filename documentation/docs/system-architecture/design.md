@@ -49,7 +49,6 @@ Use Case 1 Description
 5)	Player enters to the main Menu.<br/>
 6)	Player exits the game by pressing the “X” button.<br/>
 
-<UseCase1 />
 </details>
 
 ![Figure ](/img/UseCase1pic.png)
@@ -67,7 +66,6 @@ Use Case 2 Description
 4) A level is generated for the player.<br/>
 5) Player is now playing the game.<br/>
 
-<UseCase2 />
 </details>
 
 ![Figure2](/img/UseCase2pic.png)
@@ -85,7 +83,6 @@ Use Case 3 Description
 3) A level is generated for the player. <br/>
 4) Player is now playing the game without the reset or undo buttons available.<br/>
 
-<UseCase3 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase3pic.png)
@@ -104,7 +101,6 @@ Use Case 4 Description
 4)  Both players are on the same map.<br/>
 5)  Players are helping each other in order to win the level.<br/>
 
-<UseCase4 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase4pic.png)
@@ -124,7 +120,6 @@ Use Case 5 Description
 5)	Player gets the boxes into the end point faster than their friend.<br/>
 6)  Player won the game.<br/>
 
-<UseCase5 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase5pic.png)
@@ -140,7 +135,6 @@ Use Case 6 Description
 1)	Player selects the High Scores option.<br/>
 2)	Player views high scores.<br/>
 
-<UseCase6 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase6pic.png)
@@ -159,7 +153,6 @@ Use Case 7 Description
 4)	Player places the box onto the target.<br/>
 5)	Player wins the level.<br/>
 
-<UseCase7 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase7pic.png)
@@ -177,7 +170,6 @@ Use Case 8 Description
 4)	Player resets the level by pressing the reset button.<br/>
 5)	The level resets with the character and the box(es) back to their starting positions.<br/>
 
-<UseCase8 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase8pic.png)
@@ -194,7 +186,6 @@ Use Case 9 Description
 2)  Player selects their favorite character from a variety of characters.<br/>
 3)  Player starts playing with the chosen character.<br/>
 
-<UseCase9 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase9pic.png)
@@ -211,7 +202,6 @@ Use Case 10 Description
 2)  Player selects from a variety of maps with complex deisgn.<br/>
 3)  Player plays the game with a more complex designed map.<br/>
 
-<UseCase10 />
 </details>
 
 ![Use Case 1 Sequence Diagram](/img/UseCase10pic.png)
