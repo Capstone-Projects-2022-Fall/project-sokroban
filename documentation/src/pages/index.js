@@ -8,6 +8,8 @@ import ProjectReadme from "../components/ReademeMD";
 import styles from './index.module.css';
 import ForReview from "../components/ForReview";
 
+
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -20,7 +22,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/tutorial/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            Play Sokroban Here !
           </Link>
         </div>
       </div>
@@ -44,3 +46,8 @@ export default function Home() {
     </Layout>
   );
 }
+
+
+
+
+
