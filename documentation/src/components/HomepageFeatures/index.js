@@ -4,32 +4,32 @@ import styles from './styles.module.css';
 /*TODO: Change to your project's feature list*/
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Easy to Play',
+   
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Easy and fun to play! whether you want to play for a couple minutes,
+        or a couple hours! Sokroban is perfect for any occasion
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Multiplayer',
+    
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Looking for a game to play with freinds ? Sokroban has got you covered ! Play with a 
+        friend and attempt to concur Sokroban's endless levels, or go toe to toe in competative mode.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Challenge Mode',
+    
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Looking to test your skills ? give Sokrobans Challenge mode a whirls, and see 
+        how far you can get without the use of undos and resets.
       </>
     ),
   },
