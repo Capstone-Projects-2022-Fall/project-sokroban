@@ -20,9 +20,9 @@ function HomepageHeader() {
         <div className={styles.buttons}>
             {/* TODO: Change me to your project's tutorial*/ }
           <Link
-            className="button button--secondary button--lg"
-            to="/tutorial/intro">
-            Play Sokroban Here !
+            className="button button--secondary button--lg">
+                <a href="https://play.unity.com/mg/other/webgl-builds-281781" target = "_blank">Play Sokroban Here!
+                </a> 
           </Link>
         </div>
       </div>
