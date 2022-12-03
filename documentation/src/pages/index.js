@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import Link from 'https://play.unity.com/mg/other/webgl-builds-281781';
+//import Link from 'https://play.unity.com/mg/other/webgl-builds-281781';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
@@ -19,11 +19,13 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
             {/* TODO: Change me to your project's tutorial*/ }
-          <Link
-            className="button button--secondary button--lg"
-            to="/tutorial/intro">
+            <Text
+            style={styles.hyperlinkStyle}
+            onPress={() => {
+              Linking.openURL('https://play.unity.com/mg/other/webgl-builds-281781');
+            }}>
             Play Sokroban Here !
-          </Link>
+          </Text>
         </div>
       </div>
     </header>
